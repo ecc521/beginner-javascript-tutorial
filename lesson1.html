@@ -5,6 +5,13 @@
     </head>
     <body>
         
+        <!-- HTML Mixed CodeMirror-->
+        <script src="/codemirror-5.42.0/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="/codemirror-5.42.0/lib/codemirror.css">
+        <script src="/codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="/codemirror-5.42.0/mode/xml/xml.js"></script>       
+        <script src="/codemirror-5.42.0/mode/javascript/javascript.js"></script>       
+        <script src="/codemirror-5.42.0/mode/css/css.js"></script>        
         
         
         
@@ -21,29 +28,46 @@
         
         
 
+<pre id="exampletext">
+if (comparison1) {
+    //Code to run if comparison1 is true    
+}
+else if (comparison2) {
+    //Code to run if comparison1 is false but comparison2 is true
+}
+else {
+    //Code to run if neither comparison2 or comparison1 are true
+}
+</pre>
         
-        <pre>
-        if (comparison1) {
-            //Code to run if comparison1 is true    
-        }
-        else if (comparison2) {
-            //Code to run if comparison1 is false but comparison2 is true
-        }
-        else {
-            //Code to run if neither comparison2 or comparison1 are true
-        }
-        </pre>
+        <div id="example">
+            <textarea id="exampleeditor"></textarea>
+        </div>
         
         
         
-        <pre>
-        while (comparison) {
+        
+        
+        
+        <script>
             
-        }
+            
+            document.getElementById("exampleeditor").value = document.getElementById("exampletext").innerHTML
+
+            
+            
+            var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                mode:  "javascript",
+                autoCloseTags: true,
+                styleActiveLine: true,
+                lineWrapping: false,
+                lineNumbers:true
+            });
         
+            
+            document.getElementById("exampletext").remove()
         
-        
-        </pre>
+        </script>
         
         
         
@@ -83,21 +107,7 @@
         
         
         <!-- All the stuff below is CodeMirror-->
-        <!-- window.initialHTML is the HTML that they should begin with-->
-        
-        
-        
-        
-        
-        
-        
-        <!-- HTML Mixed CodeMirror-->
-        <script src="/codemirror-5.42.0/lib/codemirror.js"></script>
-        <link rel="stylesheet" href="/codemirror-5.42.0/lib/codemirror.css">
-        <script src="/codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
-        <script src="/codemirror-5.42.0/mode/xml/xml.js"></script>       
-        <script src="/codemirror-5.42.0/mode/javascript/javascript.js"></script>       
-        <script src="/codemirror-5.42.0/mode/css/css.js"></script>    
+        <!-- window.initialHTML is the HTML that they should begin with-->    
         
     
         
@@ -115,7 +125,6 @@
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
                 name:  "htmlmixed",
                 autoCloseTags: true,
-                lineWrapping: true,
                 styleActiveLine: true,
                 lineWrapping: false,
                 lineNumbers:true
