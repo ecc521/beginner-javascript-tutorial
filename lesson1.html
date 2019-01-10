@@ -28,15 +28,20 @@
         
         
 
-<pre id="exampletext">
-if (comparison1) {
-    //Code to run if comparison1 is true    
+<pre id="exampletext" hidden="true">
+//Get a value from the user
+value = prompt("Please type in a number")
+if (value < 0) {
+    alert("You picked a negative number!") //Alert the user they picked a negative number
 }
-else if (comparison2) {
-    //Code to run if comparison1 is false but comparison2 is true
+else if (value < 10) {
+    alert("You picked a small number") //Alert the user they picked a small number
+}
+else if (value < 100) {
+    alert("You picked a medium number") //Alert the user they picked a medium number
 }
 else {
-    //Code to run if neither comparison2 or comparison1 are true
+    alert("You picked a large number") //Alert the user they picked a large number
 }
 </pre>
         
@@ -65,7 +70,6 @@ else {
             });
         
             
-            document.getElementById("exampletext").remove()
         
         </script>
         
