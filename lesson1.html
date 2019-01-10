@@ -80,7 +80,7 @@ else {
         <script>
             
             //HTML that is in editor at start
-            window.initialHTML = "<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\t<body>\n\t\t<p>Type HTML in the editor on the left. When you click run, the HTML page will be displayed here</p>\n\t\t<style>\n\t\t\tbody {\n\t\t\t\tbackground-color:lightgreen;\n\t\t\t}\n\t\t</style>\n\t</body>\n</html>"
+            window.initialHTML = "<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\t<body>\n\t\t<p>Type HTML in the editor on the left. When you click run, the HTML page will be displayed here</p>\n\t\t<style>\n\t\t\tbody {\n\t\t\t\tbackground-color:antiquewhite;\n\t\t\t}\n\t\t</style>\n\t</body>\n</html>"
         
         
         </script>
@@ -114,11 +114,28 @@ else {
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
+            <button id="download">Download!</button>
         </div>
         
         <iframe id="result" src="javascript:document.write('Loading...')"></iframe>
         
         <script>
+            
+            function download(content, name, mimetype) {
+
+                    var link = document.createElement("a");
+                    document.body.appendChild(link);
+
+                    content = new Blob([content], {type:mimetype})
+                    link.download = name
+                    link.href = URL.createObjectURL(content);
+                    link.click();
+
+                    document.body.removeChild(link);
+
+
+
+            }            
             
             document.getElementById("editor").value = window.initialHTML
             
@@ -141,6 +158,10 @@ else {
             
             
             document.getElementById("run").addEventListener("click", runcode)
+            document.getElementById("download").addEventListener("click", function(){
+                download(editor.getValue(), "website.html", "text/html")
+            })
+            
             runcode()
             
             
@@ -181,12 +202,22 @@ else {
             }
             
             #run {
-                width:100%;
+                width:60%;
                 height:10%;
                 font-size:16px;
                 background-color:#99e0ff;
                 border:0;
-                display:inline-block;
+                display:block;
+                float:left;
+            }
+            
+            #download {
+                width:40%;
+                height:10%;
+                font-size:16px;
+                background-color:#99ffe0;
+                border:0;
+                display:block;                
             }
             
             html, body {
