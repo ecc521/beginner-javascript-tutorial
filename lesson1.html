@@ -17,7 +17,7 @@
         
         
         
-        <h1>Flow Control</h1>
+        <h1>Taking action based on user input</h1>
         
         <style>
             h1 {
@@ -32,23 +32,31 @@
 //Get a value from the user
 value = prompt("Please type in a number")
 if (value < 0) {
-    alert("You picked a negative number!") //Alert the user they picked a negative number
+  alert("You picked a negative number!") //Alert the user they picked a negative number
 }
 else if (value < 10) {
-    alert("You picked a small number") //Alert the user they picked a small number
+  alert("You picked a small number") //Alert the user they picked a small number
 }
 else if (value < 100) {
-    alert("You picked a medium number") //Alert the user they picked a medium number
+  alert("You picked a medium number") //Alert the user they picked a medium number
 }
 else {
-    alert("You picked a large number") //Alert the user they picked a large number
+  alert("You picked a large number") //Alert the user they picked a large number
 }
 </pre>
+        
+        <p>Consider the following code:</p>
         
         <div id="example">
             <textarea id="exampleeditor"></textarea>
         </div>
         
+        
+        <p>This program asks the user for a number, and assigns the users input to a variable. It then proceeds to call the number either negative, small, medium, or large.</p>
+        
+        <p>There isn't much special about this program - but there is something special about JavaScript - it can run in the browser.</p>
+        
+        <p>JavaScript can be inserted in HTML files using script tags - much like paragraph tags. An example is shown in the editor below.</p>
         
         
         
@@ -57,7 +65,7 @@ else {
         <script>
             
             
-            document.getElementById("exampleeditor").value = document.getElementById("exampletext").innerHTML
+            document.getElementById("exampleeditor").value = document.getElementById("exampletext").innerText
 
             
             
@@ -66,7 +74,8 @@ else {
                 autoCloseTags: true,
                 styleActiveLine: true,
                 lineWrapping: false,
-                lineNumbers:true
+                lineNumbers:true,
+                tabSize:2
             });
         
             
@@ -75,23 +84,51 @@ else {
         
         
         
-        
-        
-        
+    
         
         
         
         <script>
-            
+
+
             //HTML that is in editor at start
-            window.initialHTML = "<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\t<body>\n\t\t<p>Type HTML in the editor on the left. When you click run, the HTML page will be displayed here</p>\n\t\t<style>\n\t\t\tbody {\n\t\t\t\tbackground-color:antiquewhite;\n\t\t\t}\n\t\t</style>\n\t</body>\n</html>"
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      background-color:antiquewhite;\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 100) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n    </script>\n  </body>\n</html>-->";
+    
+            window.initialHTML = window.initialHTML.slice(4)
+            window.initialHTML = window.initialHTML.slice(0, -3)
+
         
         
         </script>
         
         
         
-        
+<!--<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <style>
+      background-color:antiquewhite;
+    </style>
+    <script>
+      //Get a value from the user
+      value = prompt("Please type in a number")
+      if (value < 0) {
+        alert("You picked a negative number!") //Alert the user they picked a negative number
+      }
+      else if (value < 10) {
+        alert("You picked a small number") //Alert the user they picked a small number
+      }
+      else if (value < 100) {
+        alert("You picked a medium number") //Alert the user they picked a medium number
+      }
+      else {
+        alert("You picked a large number") //Alert the user they picked a large number
+      }
+    </script>
+  </body>
+</html>-->
         
         
         
@@ -148,7 +185,8 @@ else {
                 autoCloseTags: true,
                 styleActiveLine: true,
                 lineWrapping: false,
-                lineNumbers:true
+                lineNumbers:true,
+                tabSize:2
             });
 
             
@@ -166,7 +204,6 @@ else {
                 download(editor.getValue(), "website.html", "text/html")
             })
             
-            runcode()
             
             
         </script>
