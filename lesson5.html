@@ -29,14 +29,13 @@
         
         
         <p>One of the main usages of JavaScript is to create HTML elements. Lets create a paragraph element!</p>
-            
-        <p></p>
         
+        <p>Try modifying this code so that that it asks the user for a number, then creates an HTML paragraph element that says "You picked the number " with the number the use input </p>
 
         <script>
             function showanswer() {
                 
-                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n\t\t\tvalue = prompt(\"Input a number\")\n      if (value < 0) {\n      \talert(\"You picked a negative number\")\n      }\n      //The else if statement is for the bonus.\n      else if (value == 0) {\n      \talert(\"You picked the number 0\")\n      }\n      else {\n      \talert(\"You picked a positive number\")\n      }\n      \n    </script>\n  </body>\n</html>-->";
+                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      value = prompt(\"Please pick a number\")\n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"You picked the number \" + number\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n    </script>\n  </body>\n</html>-->";
     
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
@@ -66,7 +65,7 @@
         <div style="text-align:center;">
             <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()">Show Solution</button>
 
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson4.html'">Continue</button>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson6.html'">Continue</button>
         
         </div>
         
