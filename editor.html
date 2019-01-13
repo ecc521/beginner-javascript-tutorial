@@ -25,11 +25,14 @@
 
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\t<body>\n    <p>Type HTML in the editor on the left. When you click run, the HTML page will be displayed here</p>\n    <p>This editor automatically saves your changes - so it you close the tab and come back, your code will still be here (unless you clear browsing data)</p>\n    <style>\n      /*CSS goes here*/\n      body {\n        background-color:yellow;\n      }\n    </style>\n    <script>\n    \t//JavaScript goes here\n    </script>\n\t</body>\n</html>-->";
-    
-            window.initialHTML = window.initialHTML.slice(4)
-            window.initialHTML = window.initialHTML.slice(0, -3)
+            window.initialHTML = localStorage.getItem("htmlcode")
+            
+            if (window.initialHTML === null) {
+                window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\t<body>\n    <p>Type HTML in the editor on the left. When you click run, the HTML page will be displayed here</p>\n    <p>This editor automatically saves your changes - so it you close the tab and come back, your code will still be here (unless you clear browsing data)</p>\n    <style>\n      /*CSS goes here*/\n      body {\n        background-color:yellow;\n      }\n    </style>\n    <script>\n    \t//JavaScript goes here\n    </script>\n\t</body>\n</html>-->";
 
+                window.initialHTML = window.initialHTML.slice(4)
+                window.initialHTML = window.initialHTML.slice(0, -3)
+            }
         
         
         </script>
@@ -98,6 +101,15 @@
                 download(editor.getValue(), "website.html", "text/html")
             })
             
+            var previoustext = editor.getValue()
+            
+            function save() {
+                if (editor.getValue() !== previoustext) {
+                    localStorage.setItem("htmlcode", editor.getValue())
+                }    
+            }
+            
+            setInterval(save, 1000)
             
             
         </script>
