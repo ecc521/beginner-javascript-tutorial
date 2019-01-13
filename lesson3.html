@@ -11,13 +11,13 @@
         <script src="codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
         <script src="codemirror-5.42.0/mode/xml/xml.js"></script>       
         <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>       
-        <script src="codemirror-5.42.0/mode/css/css.js"></script>       
+        <script src="codemirror-5.42.0/mode/css/css.js"></script>   
         
         
         
         
         
-        <h1>Editing Code</h1>
+        <h1>Writing Code</h1>
         
         <style>
             h1 {
@@ -31,39 +31,19 @@
 
         
         
-        <p>Now lets edit the JavaScript inside the HTML!</p>
+        <p>Now that you have seen how to edit code, it's time to write some!</p>
         
-        <p>Change the wording of the second alert statement to say "You picked a number between 0 and 10!"</p>
-        
-        <p>Then change the second else if statment to say (value < 200)</p>
-            
-        <p>Try out your code - it should alert "You picked a number between 0 and 10!" when you pick 8 and should say "You picked a medium number" when you pick 143</p>
+        <p>Write a program that asks the user for a number, then tells them if that number is negative or positive. (Bonus: Tell them if the number is equal to zero)</p>
         
             
         
         
         
-<pre id="exampletext" hidden="true">
-//Get a value from the user
-value = prompt("Please type in a number")
-if (value < 0) {
-  alert("You picked a negative number!") //Alert the user they picked a negative number
-}
-else if (value < 10) {
-  alert("You picked a number between 0 and 10!") //Alert the user they picked a small number
-}
-else if (value < 200) {
-  alert("You picked a medium number") //Alert the user they picked a medium number
-}
-else {
-  alert("You picked a large number") //Alert the user they picked a large number
-}
-document.write("You picked the number " + value)</pre>
 
         <script>
             function showanswer() {
                 
-                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a number between 0 and 10!\") //Alert the user they picked a small number\n      }\n      else if (value < 200) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
+                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n\t\t\tvalue = prompt(\"Input a number\")\n      if (value < 0) {\n      \talert(\"You picked a negative number\")\n      }\n      //The else if statement is for the bonus.\n      else if (value == 0) {\n      \talert(\"You picked the number 0\")\n      }\n      else {\n      \talert(\"You picked a positive number\")\n      }\n      \n    </script>\n  </body>\n</html>-->";
     
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
@@ -107,7 +87,7 @@ document.write("You picked the number " + value)</pre>
 
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 100) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Your code goes here\n      \n    </script>\n  </body>\n</html>-->";
     
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
