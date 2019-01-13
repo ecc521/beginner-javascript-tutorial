@@ -28,7 +28,7 @@
             window.initialHTML = localStorage.getItem("htmlcode")
             
             if (window.initialHTML === null) {
-                window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\t<body>\n    <p>Type HTML in the editor on the left. When you click run, the HTML page will be displayed here</p>\n    <p>This editor automatically saves your changes - so it you close the tab and come back, your code will still be here (unless you clear browsing data)</p>\n    <style>\n      /*CSS goes here*/\n      body {\n        background-color:yellow;\n      }\n    </style>\n    <script>\n    \t//JavaScript goes here\n    </script>\n\t</body>\n</html>-->";
+                window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\t<body>\n    <p>Type HTML in the editor on the left. When you click run, the HTML page will be displayed here</p>\n    <p>This editor saves your changes every second - so it you close the tab and come back, your code will still be here (unless you clear browsing data)</p>\n    <style>\n      /*CSS goes here*/\n      body {\n        background-color:yellow;\n      }\n    </style>\n    <script>\n    \t//JavaScript goes here\n    </script>\n\t</body>\n</html>-->";
 
                 window.initialHTML = window.initialHTML.slice(4)
                 window.initialHTML = window.initialHTML.slice(0, -3)
