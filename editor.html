@@ -1,38 +1,85 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HTML Editor</title>
+        <title>Beginner JavaScript</title>
     </head>
     <body>
         
         <!-- HTML Mixed CodeMirror-->
-        <script src="/codemirror-5.42.0/lib/codemirror.js"></script>
-        <link rel="stylesheet" href="/codemirror-5.42.0/lib/codemirror.css">
-        <script src="/codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
-        <script src="/codemirror-5.42.0/mode/xml/xml.js"></script>       
-        <script src="/codemirror-5.42.0/mode/javascript/javascript.js"></script>       
-        <script src="/codemirror-5.42.0/mode/css/css.js"></script>    
+        <script src="codemirror-5.42.0/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
+        <script src="codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>       
+        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>       
+        <script src="codemirror-5.42.0/mode/css/css.js"></script>        
+        
+        
+             
+        
+    
+        
+        
+        
+        <script>
+
+
+            //HTML that is in editor at start
+            //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\t<body>\n    <p>Type HTML in the editor on the left. When you click run, the HTML page will be displayed here</p>\n    <p>This editor automatically saves your changes - so it you close the tab and come back, your code will still be here (unless you clear browsing data)</p>\n    <style>\n      /*CSS goes here*/\n      body {\n        background-color:yellow;\n      }\n    </style>\n    <script>\n    \t//JavaScript goes here\n    </script>\n\t</body>\n</html>-->";
+    
+            window.initialHTML = window.initialHTML.slice(4)
+            window.initialHTML = window.initialHTML.slice(0, -3)
+
+        
+        
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- All the stuff below is CodeMirror-->
+        <!-- window.initialHTML is the HTML that they should begin with-->    
         
     
         
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
+            <button id="download">Download!</button>
         </div>
         
-        <iframe id="result" src="javascript:document.write('Loading...')"></iframe>
+        <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
         
         <script>
             
-            document.getElementById("editor").value = "<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\t<body>\n\t\t<p>Type HTML in the editor on the left. When you click run, the HTML page will be displayed here</p>\n\t\t<style>\n\t\t\tbody {\n\t\t\t\tbackground-color:yellow;\n\t\t\t}\n\t\t</style>\n\t</body>\n</html>"
+            function download(content, name, mimetype) {
+
+                    var link = document.createElement("a");
+                    document.body.appendChild(link);
+
+                    content = new Blob([content], {type:mimetype})
+                    link.download = name
+                    link.href = URL.createObjectURL(content);
+                    link.click();
+
+                    document.body.removeChild(link);
+
+            }            
+            
+            document.getElementById("editor").value = window.initialHTML
             
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
                 name:  "htmlmixed",
                 autoCloseTags: true,
-                lineWrapping: true,
                 styleActiveLine: true,
                 lineWrapping: false,
-                lineNumbers:true
+                lineNumbers:true,
+                tabSize:2
             });
 
             
@@ -44,9 +91,13 @@
                 iframe.contentWindow.document.close();                
             }
             
+            runcode()
             
             document.getElementById("run").addEventListener("click", runcode)
-            runcode()
+            document.getElementById("download").addEventListener("click", function(){
+                download(editor.getValue(), "website.html", "text/html")
+            })
+            
             
             
         </script>
@@ -57,8 +108,8 @@
                 position:fixed;
                 bottom:0;
                 left:0;
-                height:30%;
-                width:50%;
+                height:100%;
+                width:60%;
                 display:inline-block;
                 float:left;
                 padding:0;
@@ -70,8 +121,8 @@
                 position:fixed;
                 bottom:0;
                 right:0;
-                height:30%;
-                width:50%;
+                height:100%;
+                width:40%;
                 border:0;
                 border-top:1px solid black;
                 border-left:1px solid black;
@@ -80,18 +131,28 @@
                 padding:0;
             }
             
-            #editorwrapper > .CodeMirror {
+            .CodeMirror {
                 width:100%;
-                height:90%;
+                height:96%;
             }
             
             #run {
-                width:100%;
-                height:10%;
+                width:60%;
+                height:4%;
                 font-size:16px;
                 background-color:#99e0ff;
                 border:0;
-                display:inline-block;
+                display:block;
+                float:left;
+            }
+            
+            #download {
+                width:40%;
+                height:4%;
+                font-size:16px;
+                background-color:#99ffe0;
+                border:0;
+                display:block;                
             }
             
             html, body {
@@ -103,7 +164,3 @@
         </style>
     </body>
 </html>
-
-
-
-
