@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beginner JavaScript</title>
+    </head>
+    <body>
+        
+        <!-- HTML Mixed CodeMirror-->
+        <script src="codemirror-5.42.0/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
+        <script src="codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>       
+        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>       
+        <script src="codemirror-5.42.0/mode/css/css.js"></script>   
+        
+        
+        
+        
+        
+        <h1>Interacting with HTML - Create an Element</h1>
+        
+        <style>
+            h1 {
+                text-align:center;
+            }
+            
+        </style>
+        
+        
+        
+        <p>Paragraph elements aren't that entertaining - lets create a button!</p>
+        
+
+        
+        
+        <script>
+            function showanswer() {
+                
+                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      value = prompt(\"Please pick a number\")\n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"You picked the number \" + number\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n    </script>\n  </body>\n</html>-->";
+    
+                window.solutionHTML = window.solutionHTML.slice(4)
+                window.solutionHTML = window.solutionHTML.slice(0, -3)
+    
+    
+                document.getElementById("exampleeditor").value = window.solutionHTML
+                
+
+                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                    name:  "htmlmixed",
+                    autoCloseTags: true,
+                    styleActiveLine: true,
+                    lineWrapping: false,
+                    lineNumbers:true,
+                    tabSize:2,
+                    readOnly:"nocursor",
+                });
+
+            }
+            
+        </script>
+
+        <div id="example">
+            <textarea id="exampleeditor" hidden="true"></textarea>
+        </div>
+
+        <div style="text-align:center;">
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()">Show Solution</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson6.html'">Continue</button>
+        
+        </div>
+        
+
+    
+        
+        
+        
+        <script>
+
+
+            //HTML that is in editor at start
+            //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"This is the text (HTML) inside the paragraph element\"\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n      \n    </script>\n  </body>\n</html>-->";
+    
+            window.initialHTML = window.initialHTML.slice(4)
+            window.initialHTML = window.initialHTML.slice(0, -3)
+
+        
+        
+        </script>
+        
+        
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- All the stuff below is CodeMirror-->
+        <!-- window.initialHTML is the HTML that they should begin with-->    
+        
+    
+        
+        <div id="editorwrapper">
+            <textarea id="editor"></textarea>
+            <button id="run">Run!</button>
+            <button id="download">Download!</button>
+        </div>
+        
+        <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
+        
+        <script>
+            
+            function download(content, name, mimetype) {
+
+                    var link = document.createElement("a");
+                    document.body.appendChild(link);
+
+                    content = new Blob([content], {type:mimetype})
+                    link.download = name
+                    link.href = URL.createObjectURL(content);
+                    link.click();
+
+                    document.body.removeChild(link);
+
+
+
+            }            
+            
+            document.getElementById("editor").value = window.initialHTML
+            
+            var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+                name:  "htmlmixed",
+                autoCloseTags: true,
+                styleActiveLine: true,
+                lineWrapping: false,
+                lineNumbers:true,
+                tabSize:2
+            });
+
+            
+            function runcode() {
+                var htmlcode = editor.getValue()
+                var iframe = document.getElementById("result")
+                iframe.contentWindow.document.open();
+                iframe.contentWindow.document.write(htmlcode);
+                iframe.contentWindow.document.close();                
+            }
+            
+            
+            document.getElementById("run").addEventListener("click", runcode)
+            document.getElementById("download").addEventListener("click", function(){
+                download(editor.getValue(), "website.html", "text/html")
+            })
+            
+            
+            
+        </script>
+        
+        <style>
+            
+            #editorwrapper {
+                position:fixed;
+                bottom:0;
+                left:0;
+                height:45%;
+                width:60%;
+                display:inline-block;
+                float:left;
+                padding:0;
+                border-right:1px solid black;
+                border-top:1px solid black;
+            }
+            
+            #result {
+                position:fixed;
+                bottom:0;
+                right:0;
+                height:45%;
+                width:40%;
+                border:0;
+                border-top:1px solid black;
+                border-left:1px solid black;
+                display:inline-block;
+                float:right;
+                padding:0;
+            }
+            
+            .CodeMirror {
+                width:100%;
+                height:93%;
+            }
+            
+            #run {
+                width:60%;
+                height:7%;
+                font-size:16px;
+                background-color:#99e0ff;
+                border:0;
+                display:block;
+                float:left;
+            }
+            
+            #download {
+                width:40%;
+                height:7%;
+                font-size:16px;
+                background-color:#99ffe0;
+                border:0;
+                display:block;                
+            }
+            
+            html, body {
+                width:100%;
+                height:100%;
+            }
+            
+            
+        </style>
+    </body>
+</html>
+
+
+
+
