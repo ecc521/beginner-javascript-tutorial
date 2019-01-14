@@ -35,7 +35,7 @@
         <script>
             function showanswer() {
                 
-                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      value = prompt(\"Please pick a number\")\n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"You picked the number \" + number\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n    </script>\n  </body>\n</html>-->";
+                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      value = prompt(\"Please pick a number\")\n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"You picked the number \" + value\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n    </script>\n  </body>\n</html>-->";
     
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
