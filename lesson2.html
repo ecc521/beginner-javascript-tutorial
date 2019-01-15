@@ -45,12 +45,19 @@
         
 
         <script>
+			window.answershown = false
+			
             function showanswer() {
                 
-                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a number between 0 and 10!\") //Alert the user they picked a small number\n      }\n      else if (value < 200) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
-    
-                window.solutionHTML = window.solutionHTML.slice(4)
-                window.solutionHTML = window.solutionHTML.slice(0, -3)
+				if (window.answershown === true) {
+					document.querySelector("#example > .CodeMirror").remove()
+					window.answershown = false
+					document.getElementById("solutionbutton").innerHTML = "Show Solution"
+				}	
+				else {
+					window.answershown = true
+					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
+				
     
     
                 document.getElementById("exampleeditor").value = window.solutionHTML
@@ -67,19 +74,31 @@
                     cursorBlinkRate:-1 //Hides cursor
                 });
 
+
+
             }
-            
+}
+			
+			
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a number between 0 and 10!\") //Alert the user they picked a small number\n      }\n      else if (value < 200) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
+    
+                window.solutionHTML = window.solutionHTML.slice(4)
+                window.solutionHTML = window.solutionHTML.slice(0, -3)
+
+
+
+
         </script>
 
-        <div id="example">
-            <textarea id="exampleeditor" hidden="true"></textarea>
-        </div>
-
         <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()">Show Solution</button>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
 
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson3.html'">Continue</button>
         
+        </div>
+
+		<div id="example">
+            <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
         
 
