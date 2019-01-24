@@ -9,17 +9,17 @@
         }
 
         function changecolor() {
-            let color = "rgb(" + randint(255) + "," + randint(255) + "," + randint(255) + ")"
+            var color = "rgb(" + randint(255) + "," + randint(255) + "," + randint(255) + ")"
             document.body.style.backgroundColor = color
         }
 
-        let button = document.createElement("button")
+        var button = document.createElement("button")
         button.innerHTML = "Click to change background color"
         button.onclick = changecolor
         document.body.appendChild(button)
 
         
-        let fontsize = 16
+        var fontsize = 16
         
         function fontdown() {
             fontsize -= 1
@@ -34,8 +34,8 @@
         //Spacing
         document.body.appendChild(document.createElement("br"))
         
-        let down = document.createElement("button")
-        let up = document.createElement("button")
+        var down = document.createElement("button")
+        var up = document.createElement("button")
         down.innerHTML = "Reduce font size"
         up.innerHTML = "Increase font size"
         down.addEventListener("click", fontdown)
@@ -47,8 +47,8 @@
         
         
         
-        let seconds = 0
-        let counter = document.createElement("p")
+        var seconds = 0
+        var counter = document.createElement("p")
         counter.id = "counter"
         document.body.appendChild(counter)
 
