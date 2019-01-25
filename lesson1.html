@@ -186,8 +186,12 @@ document.write("You picked the number " + value)</pre>
                     link.click();
                 }
                 catch (e) {
-                    alert("It appears that you are using IE 8, or that the download was blocked for some other reason. A popup will now be opened to download the file. Your browser will likely block the popup - please allow it.")
-                    window.open(link.href)
+                    var modal = document.createElement("div")
+                    modal.position = "fixed"
+                    modal.style.width = "100%"
+                    modal.style.height = "100%"
+                    modal.innerHTML = "It looks like you are using IE 8, or your browser has blocked automatic downloads. Please click <a download='" + name + "' href='" + link.href + "'>here</a> to download it.<br><br><button onclick='this.parent.remove()'>Close</button>"
+                    document.body.appendChild(modal)
                 }
                     document.body.removeChild(link);
 
