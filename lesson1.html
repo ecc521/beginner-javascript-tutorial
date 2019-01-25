@@ -171,13 +171,17 @@ document.write("You picked the number " + value)</pre>
         
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
         
+<!-- iFrame purely for IE <10 downloads -->
+
+<iframe id="dummy" style="display:none; visibility:hidden"></iframe>
+
         <script>
             
             function download(content, name, mimetype) {
 
                 if (!window.Blob) {
                     //IE <10
-                    var ifd = document.createElement('iframe').contentDocument;
+                    var ifd = document.getElementById('dummy').contentDocument;
                     ifd.open('text/plain', 'replace');
                     ifd.write(content);
                     ifd.close();                    
