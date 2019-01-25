@@ -181,8 +181,14 @@ document.write("You picked the number " + value)</pre>
                     content = new Blob([content], {type:mimetype})
                     link.download = name
                     link.href = URL.createObjectURL(content);
+                
+                try {
                     link.click();
-
+                }
+                catch (e) {
+                    alert("It appears that you are using IE 8, or that the download was blocked for some other reason. A popup will now be opened to download the file. Your browser will likely block the popup - please allow it.")
+                    window.open(link.href)
+                }
                     document.body.removeChild(link);
 
 
