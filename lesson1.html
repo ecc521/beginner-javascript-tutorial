@@ -175,14 +175,23 @@ document.write("You picked the number " + value)</pre>
             
             function download(content, name, mimetype) {
 
-
+                if (!window.Blob) {
+                    //IE <10
+                    var ifd = document.createElement('iframe').contentDocument;
+                    ifd.open('text/plain', 'replace');
+                    ifd.write(content);
+                    ifd.close();                    
+                    ifd.execCommand('SaveAs', true, name);
+                }
+                else {
                 content = new Blob([content], {type:mimetype})
                 
-                    
+                    //IE >=10
                 if (navigator.msSaveBlob) {
                     navigator.msSaveBlob(content, name)
                 }
                 else {
+                    //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
                 
@@ -193,6 +202,8 @@ document.write("You picked the number " + value)</pre>
                     document.body.removeChild(link);
                     
                 }
+                }
+
                 
                 
 
