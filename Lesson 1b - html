@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beginner JavaScript</title>
+    </head>
+    <body>
+        
+        <!-- HTML Mixed CodeMirror-->
+        <script src="codemirror-5.42.0/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
+        <script src="codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>       
+        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>       
+        <script src="codemirror-5.42.0/mode/css/css.js"></script>        
+        
+        
+        
+        
+        
+        <h1>Javascript in a webpage</h1>
+        
+        <style>
+            h1 {
+                text-align:center;
+            }
+            
+        </style>
+        
+        
+
+<pre id="exampletext" hidden="true">
+//Get a value from the user
+value = prompt("Please type in a number")
+
+
+
+        
+        <p>Consider the following code:</p>
+        
+        <div id="example">
+            <textarea id="exampleeditor"></textarea>
+        </div>
+        
+        
+        <p>Javascript may seem like "just another language" - but there is something special about JavaScript - it can run in the browser.</p>
+        
+        <p>JavaScript can be inserted in HTML files using script tags - much like paragraph tags. An example is shown in the editor below. Click run, and the program will execute right on this page!</p>
+        
+        <p>Click the download button to download the HTML file, then open it in your browser (usually you can just click on it, though a right click and "Open With" may be needed)</p>
+
+        <p>Congratulations on Your First Website!</p>
+        
+        <button style="display:block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson2.html'">Continue</button>
+        
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        
+        <script>
+            
+            
+            document.getElementById("exampleeditor").value = document.getElementById("exampletext").innerText
+            
+            
+            var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                mode:  "javascript",
+                autoCloseTags: true,
+                styleActiveLine: true,
+                lineWrapping: false,
+                lineNumbers:true,
+                readOnly:true,
+                tabSize:2,
+                cursorBlinkRate:-1 //Hides cursor
+            });
+        
+            
+        
+        </script>
+        
+        
+        
+    
+        
+        
+        
+        <script>
+            //HTML that is in editor at start
+            //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 100) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
+    
+            window.initialHTML = window.initialHTML.slice(4)
+            window.initialHTML = window.initialHTML.slice(0, -3)
+        
+        
+        </script>
+        
+        
+        
+<!--<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <style>
+      background-color:antiquewhite;
+    </style>
+    <script>
+      //Get a value from the user
+      value = prompt("Please type in a number")
+    
+      
+    </script>
+  </body>
+</html>-->
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- All the stuff below is CodeMirror-->
+        <!-- window.initialHTML is the HTML that they should begin with-->    
+        
+    
+        
+        <div id="editorwrapper">
+            <textarea id="editor"></textarea>
+            <button id="run">Run!</button>
+            <button id="download">Download!</button>
+        </div>
+        
+        <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
+        
+        <script>
+            
+            function download(content, name, mimetype) {
+                    var link = document.createElement("a");
+                    document.body.appendChild(link);
+                    content = new Blob([content], {type:mimetype})
+                    link.download = name
+                    link.href = URL.createObjectURL(content);
+                    link.click();
+                    document.body.removeChild(link);
+            }            
+            
+            document.getElementById("editor").value = window.initialHTML
+            
+            var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+                name:  "htmlmixed",
+                autoCloseTags: true,
+                styleActiveLine: true,
+                lineWrapping: false,
+                lineNumbers:true,
+                tabSize:2
+            });
+            
+            function runcode() {
+                var htmlcode = editor.getValue()
+                var iframe = document.getElementById("result")
+                iframe.contentWindow.document.open();
+                iframe.contentWindow.document.write(htmlcode);
+                iframe.contentWindow.document.close();                
+            }
+            
+            
+            document.getElementById("run").addEventListener("click", runcode)
+            document.getElementById("download").addEventListener("click", function(){
+                download(editor.getValue(), "website.html", "text/html")
+            })
+            
+            
+            
+        </script>
+        
+        <style>
+            
+            #editorwrapper {
+                position:fixed;
+                bottom:0;
+                left:0;
+                height:45%;
+                width:60%;
+                display:inline-block;
+                float:left;
+                padding:0;
+                border-right:1px solid black;
+                border-top:1px solid black;
+            }
+            
+            #result {
+                position:fixed;
+                bottom:0;
+                right:0;
+                height:45%;
+                width:40%;
+                border:0;
+                border-top:1px solid black;
+                border-left:1px solid black;
+                display:inline-block;
+                float:right;
+                padding:0;
+            }
+            
+            .CodeMirror {
+                width:100%;
+                height:93%;
+            }
+            
+            #run {
+                width:60%;
+                height:7%;
+                font-size:16px;
+                background-color:#99e0ff;
+                border:0;
+                display:block;
+                float:left;
+            }
+            
+            #download {
+                width:40%;
+                height:7%;
+                font-size:16px;
+                background-color:#99ffe0;
+                border:0;
+                display:block;                
+            }
+            
+            html, body {
+                width:100%;
+                height:100%;
+            }
+            
+            
+        </style>
+    </body>
+</html>
