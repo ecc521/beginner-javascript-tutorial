@@ -142,19 +142,29 @@
             
             function download(content, name, mimetype) {
 
+
+                content = new Blob([content], {type:mimetype})
+                
+                    
+                if (navigator.msSaveBlob) {
+                    navigator.msSaveBlob(content, name)
+                }
+                else {
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-
-                    content = new Blob([content], {type:mimetype})
+                
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
 
                     document.body.removeChild(link);
+                    
+                }
+                
+                
 
 
-
-            }            
+            }           
             
             document.getElementById("editor").value = window.initialHTML
             
