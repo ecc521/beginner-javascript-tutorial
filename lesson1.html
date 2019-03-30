@@ -17,9 +17,8 @@
         <script src="codemirror-5.42.0/mode/css/css.js"></script>        
         
         
-        
-        
-        <h1>Taking action based on user input</h1>
+                
+        <h1>Interacting with the user</h1>
         
         <style>
             h1 {
@@ -28,45 +27,26 @@
             
         </style>
         
-        
+    
 
 <pre id="exampletext" hidden="true">
 //Get a value from the user
 value = prompt("Please type in a number")
-if (value < 0) {
-  alert("You picked a negative number!") //Alert the user they picked a negative number
-}
-else if (value < 10) {
-  alert("You picked a small number") //Alert the user they picked a small number
-}
-else if (value < 100) {
-  alert("You picked a medium number") //Alert the user they picked a medium number
-}
-else {
-  alert("You picked a large number") //Alert the user they picked a large number
-}
-document.write("You picked the number " + value)</pre>
+alert("You picked the number", value)
+</pre>
 
-
+        <p>Below is a small Javascript snippet.  This Javascript asks the user for a number, assigns the users 
+            input to a variable, and displays back to the user their number.</p> 
+        <p>Click on the "Run" button in the lower left to Run the snippet.>/p>      
         
-        <p>Consider the following code:</p>
-        
+                
         <div id="example">
             <textarea id="exampleeditor"></textarea>
         </div>
         
         
-        <p>This program asks the user for a number, and assigns the users input to a variable. It then proceeds to call the number either negative, small, medium, or large.</p>
-        
-        <p>There isn't much special about this program - but there is something special about JavaScript - it can run in the browser.</p>
-        
-        <p>JavaScript can be inserted in HTML files using script tags - much like paragraph tags. An example is shown in the editor below. Click run, and the program will execute right on this page!</p>
-        
-        <p>Click the download button to download the HTML file, then open it in your browser (usually you can just click on it, though a right click and "Open With" may be needed)</p>
-
-        <p>Congratulations on Your First Website!</p>
-        
-        <button style="display:block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson2.html'">Continue</button>
+               
+        <button style="display:block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson1b.html'">Continue</button>
         
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         
@@ -114,32 +94,7 @@ document.write("You picked the number " + value)</pre>
         
         
         
-<!--<!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body>
-    <style>
-      background-color:antiquewhite;
-    </style>
-    <script>
-      //Get a value from the user
-      value = prompt("Please type in a number")
-      if (value < 0) {
-        alert("You picked a negative number!") //Alert the user they picked a negative number
-      }
-      else if (value < 10) {
-        alert("You picked a small number") //Alert the user they picked a small number
-      }
-      else if (value < 100) {
-        alert("You picked a medium number") //Alert the user they picked a medium number
-      }
-      else {
-        alert("You picked a large number") //Alert the user they picked a large number
-      }
-    </script>
-  </body>
-</html>-->
+
         
         
         
@@ -148,11 +103,7 @@ document.write("You picked the number " + value)</pre>
         
         
         
-        
-        
-        
-        
-        
+     
         
         
         

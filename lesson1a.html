@@ -5,22 +5,19 @@
     </head>
     <body>
         
-        <script src="polyfill.js"></script>        
-
-        
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
         <script src="codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
         <script src="codemirror-5.42.0/mode/xml/xml.js"></script>       
         <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>       
-        <script src="codemirror-5.42.0/mode/css/css.js"></script>    
+        <script src="codemirror-5.42.0/mode/css/css.js"></script>        
         
         
         
         
         
-        <h1>Adding Logic</h1>
+        <h1>Editing Code</h1>
         
         <style>
             h1 {
@@ -29,101 +26,70 @@
             
         </style>
         
-        
+    
 
+<pre id="exampletext" hidden="true">
+//Get a value from the user
+value = prompt("Please type in a number")
+alert("You picked the number", value)
+</pre>
 
+        <p>Editing code is as easy as you expect.  In this tutorial, the HTML in the lower left window in your browser is editable.  Change the text inside the prompt to say "Please pick a number between 1 and 100".
+        and hit the "Run" button to see your change.</p> 
+        <p>You can also download the HTML to see your changes in the full browser window.</p>      
+        
+                
+        <div id="example">
+            <textarea id="exampleeditor"></textarea>
+        </div>
         
         
-        <p>Now lets really edit the JavaScript inside the HTML by adding additional statements!</p>
+               
+        <button style="display:block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson1c.html'">Continue</button>
         
-        <p>Add another "else if" for a medium number.  A medium number should be a number greater than 20 but less than 200. </p>
-	    
-        <p>Be sure to add the corresponding alert also.  </p>                  
-        <p>Try out your code with the number 30 - it should alert "You picked a number medium number.  Be sure to test smaller and larger numbers to make sure you didn't break anything </p> 
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        
+        <script>
+            
+            
+            document.getElementById("exampleeditor").value = document.getElementById("exampletext").innerText
+            
+            
+            var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                mode:  "javascript",
+                autoCloseTags: true,
+                styleActiveLine: true,
+                lineWrapping: false,
+                lineNumbers:true,
+                readOnly:true,
+                tabSize:2,
+                cursorBlinkRate:-1 //Hides cursor
+            });
         
             
         
-        
-        
-
-        <script>
-			window.answershown = false
-			
-            function showanswer() {
-                
-				if (window.answershown === true) {
-					document.querySelector("#example > .CodeMirror").remove()
-					window.answershown = false
-					document.getElementById("solutionbutton").innerHTML = "Show Solution"
-				}	
-				else {
-					window.answershown = true
-					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
-				
-    
-    
-                document.getElementById("exampleeditor").value = window.solutionHTML
-                
-
-                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
-                    name:  "htmlmixed",
-                    autoCloseTags: true,
-                    styleActiveLine: true,
-                    lineWrapping: false,
-                    lineNumbers:true,
-                    tabSize:2,
-                    readOnly:true,
-                    cursorBlinkRate:-1 //Hides cursor
-                });
-
-
-
-            }
-}
-			
-			
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a number between 0 and 10!\") //Alert the user they picked a small number\n      }\n      else if (value < 200) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
-    
-                window.solutionHTML = window.solutionHTML.slice(4)
-                window.solutionHTML = window.solutionHTML.slice(0, -3)
-
-
-
-
         </script>
-
-        <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
-
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson3.html'">Continue</button>
         
-        </div>
-
-		<div id="example">
-            <textarea id="exampleeditor" hidden="true"></textarea>
-        </div>
         
-
+        
     
         
         
         
         <script>
-
-
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
             window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 100) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
     
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
-
         
         
         </script>
         
         
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        
+
         
         
         
@@ -131,6 +97,8 @@
         
         
         
+        
+     
         
         
         
@@ -152,36 +120,14 @@
         <script>
             
             function download(content, name, mimetype) {
-
-                if (!window.Blob) {
-                    //IE <10
-                    var ifd = document.getElementById('dummy').contentDocument;
-                    ifd.open('text/plain', 'replace');
-                    ifd.write(content);
-                    ifd.close();                    
-                    ifd.execCommand('SaveAs', true, name);
-                }
-                else {
-                content = new Blob([content], {type:mimetype})
-                
-                    //IE >=10
-                if (navigator.msSaveBlob) {
-                    navigator.msSaveBlob(content, name)
-                }
-                else {
-                    //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-                
+                    content = new Blob([content], {type:mimetype})
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
-
                     document.body.removeChild(link);
-                    
-                }
-                }
-            }          
+            }            
             
             document.getElementById("editor").value = window.initialHTML
             
@@ -193,7 +139,6 @@
                 lineNumbers:true,
                 tabSize:2
             });
-
             
             function runcode() {
                 var htmlcode = editor.getValue()
@@ -275,7 +220,4 @@
         </style>
     </body>
 </html>
-
-
-
 
