@@ -5,6 +5,8 @@
     </head>
     <body>
         
+        <script src="polyfill.js"></script>        
+
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
@@ -146,22 +148,38 @@
         
         <script>
             
+
             function download(content, name, mimetype) {
 
+                if (!window.Blob) {
+                    //IE <10
+                    var ifd = document.getElementById('dummy').contentDocument;
+                    ifd.open('text/plain', 'replace');
+                    ifd.write(content);
+                    ifd.close();                    
+                    ifd.execCommand('SaveAs', true, name);
+                }
+                else {
+                content = new Blob([content], {type:mimetype})
+                
+                    //IE >=10
+                if (navigator.msSaveBlob) {
+                    navigator.msSaveBlob(content, name)
+                }
+                else {
+                    //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-
-                    content = new Blob([content], {type:mimetype})
+                
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
 
                     document.body.removeChild(link);
-
-
-
+                    
+                }
+                }
             }            
-            
             document.getElementById("editor").value = window.initialHTML
             
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {

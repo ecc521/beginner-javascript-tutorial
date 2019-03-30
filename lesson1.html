@@ -5,6 +5,9 @@
     </head>
     <body>
         
+        <script src="polyfill.js"></script>        
+
+        
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
@@ -14,9 +17,7 @@
         <script src="codemirror-5.42.0/mode/css/css.js"></script>        
         
         
-        
-        
-        
+                
         <h1>Interacting with the user</h1>
         
         <style>
@@ -51,7 +52,7 @@ alert("You picked the number", value)
         
         <script>
             
-            
+
             document.getElementById("exampleeditor").value = document.getElementById("exampletext").innerText
 
             
@@ -121,23 +122,42 @@ alert("You picked the number", value)
         
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
         
+<!-- iframe purely for IE <10 downloads -->
+<iframe id="dummy" style="display:none; visibility:hidden"></iframe>
+
         <script>
             
             function download(content, name, mimetype) {
 
+                if (!window.Blob) {
+                    //IE <10
+                    var ifd = document.getElementById('dummy').contentDocument;
+                    ifd.open('text/plain', 'replace');
+                    ifd.write(content);
+                    ifd.close();                    
+                    ifd.execCommand('SaveAs', true, name);
+                }
+                else {
+                content = new Blob([content], {type:mimetype})
+                
+                    //IE >=10
+                if (navigator.msSaveBlob) {
+                    navigator.msSaveBlob(content, name)
+                }
+                else {
+                    //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-
-                    content = new Blob([content], {type:mimetype})
+                
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
 
                     document.body.removeChild(link);
-
-
-
-            }            
+                    
+                }
+                }
+            }         
             
             document.getElementById("editor").value = window.initialHTML
             
