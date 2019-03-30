@@ -36,7 +36,7 @@
         
         <p>Now lets really edit the JavaScript inside the HTML by adding additional statements!</p>
         
-        <p>Add another "else if" for a medium number.  A medium number should be a number greater than 20 but less than 200. </p>
+        <p>Add another "else if" for a medium number.  A medium number should be a number  at least 20 but less than 200. </p>
 	    
         <p>Be sure to add the corresponding alert also.  </p>                  
         <p>Try out your code with the number 30 - it should alert "You picked a number medium number.  Be sure to test smaller and larger numbers to make sure you didn't break anything </p> 
@@ -82,7 +82,7 @@
 }
 			
 			
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a number between 0 and 10!\") //Alert the user they picked a small number\n      }\n      else if (value < 200) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 20) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 200) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n    </script>\n  </body>\n</html>-->";
     
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
@@ -94,6 +94,8 @@
 
         <div style="text-align:center;">
             <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson1c.html'">Go Back</button>
 
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson3.html'">Continue</button>
         
@@ -113,7 +115,7 @@
 
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 100) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 100) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n    </script>\n  </body>\n</html>-->";
     
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)

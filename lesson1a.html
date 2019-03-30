@@ -5,6 +5,9 @@
     </head>
     <body>
         
+        <script src="polyfill.js"></script>        
+
+        
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
@@ -14,10 +17,8 @@
         <script src="codemirror-5.42.0/mode/css/css.js"></script>        
         
         
-        
-        
-        
-        <h1>Editing Code</h1>
+                
+        <h1>Javascript in a webpage</h1>
         
         <style>
             h1 {
@@ -31,13 +32,17 @@
 <pre id="exampletext" hidden="true">
 //Get a value from the user
 value = prompt("Please type in a number")
-alert("You picked the number", value)
-</pre>
+alert("You picked the number", value)</pre>
 
-        <p>Editing code is as easy as you expect.  In this tutorial, the HTML in the lower left window in your browser is editable.  Change the text inside the prompt to say "Please pick a number between 1 and 100".
-        and hit the "Run" button to see your change.</p> 
-        <p>You can also download the HTML to see your changes in the full browser window.</p>      
+        <p>Javascript may seem like "just another language" - but there is something special about JavaScript - it can run in the browser.</p>
         
+        <p>JavaScript can be inserted in HTML files using script tags - much like paragraph tags. An example is shown in the editor in the left hand window below. 
+            When you click "Run", the program will execute right on this page!</p>
+        
+        <p>You can also Click the "Download" button to download the HTML file, then open it in your browser (usually you can just click on it, though a right click and "Open With" may be needed)</p>
+    
+        <p>Try this now by clicking the Download button and then open the HTML in your browser.</p>  
+        <p>Congratulations on Your First Website!  We'll be adding more to it in the next lessons. </p>
                 
         <div id="example">
             <textarea id="exampleeditor"></textarea>
@@ -45,14 +50,21 @@ alert("You picked the number", value)
         
         
                
-        <button style="display:block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson1c.html'">Continue</button>
+        <div style="text-align:center;">
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson1.html'">Go Back</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson1b.html'">Continue</button>
+
+        </div>
         
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         
         <script>
             
-            
+
             document.getElementById("exampleeditor").value = document.getElementById("exampletext").innerText
+
             
             
             var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
@@ -77,12 +89,16 @@ alert("You picked the number", value)
         
         
         <script>
+
+
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 100) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
+            //Then add HTML comments to start and end of string
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\n\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      alert(\"You picked the number\", value)\n\n\n    </script>\n  </body>\n</html>-->";
     
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
+
         
         
         </script>
@@ -117,17 +133,42 @@ alert("You picked the number", value)
         
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
         
+<!-- iframe purely for IE <10 downloads -->
+<iframe id="dummy" style="display:none; visibility:hidden"></iframe>
+
         <script>
             
             function download(content, name, mimetype) {
+
+                if (!window.Blob) {
+                    //IE <10
+                    var ifd = document.getElementById('dummy').contentDocument;
+                    ifd.open('text/plain', 'replace');
+                    ifd.write(content);
+                    ifd.close();                    
+                    ifd.execCommand('SaveAs', true, name);
+                }
+                else {
+                content = new Blob([content], {type:mimetype})
+                
+                    //IE >=10
+                if (navigator.msSaveBlob) {
+                    navigator.msSaveBlob(content, name)
+                }
+                else {
+                    //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-                    content = new Blob([content], {type:mimetype})
+                
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
+
                     document.body.removeChild(link);
-            }            
+                    
+                }
+                }
+            }         
             
             document.getElementById("editor").value = window.initialHTML
             
@@ -139,6 +180,7 @@ alert("You picked the number", value)
                 lineNumbers:true,
                 tabSize:2
             });
+
             
             function runcode() {
                 var htmlcode = editor.getValue()
@@ -220,4 +262,7 @@ alert("You picked the number", value)
         </style>
     </body>
 </html>
+
+
+
 

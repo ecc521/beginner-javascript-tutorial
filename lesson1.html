@@ -32,8 +32,7 @@
 <pre id="exampletext" hidden="true">
 //Get a value from the user
 value = prompt("Please type in a number")
-alert("You picked the number", value)
-</pre>
+alert("You picked the number", value)</pre>
 
         <p>Below is a small Javascript snippet.  This Javascript asks the user for a number, assigns the users 
             input to a variable, and displays back to the user their number.</p> 
@@ -46,7 +45,13 @@ alert("You picked the number", value)
         
         
                
-        <button style="display:block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson1b.html'">Continue</button>
+        <div style="text-align:center;">
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='index.html'">Go Back</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson1a.html'">Continue</button>
+
+        </div>
         
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         
@@ -83,11 +88,8 @@ alert("You picked the number", value)
 
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 100) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n      document.write(\"You input the number \" + value)\n    </script>\n  </body>\n</html>-->";
-    
-            window.initialHTML = window.initialHTML.slice(4)
-            window.initialHTML = window.initialHTML.slice(0, -3)
-
+            //Then add HTML comments to start and end of string
+            window.initialHTML = "//Get a value from the user\nvalue = prompt(\"Please type in a number\")\nalert(\"You picked the number\", value)";
         
         
         </script>
@@ -120,70 +122,31 @@ alert("You picked the number", value)
             <button id="download">Download!</button>
         </div>
         
-        <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
         
-<!-- iframe purely for IE <10 downloads -->
-<iframe id="dummy" style="display:none; visibility:hidden"></iframe>
-
         <script>
-            
-            function download(content, name, mimetype) {
-
-                if (!window.Blob) {
-                    //IE <10
-                    var ifd = document.getElementById('dummy').contentDocument;
-                    ifd.open('text/plain', 'replace');
-                    ifd.write(content);
-                    ifd.close();                    
-                    ifd.execCommand('SaveAs', true, name);
-                }
-                else {
-                content = new Blob([content], {type:mimetype})
-                
-                    //IE >=10
-                if (navigator.msSaveBlob) {
-                    navigator.msSaveBlob(content, name)
-                }
-                else {
-                    //Non-IE
-                    var link = document.createElement("a");
-                    document.body.appendChild(link);
-                
-                    link.download = name
-                    link.href = URL.createObjectURL(content);
-                    link.click();
-
-                    document.body.removeChild(link);
-                    
-                }
-                }
-            }         
+         
             
             document.getElementById("editor").value = window.initialHTML
             
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-                name:  "htmlmixed",
+                mode:  "javascript",
                 autoCloseTags: true,
                 styleActiveLine: true,
                 lineWrapping: false,
                 lineNumbers:true,
-                tabSize:2
+                readOnly:true,
+                tabSize:2,
+                cursorBlinkRate:-1 //Hides cursor
             });
 
             
             function runcode() {
-                var htmlcode = editor.getValue()
-                var iframe = document.getElementById("result")
-                iframe.contentWindow.document.open();
-                iframe.contentWindow.document.write(htmlcode);
-                iframe.contentWindow.document.close();                
+                var code = editor.getValue()
+                eval(code)          
             }
             
             
             document.getElementById("run").addEventListener("click", runcode)
-            document.getElementById("download").addEventListener("click", function(){
-                download(editor.getValue(), "website.html", "text/html")
-            })
             
             
             
@@ -196,26 +159,12 @@ alert("You picked the number", value)
                 bottom:0;
                 left:0;
                 height:45%;
-                width:60%;
+                width:100%;
                 display:inline-block;
                 float:left;
                 padding:0;
                 border-right:1px solid black;
                 border-top:1px solid black;
-            }
-            
-            #result {
-                position:fixed;
-                bottom:0;
-                right:0;
-                height:45%;
-                width:40%;
-                border:0;
-                border-top:1px solid black;
-                border-left:1px solid black;
-                display:inline-block;
-                float:right;
-                padding:0;
             }
             
             .CodeMirror {
@@ -224,7 +173,7 @@ alert("You picked the number", value)
             }
             
             #run {
-                width:60%;
+                width:100%;
                 height:7%;
                 font-size:16px;
                 background-color:#99e0ff;
@@ -232,15 +181,7 @@ alert("You picked the number", value)
                 display:block;
                 float:left;
             }
-            
-            #download {
-                width:40%;
-                height:7%;
-                font-size:16px;
-                background-color:#99ffe0;
-                border:0;
-                display:block;                
-            }
+
             
             html, body {
                 width:100%;
