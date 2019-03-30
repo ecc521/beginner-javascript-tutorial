@@ -17,7 +17,7 @@
         
         
         
-        <h1>Javascript in a webpage</h1>
+        <h1>Editing Code</h1>
         
         <style>
             h1 {
@@ -26,34 +26,25 @@
             
         </style>
         
-        
+    
 
 <pre id="exampletext" hidden="true">
 //Get a value from the user
 value = prompt("Please type in a number")
-alert("You picked the number ", value)
-</pre>
+alert("You picked the number", value)</pre>
 
-
-        <p>Javascript may seem like "just another language" - but there is something special about JavaScript - it can run in the browser.</p>
+        <p>Editing code is as easy as you expect.  In this tutorial, the HTML in the lower left window in your browser is editable.  Change the text inside the prompt to say "Please pick a number between 1 and 100".
+        and hit the "Run" button to see your change.</p> 
+        <p>You can also download the HTML to see your changes in the full browser window.</p>      
         
-        <p>JavaScript can be inserted in HTML files using script tags - much like paragraph tags. An example is shown in the editor in the left hand window below. 
-            When you click "Run", the program will execute right on this page!</p>
-        
-        <p>You can also Click the "Download" button to download the HTML file, then open it in your browser (usually you can just click on it, though a right click and "Open With" may be needed)</p>
-    
-        <p>Try this now by clicking the Download button and then open the HTML in your browser.</p>  
-        <p>Congratulations on Your First Website!  We'll be adding more to it in the next lessons. </p>
-        
-               
+                
         <div id="example">
             <textarea id="exampleeditor"></textarea>
         </div>
         
         
-        
-        
-        <button style="display:block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson1a.html'">Continue</button>
+               
+        <button style="display:block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson1c.html'">Continue</button>
         
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         
@@ -97,20 +88,135 @@ alert("You picked the number ", value)
         
         
         
-<!--<!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body>
-    <style>
-      background-color:antiquewhite;
-    </style>
-    <script>
-      //Get a value from the user
-      value = prompt("Please type in a number")
-    
-      
-    </script>
-  </body>
-</html>-->
+
         
+        
+        
+        
+        
+        
+        
+        
+     
+        
+        
+        
+        
+        
+        <!-- All the stuff below is CodeMirror-->
+        <!-- window.initialHTML is the HTML that they should begin with-->    
+        
+    
+        
+        <div id="editorwrapper">
+            <textarea id="editor"></textarea>
+            <button id="run">Run!</button>
+            <button id="download">Download!</button>
+        </div>
+        
+        <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
+        
+        <script>
+            
+            function download(content, name, mimetype) {
+                    var link = document.createElement("a");
+                    document.body.appendChild(link);
+                    content = new Blob([content], {type:mimetype})
+                    link.download = name
+                    link.href = URL.createObjectURL(content);
+                    link.click();
+                    document.body.removeChild(link);
+            }            
+            
+            document.getElementById("editor").value = window.initialHTML
+            
+            var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+                name:  "htmlmixed",
+                autoCloseTags: true,
+                styleActiveLine: true,
+                lineWrapping: false,
+                lineNumbers:true,
+                tabSize:2
+            });
+            
+            function runcode() {
+                var htmlcode = editor.getValue()
+                var iframe = document.getElementById("result")
+                iframe.contentWindow.document.open();
+                iframe.contentWindow.document.write(htmlcode);
+                iframe.contentWindow.document.close();                
+            }
+            
+            
+            document.getElementById("run").addEventListener("click", runcode)
+            document.getElementById("download").addEventListener("click", function(){
+                download(editor.getValue(), "website.html", "text/html")
+            })
+            
+            
+            
+        </script>
+        
+        <style>
+            
+            #editorwrapper {
+                position:fixed;
+                bottom:0;
+                left:0;
+                height:45%;
+                width:60%;
+                display:inline-block;
+                float:left;
+                padding:0;
+                border-right:1px solid black;
+                border-top:1px solid black;
+            }
+            
+            #result {
+                position:fixed;
+                bottom:0;
+                right:0;
+                height:45%;
+                width:40%;
+                border:0;
+                border-top:1px solid black;
+                border-left:1px solid black;
+                display:inline-block;
+                float:right;
+                padding:0;
+            }
+            
+            .CodeMirror {
+                width:100%;
+                height:93%;
+            }
+            
+            #run {
+                width:60%;
+                height:7%;
+                font-size:16px;
+                background-color:#99e0ff;
+                border:0;
+                display:block;
+                float:left;
+            }
+            
+            #download {
+                width:40%;
+                height:7%;
+                font-size:16px;
+                background-color:#99ffe0;
+                border:0;
+                display:block;                
+            }
+            
+            html, body {
+                width:100%;
+                height:100%;
+            }
+            
+            
+        </style>
+    </body>
+</html>
+
