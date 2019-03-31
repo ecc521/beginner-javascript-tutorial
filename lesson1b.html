@@ -28,23 +28,62 @@
         
     
 
-<pre id="exampletext" hidden="true">
-//Get a value from the user
-value = prompt("Please type in a number")
-alert("You picked the number", value)</pre>
+
 
         <p>Editing code is as easy as you expect.  In this tutorial, the HTML in the lower left window in your browser is editable.  Change the text inside the prompt to say "Please pick a number between 1 and 100".
         and hit the "Run" button to see your change.</p> 
         <p>You can also download the HTML to see your changes in the full browser window.</p>      
         
                 
-        <div id="example">
-            <textarea id="exampleeditor"></textarea>
-        </div>
-        
-        
+         <script>
+			window.answershown = false
+			
+            function showanswer() {
+                
+				if (window.answershown === true) {
+					document.querySelector("#example > .CodeMirror").remove()
+					window.answershown = false
+					document.getElementById("solutionbutton").innerHTML = "Show Solution"
+				}	
+				else {
+					window.answershown = true
+					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
+				
+    
+    
+                document.getElementById("exampleeditor").value = window.solutionHTML
+                
+
+                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                    name:  "htmlmixed",
+                    autoCloseTags: true,
+                    styleActiveLine: true,
+                    lineWrapping: false,
+                    lineNumbers:true,
+                    tabSize:2,
+                    readOnly:true,
+                    cursorBlinkRate:-1 //Hides cursor
+                });
+
+
+
+            }
+}
+			
+			
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\n\n      //Get a value from the user\n      value = prompt(\"Please pick a number between 1 and 100\")\n      alert(\"You picked the number \" + value)\n\n\n    </script>\n  </body>\n</html>-->";
+    
+                window.solutionHTML = window.solutionHTML.slice(4)
+                window.solutionHTML = window.solutionHTML.slice(0, -3)
+
+
+
+
+        </script>
+
                
         <div style="text-align:center;">
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
 
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson1a.html'">Go Back</button>
 
@@ -52,39 +91,19 @@ alert("You picked the number", value)</pre>
 
         </div>
         
+
+		<div id="example">
+            <textarea id="exampleeditor" hidden="true"></textarea>
+        </div>
+
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        
-        <script>
-            
-            
-            document.getElementById("exampleeditor").value = document.getElementById("exampletext").innerText
-            
-            
-            var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
-                mode:  "javascript",
-                autoCloseTags: true,
-                styleActiveLine: true,
-                lineWrapping: false,
-                lineNumbers:true,
-                readOnly:true,
-                tabSize:2,
-                cursorBlinkRate:-1 //Hides cursor
-            });
-        
-            
-        
-        </script>
-        
-        
-        
-    
         
         
         
         <script>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\n\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      alert(\"You picked the number\", value)\n\n\n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\n\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      alert(\"You picked the number \" + value)\n\n\n    </script>\n  </body>\n</html>-->";
     
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
@@ -190,6 +209,13 @@ alert("You picked the number", value)</pre>
                 display:inline-block;
                 float:right;
                 padding:0;
+            }
+            
+            /*Make the bottom editor display over the solution*/
+            #editorwrapper {
+                background-color:white;
+                opacity: 1;
+                z-index: 4;
             }
             
             .CodeMirror {

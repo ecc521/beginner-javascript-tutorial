@@ -36,9 +36,9 @@
         
         <p>Now lets really edit the JavaScript inside the HTML by adding additional statements!</p>
         
-        <p>Add another "else if" for a medium number.  A medium number should be a number  at least 20 but less than 200. </p>
+        <p>Add another "else if" for medium numbers.  A medium number should be a number  at least 20 but less than 200.</p>
 	    
-        <p>Be sure to add the corresponding alert also.  </p>                  
+        <p>Remember to add the corresponding alert statement  </p>                  
         <p>Try out your code with the number 30 - it should alert "You picked a number medium number.  Be sure to test smaller and larger numbers to make sure you didn't break anything </p> 
         
             
@@ -82,7 +82,7 @@
 }
 			
 			
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 20) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 200) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n    </script>\n  </body>\n</html>-->";
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\")\n      }\n      else if (value < 20) {\n        alert(\"You picked a small number\")\n      }\n      else if (value < 200) {\n        alert(\"You picked a medium number\")\n      }\n      else {\n        alert(\"You picked a large number\")\n      }\n    </script>\n  </body>\n</html>-->";
     
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
@@ -115,7 +115,7 @@
 
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 100) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\")\n      }\n      else if (value < 100) {\n        alert(\"You picked a small number\")\n      }\n      else {\n        alert(\"You picked a large number\")\n      }\n    </script>\n  </body>\n</html>-->";
     
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
@@ -142,7 +142,6 @@
         <!-- window.initialHTML is the HTML that they should begin with-->    
         
     
-        
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
@@ -150,7 +149,7 @@
         </div>
         
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
-        
+
         <script>
             
             function download(content, name, mimetype) {
@@ -242,6 +241,13 @@
                 display:inline-block;
                 float:right;
                 padding:0;
+            }
+            
+            /*Make the bottom editor display over the solution*/
+            #editorwrapper {
+                background-color:white;
+                opacity: 1;
+                z-index: 4;
             }
             
             .CodeMirror {

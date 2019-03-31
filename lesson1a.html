@@ -32,7 +32,7 @@
 <pre id="exampletext" hidden="true">
 //Get a value from the user
 value = prompt("Please type in a number")
-alert("You picked the number", value)</pre>
+alert("You picked the number " + value)</pre>
 
         <p>Javascript may seem like "just another language" - but there is something special about JavaScript - it can run in the browser.</p>
         
@@ -94,7 +94,7 @@ alert("You picked the number", value)</pre>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
             //Then add HTML comments to start and end of string
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\n\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      alert(\"You picked the number\", value)\n\n\n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <p>This is a HTML website with embedded JavaScript!</p>\n    <style>\n      body {\n      \tbackground-color: antiquewhite;\n      }\n    </style>\n    <script>\n\n\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      alert(\"You picked the number \" + value)\n\n\n    </script>\n  </body>\n</html>-->";
     
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
