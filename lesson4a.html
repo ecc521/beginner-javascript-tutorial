@@ -17,7 +17,7 @@
         
         
         
-        <h1>Interacting with HTML - The Document</h1>
+        <h1>Interacting with HTML - Creating an Element</h1>
         
         <style>
             h1 {
@@ -30,51 +30,11 @@
         
         <p>One of the main usages of JavaScript is to create HTML elements. </p>
         
-        <p>Let's start by writing the number input directly onto the HTML page using "document.write".  </p>
+        <p>Let's start by creating a paragraph element</p>
 
-        <script>
-                
-			window.answershown = false
-			
-            function showanswer() {
-                
-				if (window.answershown === true) {
-					document.querySelector("#example > .CodeMirror").remove()
-					window.answershown = false
-					document.getElementById("solutionbutton").innerHTML = "Show Solution"
-				}	
-				else {
-					window.answershown = true
-					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
-				
-    
-    
-                document.getElementById("exampleeditor").value = window.solutionHTML
-                
-                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
-                    name:  "htmlmixed",
-                    autoCloseTags: true,
-                    styleActiveLine: true,
-                    lineWrapping: false,
-                    lineNumbers:true,
-                    tabSize:2,
-                    readOnly:true,
-                    cursorBlinkRate:-1 //Hides cursor
-                });
-            }
-}
-            
-            window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      value = prompt(\"Please pick a number\")\n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"You picked the number \" + value\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n    </script>\n  </body>\n</html>-->";
-    
-                window.solutionHTML = window.solutionHTML.slice(4)
-                window.solutionHTML = window.solutionHTML.slice(0, -3)
-    
-            
-        </script>
+
 
       <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
-
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson4.html'">Go Back</button>
 
           <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson5.html'">Continue</button>
