@@ -52,7 +52,7 @@ function writeToScreen(text, color) {
 }
 writeToScreen("Hello!", "green")
 writeToScreen("This line was written by a function!", "blue")
-writeToScreen("In fact all three of these lines were!", "red")
+writeToScreen("In fact all of these lines were!", "red")
 writeToScreen("How many lines would this take without functions?", "orange")
 writeToScreen("What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.", "salmon")
 </pre>
@@ -105,7 +105,7 @@ var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), 
         <script>
 //HTML that is in editor at start
 //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n      function writeToScreen(text, color) {\n        var paragraph = document.createElement(\"p\")\n        paragraph.innerHTML = text\n        paragraph.style.color = color\n        //Uncomment the below line to make the text larger.\n        //paragraph.style.fontSize = \"1.5em\"\n        document.body.appendChild(paragraph)\n      }\n      writeToScreen(\"Hello!\", \"green\")\n      writeToScreen(\"This line was written by a function!\", \"blue\")\n      writeToScreen(\"In fact all three of these lines were!\", \"red\")\n      writeToScreen(\"How many lines would this take without functions?\", \"orange\")\n      writeToScreen(\"What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.\", \"salmon\")\n    </script>\n  </body>\n</html>-->";
+window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n      function writeToScreen(text, color) {\n        var paragraph = document.createElement(\"p\")\n        paragraph.innerHTML = text\n        paragraph.style.color = color\n        //Uncomment the below line to make the text larger.\n        //paragraph.style.fontSize = \"1.5em\"\n        document.body.appendChild(paragraph)\n      }\n      writeToScreen(\"Hello!\", \"green\")\n      writeToScreen(\"This line was written by a function!\", \"blue\")\n      writeToScreen(\"In fact all of these lines were!\", \"red\")\n      writeToScreen(\"How many lines would this take without functions?\", \"orange\")\n      writeToScreen(\"What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.\", \"salmon\")\n    </script>\n  </body>\n</html>-->";
 
     window.initialHTML = window.initialHTML.slice(4)
     window.initialHTML = window.initialHTML.slice(0, -3)
