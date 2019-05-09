@@ -91,9 +91,7 @@
 
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson9.html'">Continue</button>
 
-        </div>
-        
-
+        </div id="bottom">
 		<div id="example">
             <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
@@ -187,30 +185,24 @@
         <style>
             
             #editorwrapper {
-                position:fixed;
-                bottom:0;
                 left:0;
-                height:45%;
+                height:100%;
                 width:60%;
                 display:inline-block;
                 float:left;
-                padding:0;
                 border-right:1px solid black;
                 border-top:1px solid black;
             }
             
             #result {
-                position:fixed;
-                bottom:0;
                 right:0;
-                height:45%;
+                height:100%;
                 width:40%;
                 border:0;
                 border-top:1px solid black;
                 border-left:1px solid black;
                 display:inline-block;
                 float:right;
-                padding:0;
             }
             
             /*Make the bottom editor display over the solution*/
@@ -234,6 +226,13 @@
                 display:block;
                 float:left;
             }
+		
+		#bottom {
+			height:auto;
+			position:fixed;
+			bottom:0;
+                	padding:0;
+		}
             
             #download {
                 width:40%;
