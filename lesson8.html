@@ -77,7 +77,7 @@
 }
 			
 			
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n      var paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Hello!\"\n      paragraph.style.color = \"green\"\n      paragraph.style.fontSize = \"1.5em\" //Uncomment this line to make the text larger.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"This line was not written by a function!\"\n      paragraph.style.color = \"blue\"\n      paragraph.style.fontSize = \"1.5em\" //And this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"In fact all of these lines were!\"\n      paragraph.style.color = \"red\"\n      paragraph.style.fontSize = \"1.5em\" //AND this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Functions can save a lot of lines of code!\"\n      paragraph.style.color = \"orange\"\n      paragraph.style.fontSize = \"1.5em\" //Still another line. All done now.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.\"\n      paragraph.style.color = \"salmon\"\n      paragraph.style.fontSize = \"1.5em\" AHHH!!!! //I almost didn't see this line!\n      document.body.appendChild(paragraph)\n    </script>\n  </body>\n</html>-->";
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n      var paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Hello!\"\n      paragraph.style.color = \"green\"\n      paragraph.style.fontSize = \"1.5em\" //Uncomment this line to make the text larger.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"This line was not written by a function!\"\n      paragraph.style.color = \"blue\"\n      paragraph.style.fontSize = \"1.5em\" //And this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"In fact all of these lines were!\"\n      paragraph.style.color = \"red\"\n      paragraph.style.fontSize = \"1.5em\" //AND this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Functions can save a lot of lines of code!\"\n      paragraph.style.color = \"orange\"\n      paragraph.style.fontSize = \"1.5em\" //Still another line. All done now.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.\"\n      paragraph.style.color = \"salmon\"\n      paragraph.style.fontSize = \"1.5em\" //AHHH!!!! I almost didn't see this line!\n      document.body.appendChild(paragraph)\n    </script>\n  </body>\n</html>-->";
     
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
@@ -90,10 +90,10 @@
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson7.html'">Go Back</button>
 
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson9.html'">Continue</button>
-
-        </div id="bottom">
+</div>
+			
 		<div id="example">
-            <textarea id="exampleeditor" hidden="true"></textarea>
+            <textarea id="exampleeditor" hidden="true"></textarea>	
         </div>
 
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -132,14 +132,14 @@
         <!-- window.initialHTML is the HTML that they should begin with-->    
         
     
-        
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
             <button id="download">Download!</button>
         </div>
-        
+
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
+        
         
         <script>
             
@@ -186,7 +186,7 @@
             
             #editorwrapper {
                 left:0;
-                height:100%;
+                height:50%;
                 width:60%;
                 display:inline-block;
                 float:left;
@@ -199,7 +199,7 @@
             
             #result {
                 right:0;
-                height:100%;
+                height:50%;
                 width:40%;
                 border:0;
                 border-top:1px solid black;
@@ -209,6 +209,8 @@
 			position:fixed;
 			bottom:0;
                 	padding:0;
+				background-color:white;
+				z-index:4;
 		}
             
             /*Make the bottom editor display over the solution*/
@@ -232,13 +234,6 @@
                 display:block;
                 float:left;
             }
-		
-		#bottom {
-			height:auto;
-			position:fixed;
-			bottom:0;
-                	padding:0;
-		}
             
             #download {
                 width:40%;
