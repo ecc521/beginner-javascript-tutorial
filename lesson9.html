@@ -48,6 +48,7 @@ function writeToScreen(text, color) {
   var paragraph = document.createElement("p")
   paragraph.innerHTML = text
   paragraph.style.color = color
+  //paragraph.style.fontSize = "1.5em" //Uncomment this line to make the text larger.
   document.body.appendChild(paragraph)
 }
 writeToScreen("Hello!", "green")
