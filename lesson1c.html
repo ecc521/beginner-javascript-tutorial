@@ -9,9 +9,9 @@
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
         <script src="codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
-        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>       
-        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>       
-        <script src="codemirror-5.42.0/mode/css/css.js"></script>        
+        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>
+        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>
+        <script src="codemirror-5.42.0/mode/css/css.js"></script>
 
 
 
@@ -23,16 +23,16 @@
             h1 {
                 text-align:center;
             }
-            
+
             html, body {
                 margin:0;
                 padding:0;
             }
-            
+
             p {
                 margin:8px;
             }
-        
+
         </style>
 
 
@@ -44,9 +44,6 @@ if (value < 0) {
 }
 else if (value < 10) {
     alert("You picked a small number") //Alert the user they picked a small number
-}
-else if (value < 100) {
-    alert("You picked a medium number") //Alert the user they picked a medium number
 }
 else {
     alert("You picked a large number") //Alert the user they picked a large number
@@ -60,7 +57,7 @@ else {
         </div>
 
 
-        <p>JavaScript includes all the logic constructs you are used to from other languages, such as if/then/else, comparisons, loops, etc.  This allows you to dynamically modify the experience of your website based on logic. 
+        <p>JavaScript includes all the logic constructs you are used to from other languages, such as if/then/else, comparisons, loops, etc.  This allows you to dynamically modify the experience of your website based on logic.
 
         <p>You can always Click the download button to download the HTML file, then open it in your browser (usually you can just click on it, though a right click and "Open With" may be needed)</p>
 
@@ -106,7 +103,7 @@ var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), 
         <script>
 //HTML that is in editor at start
 //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else if (value < 100) {\n        alert(\"You picked a medium number\") //Alert the user they picked a medium number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n    </script>\n  </body>\n</html>-->";
+window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\") //Alert the user they picked a negative number\n      }\n      else if (value < 10) {\n        alert(\"You picked a small number\") //Alert the user they picked a small number\n      }\n      else {\n        alert(\"You picked a large number\") //Alert the user they picked a large number\n      }\n    </script>\n  </body>\n</html>-->";
 
     window.initialHTML = window.initialHTML.slice(4)
     window.initialHTML = window.initialHTML.slice(0, -3)
@@ -132,7 +129,7 @@ window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>
 
 
 <!-- All the stuff below is CodeMirror-->
-<!-- window.initialHTML is the HTML that they should begin with-->    
+<!-- window.initialHTML is the HTML that they should begin with-->
 
 
 
@@ -154,7 +151,7 @@ window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>
         link.href = URL.createObjectURL(content);
         link.click();
         document.body.removeChild(link);
-    }            
+    }
 
     document.getElementById("editor").value = window.initialHTML
 
@@ -172,7 +169,7 @@ window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>
         var iframe = document.getElementById("result")
         iframe.contentWindow.document.open();
         iframe.contentWindow.document.write(htmlcode);
-        iframe.contentWindow.document.close();                
+        iframe.contentWindow.document.close();
     }
 
 
@@ -235,7 +232,7 @@ window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>
         font-size:16px;
         background-color:#99ffe0;
         border:0;
-        display:block;                
+        display:block;
     }
 
     html, body {
@@ -247,4 +244,3 @@ window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>
 </style>
 </body>
 </html>
-
