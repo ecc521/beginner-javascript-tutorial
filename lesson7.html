@@ -55,7 +55,7 @@
 
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      //A function is a block of code that will\n      //run when the function is caled\n      function sayHi() {\n      \talert(\"Hi! I'm a button!\")\n      }\n      \n      //Call sayHi when the button is clicked\n      button.onclick = sayHi\n      \n      document.body.appendChild(button)\n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      //A function is a block of code that will\n      //run when the function is called\n      function sayHi() {\n      \talert(\"Hi! I'm a button!\")\n      }\n      \n      //Call sayHi when the button is clicked\n      button.onclick = sayHi\n      \n      document.body.appendChild(button)\n      \n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
