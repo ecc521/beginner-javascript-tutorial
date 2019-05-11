@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beginner JavaScript</title>
+    </head>
+    <body>
+
+        <script src="polyfill.js"></script>
+
+
+        <!-- HTML Mixed CodeMirror-->
+        <script src="codemirror-5.42.0/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
+        <script src="codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>
+        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>
+        <script src="codemirror-5.42.0/mode/css/css.js"></script>
+
+
+
+        <h1>Functions</h1>
+
+        <style>
+            h1 {
+                text-align:center;
+            }
+
+            html, body {
+                margin:0;
+                padding:0;
+            }
+
+            p {
+                margin:8px;
+            }
+
+        </style>
+
+
+
+        <p>Functions can also return values. To make a function return a value, simply use the return statement.</p>
+        <p>The next lesson will continue on Interacting With HTML.</p>
+
+
+
+
+
+        <div style="text-align:center;">
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson10.html'">Go Back</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson12.html'">Continue</button>
+
+        </div>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+        <script>
+
+
+            //HTML that is in editor at start
+            //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
+            //Then add HTML comments to start and end of string
+            window.initialHTML = "function add(number1, number2) {\n\treturn number1 + number2\n}\n\nvar sum = add(14, 28)\nalert(sum)";
+
+
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- All the stuff below is CodeMirror-->
+        <!-- window.initialHTML is the HTML that they should begin with-->
+
+
+
+        <div id="editorwrapper">
+            <textarea id="editor"></textarea>
+            <button id="run">Run!</button>
+            <button id="download">Download!</button>
+        </div>
+
+
+        <script>
+
+
+            document.getElementById("editor").value = window.initialHTML
+
+            var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+                mode:  "javascript",
+                autoCloseTags: true,
+                styleActiveLine: true,
+                lineWrapping: false,
+                lineNumbers:true,
+                tabSize:2,
+            });
+
+
+            function runcode() {
+                var code = editor.getValue()
+                eval(code)
+            }
+
+
+            document.getElementById("run").addEventListener("click", runcode)
+
+
+
+        </script>
+
+        <style>
+
+            #editorwrapper {
+                position:fixed;
+                bottom:0;
+                left:0;
+                height:45%;
+                width:100%;
+                display:inline-block;
+                float:left;
+                padding:0;
+                border-right:1px solid black;
+                border-top:1px solid black;
+            }
+
+            .CodeMirror {
+                width:100%;
+                height:93%;
+            }
+
+            #run {
+                width:100%;
+                height:7%;
+                font-size:16px;
+                background-color:#99e0ff;
+                border:0;
+                display:block;
+                float:left;
+            }
+
+
+            html, body {
+                width:100%;
+                height:100%;
+            }
+
+
+        </style>
+    </body>
+</html>
