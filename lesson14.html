@@ -7,6 +7,7 @@
 
         <script src="polyfill.js"></script>
 
+
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
@@ -16,10 +17,6 @@
         <script src="codemirror-5.42.0/mode/css/css.js"></script>
 
 
-
-
-
-        <h1>Interactive Websites</h1>
 
         <style>
             h1 {
@@ -38,24 +35,86 @@
         </style>
 
 
+        <h1>Interacting with HTML and CSS</h1>
 
-        <p>Oh no! Clicking the button doesn't do anything!</p>
-        <p>Let's make it say something</p>
 
+
+        <p>Often, you will not want to create an element using Javascript, and merely add functionality to an element.</p>
+        <p>This program uses document.getElementById to access an HTML element.</p>
+
+        <p>Try changing the buttons id to button2. Change any CSS and Javascript needed to make the program work as before.</p>
+
+
+        <script>
+			window.answershown = false
+
+            function showanswer() {
+
+				if (window.answershown === true) {
+					document.querySelector("#example > .CodeMirror").remove()
+					window.answershown = false
+					document.getElementById("solutionbutton").innerHTML = "Show Solution"
+				}
+				else {
+					window.answershown = true
+					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
+
+
+
+                document.getElementById("exampleeditor").value = window.solutionHTML
+
+
+                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                    name:  "htmlmixed",
+                    autoCloseTags: true,
+                    styleActiveLine: true,
+                    lineWrapping: false,
+                    lineNumbers:true,
+                    tabSize:2,
+                    readOnly:true,
+                    cursorBlinkRate:-1 //Hides cursor
+                });
+
+
+
+            }
+}
+
+
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <button id=\"button2\">Click me to change color</button>\n    <style>\n      #button2 {\n      \tbackground-color:lightblue;\n        border: 3px solid black;\n      }\n    </style>\n    <script>\n\t\t\tvar button = document.getElementById(\"button2\") //Get the button with an id of button2\n      button.onclick = function() {\n        button.style.backgroundColor = \"lightgreen\" //Overrule the CSS styling\n      \talert(\"Changed color\")\n      }\n    </script>\n  </body>\n</html>-->";
+
+                window.solutionHTML = window.solutionHTML.slice(4)
+                window.solutionHTML = window.solutionHTML.slice(0, -3)
+
+
+
+
+        </script>
 
         <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson6.html'">Go Back</button>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
 
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson8.html'">Continue</button>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson13.html'">Go Back</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson15.html'">Continue</button>
 
         </div>
+
+		<div id="example">
+            <textarea id="exampleeditor" hidden="true"></textarea>
+        </div>
+
+
+
+
+
 
         <script>
 
 
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      //A function is a block of code that will\n      //run when the function is called\n      function sayHi() {\n      \talert(\"Hi! I'm a button!\")\n      }\n      \n      //Call sayHi when the button is clicked\n      button.onclick = sayHi\n      \n      document.body.appendChild(button)\n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <button id=\"button1\">Click me to change color</button>\n    <style>\n      #button1 {\n      \tbackground-color:lightblue;\n        border: 3px solid black;\n      }\n    </style>\n    <script>\n\t\t\tvar button = document.getElementById(\"button1\") //Get the button with an id of button1\n      button.onclick = function() {\n        button.style.backgroundColor = \"lightgreen\" //Overrule the CSS styling\n      \talert(\"Changed color\")\n      }\n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
@@ -65,12 +124,21 @@
         </script>
 
 
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
 
 
 
         <!-- All the stuff below is CodeMirror-->
         <!-- window.initialHTML is the HTML that they should begin with-->
-
 
 
         <div id="editorwrapper">
@@ -151,7 +219,7 @@
                 position:fixed;
                 bottom:0;
                 left:0;
-                height:60%;
+                height:45%;
                 width:60%;
                 display:inline-block;
                 float:left;
@@ -164,7 +232,7 @@
                 position:fixed;
                 bottom:0;
                 right:0;
-                height:60%;
+                height:45%;
                 width:40%;
                 border:0;
                 border-top:1px solid black;
@@ -172,6 +240,13 @@
                 display:inline-block;
                 float:right;
                 padding:0;
+            }
+
+            /*Make the bottom editor display over the solution*/
+            #editorwrapper {
+                background-color:white;
+                opacity: 1;
+                z-index: 4;
             }
 
             .CodeMirror {
@@ -188,14 +263,6 @@
                 display:block;
                 float:left;
             }
-
-            /*Make the bottom editor display over the solution*/
-            #editorwrapper {
-                background-color:white;
-                opacity: 1;
-                z-index: 4;
-            }
-
 
             #download {
                 width:40%;

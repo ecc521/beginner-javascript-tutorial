@@ -5,8 +5,6 @@
     </head>
     <body>
 
-        <script src="polyfill.js"></script>
-
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
@@ -19,7 +17,7 @@
 
 
 
-        <h1>Interactive Websites</h1>
+        <h1>Interacting with HTML and CSS</h1>
 
         <style>
             h1 {
@@ -39,30 +37,44 @@
 
 
 
-        <p>Oh no! Clicking the button doesn't do anything!</p>
-        <p>Let's make it say something</p>
+        <p>You can also use CSS selectors to select elements through document.querySelector and document.querySelectorAll</p>
 
 
-        <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson6.html'">Go Back</button>
+      <div style="text-align:center;">
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson14.html'">Go Back</button>
 
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson8.html'">Continue</button>
+          <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson16.html'">Continue</button>
 
         </div>
 
+
+        <div id="example">
+            <textarea id="exampleeditor" hidden="true"></textarea>
+        </div>
+
+
+
+
+
+
+
+
         <script>
-
-
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      //A function is a block of code that will\n      //run when the function is called\n      function sayHi() {\n      \talert(\"Hi! I'm a button!\")\n      }\n      \n      //Call sayHi when the button is clicked\n      button.onclick = sayHi\n      \n      document.body.appendChild(button)\n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <p id=\"paragraph1\">This is the first paragraph</p>\n    <p id=\"paragraph2\">This is the second paragraph</p>\n    <p id=\"paragraph3\">This is the third paragraph</p>\n    <p id=\"paragraph4\">This is the fourth paragraph</p>\n    <p id=\"paragraph5\">This is the fifth paragraph</p>\n\n    <style>\n      #paragraph1 {\n      \tfont-weight:bold;\n      }\n      paragraph {\n      \tcolor:blue;\t\n      }\n    </style>\n    <script>\n\t\t\t//That first paragraph needs a bit more style... Let's make it italic!\n\t\t\tdocument.querySelector(\"#paragraph1\").style.fontStyle = \"italic\"\n      \n      \n      \n      //All of those paragraphs are the wrong color. Make them blue...\n      var paragraphs = document.querySelectorAll(\"p\") //Get an array of all the paragraph elements\n      \n      //Now we need to go through and modify each element in the array. We can do this using a for loop\n\t\t\tfor (var i=0;i<paragraphs.length;i=i+1) {\n      \tvar paragraph = paragraphs[i] //Get the paragraph at position i in the array\n        paragraph.style.color = \"blue\" //Make the paragraph blue\n      }\n            \n      //Javascript for loops are similar to those in many other programming languages.\n      //It works like this:\n      \n      //var i=0 - Initialize counter variable. In this case we set it to 0 so that we start at the\n      //first element in the array\n      \n      //i<paragraphs.length - As long as this condition is true, the loop will continue. In this\n      //case, we use i<paragraphs.length so that we go through each element in the array\n      \n      //i=i+1 - This code runs every time the loop finishes. In this case, increase the value of i by 1\n      //so that the next time the loop runs, we will be modifying the next element of the array.\n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
 
 
-
         </script>
+
+
+
+
+
+
 
 
 
@@ -84,35 +96,13 @@
         <script>
 
             function download(content, name, mimetype) {
-
-                if (!window.Blob) {
-                    //IE <10
-                    var ifd = document.getElementById('dummy').contentDocument;
-                    ifd.open('text/plain', 'replace');
-                    ifd.write(content);
-                    ifd.close();
-                    ifd.execCommand('SaveAs', true, name);
-                }
-                else {
-                content = new Blob([content], {type:mimetype})
-
-                    //IE >=10
-                if (navigator.msSaveBlob) {
-                    navigator.msSaveBlob(content, name)
-                }
-                else {
-                    //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-
+                    content = new Blob([content], {type:mimetype})
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
-
                     document.body.removeChild(link);
-
-                }
-                }
             }
 
             document.getElementById("editor").value = window.initialHTML
@@ -126,6 +116,7 @@
                 tabSize:2
             });
 
+            setTimeout(function() {editor.refresh()},100) //Not sure why, but this editor is having problems...
 
             function runcode() {
                 var htmlcode = editor.getValue()
@@ -141,8 +132,6 @@
                 download(editor.getValue(), "website.html", "text/html")
             })
 
-
-
         </script>
 
         <style>
@@ -151,7 +140,7 @@
                 position:fixed;
                 bottom:0;
                 left:0;
-                height:60%;
+                height:75%;
                 width:60%;
                 display:inline-block;
                 float:left;
@@ -164,7 +153,7 @@
                 position:fixed;
                 bottom:0;
                 right:0;
-                height:60%;
+                height:75%;
                 width:40%;
                 border:0;
                 border-top:1px solid black;
