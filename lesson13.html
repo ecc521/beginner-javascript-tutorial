@@ -16,9 +16,6 @@
 
 
 
-
-        <h1>Editing Code</h1>
-
         <style>
             h1 {
                 text-align:center;
@@ -38,10 +35,12 @@
 
 
 
+        <h1>Interactive Websites: Calculator</h1>
 
-        <p>Time to make another button!</p>
-        <p>When this button is clicked, it should say "Hi! You clicked me!" to the user</p>
-		<p>Remember: You will need to create a function that will run when the button is clicked.</p>
+		<p>Ever wonder how people create those interactive forms? It's through JavaScript.</p>
+        <p>Here is a really basic calculator that needs some improvement.</p>
+        <p>Try modifying the code so that the result of the mathematical expression is put into a paragraph element.</p>
+
 
 
          <script>
@@ -62,7 +61,6 @@
 
                 document.getElementById("exampleeditor").value = window.solutionHTML
 
-
                 var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
                     name:  "htmlmixed",
                     autoCloseTags: true,
@@ -73,33 +71,24 @@
                     readOnly:true,
                     cursorBlinkRate:-1 //Hides cursor
                 });
-
-
-
             }
 }
 
 
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      document.body.appendChild(button)\n\n      \n      function sayHi() {\n      \talert(\"Hi! You clicked me!\")\n      }\n      button.onclick = sayHi\n      \n      /*\n      \tIf you didn't want to reuse the sayHi function\n        elsewhere, you could rewrite the above 4 lines \n        of code like this:\n        \n        button.onclick = function() {\n        \talert(\"Hi! You clicked me!\")\n        }\n      */\n    </script>\n  </body>\n</html>-->";
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tvar input = document.createElement(\"input\")\n      input.placeholder = \"Type Mathematical Expression Here\"\n      input.style.width = \"100%\"\n      document.body.appendChild(input)\n      \n      //Create the paragraph element\n      var paragraph = document.createElement(\"p\")\n      document.body.appendChild(paragraph)\n\n      input.onkeyup = function() {\n      \tvar result = eval(input.value)\n        paragraph.innerHTML = \"The answer is: \" + result //Make the paragraph display the result\n      }\n    </script>\n  </body>\n</html>-->";
 
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
-
-
-
-
         </script>
 
 
         <div style="text-align:center;">
             <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
 
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson11.html'">Go Back</button>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson12.html'">Go Back</button>
 
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson13.html'">Continue</button>
-
-        </div>
-
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson14.html'">Continue</button>
+</div>
 
 		<div id="example">
             <textarea id="exampleeditor" hidden="true"></textarea>
@@ -112,7 +101,7 @@
         <script>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      document.body.appendChild(button)\n\n      \n\t\t\t//Set button.onclick to your function.\n      \n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tvar input = document.createElement(\"input\") //Create an HTML input element\n      input.placeholder = \"Type Mathematical Expression Here\"\n      input.style.width = \"100%\" //Make sure the input box is large enough\n      document.body.appendChild(input)\n      \n      //When the user presses a key, evaluate the expression.\n      input.onkeyup = function() {\n      \tvar result = eval(input.value) //Calculate the value of the expression\n        alert(\"The answer is: \" + result)\n      }\n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
@@ -141,7 +130,6 @@
         <!-- window.initialHTML is the HTML that they should begin with-->
 
 
-
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
@@ -149,6 +137,7 @@
         </div>
 
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
+
 
         <script>
 
@@ -194,31 +183,33 @@
         <style>
 
             #editorwrapper {
-                position:fixed;
-                bottom:0;
                 left:0;
-                height:45%;
+                height:50%;
                 width:60%;
                 display:inline-block;
                 float:left;
-                padding:0;
                 border-right:1px solid black;
                 border-top:1px solid black;
-            }
+			position:fixed;
+			bottom:0;
+                	padding:0;
+		}
 
             #result {
-                position:fixed;
-                bottom:0;
                 right:0;
-                height:45%;
+                height:50%;
                 width:40%;
                 border:0;
                 border-top:1px solid black;
                 border-left:1px solid black;
                 display:inline-block;
                 float:right;
-                padding:0;
-            }
+			position:fixed;
+			bottom:0;
+                	padding:0;
+				background-color:white;
+				z-index:4;
+		}
 
             /*Make the bottom editor display over the solution*/
             #editorwrapper {
