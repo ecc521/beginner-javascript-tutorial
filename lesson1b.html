@@ -4,64 +4,64 @@
         <title>Beginner JavaScript</title>
     </head>
     <body>
-        
+
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
         <script src="codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
-        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>       
-        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>       
-        <script src="codemirror-5.42.0/mode/css/css.js"></script>        
-        
-        
-        
-        
-        
+        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>
+        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>
+        <script src="codemirror-5.42.0/mode/css/css.js"></script>
+
+
+
+
+
         <h1>Editing Code</h1>
-        
+
         <style>
             h1 {
                 text-align:center;
             }
-                        
+
             html, body {
                 margin:0;
                 padding:0;
             }
-            
+
             p {
                 margin:8px;
             }
-        
+
         </style>
-        
-    
+
+
 
 
 
         <p>Editing code is as easy as you expect.  In this tutorial, the HTML in the lower left window in your browser is editable.  Change the text inside the prompt to say "Please pick a number between 1 and 100".
-        and hit the "Run" button to see your change.</p> 
-        <p>You can also download the HTML to see your changes in the full browser window.</p>      
-        
-                
+        and hit the "Run" button to see your change.</p>
+        <p>You can also download the HTML to see your changes in the full browser window.</p>
+
+
          <script>
 			window.answershown = false
-			
+
             function showanswer() {
-                
+
 				if (window.answershown === true) {
 					document.querySelector("#example > .CodeMirror").remove()
 					window.answershown = false
 					document.getElementById("solutionbutton").innerHTML = "Show Solution"
-				}	
+				}
 				else {
 					window.answershown = true
 					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
-				
-    
-    
+
+
+
                 document.getElementById("exampleeditor").value = window.solutionHTML
-                
+
 
                 var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
                     name:  "htmlmixed",
@@ -78,10 +78,10 @@
 
             }
 }
-			
-			
+
+
                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\n\n      //Get a value from the user\n      value = prompt(\"Please pick a number between 1 and 100\")\n      alert(\"You picked the number \" + value)\n\n\n    </script>\n  </body>\n</html>-->";
-    
+
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
 
@@ -90,7 +90,7 @@
 
         </script>
 
-               
+
         <div style="text-align:center;">
             <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
 
@@ -99,59 +99,60 @@
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson1c.html'">Continue</button>
 
         </div>
-        
+
 
 		<div id="example">
             <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
 
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        
-        
-        
+
+
+
         <script>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
             window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\n\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      alert(\"You picked the number \" + value)\n\n\n    </script>\n  </body>\n</html>-->";
-    
+
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
-        
-        
-        </script>
-        
-        
-        
 
-        
-        
-        
-        
-        
-        
-        
-        
-     
-        
-        
-        
-        
-        
+
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- All the stuff below is CodeMirror-->
-        <!-- window.initialHTML is the HTML that they should begin with-->    
-        
-    
-        
+        <!-- window.initialHTML is the HTML that they should begin with-->
+
+
+
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
             <button id="download">Download!</button>
+            <button id="reset">Reset</button>
         </div>
-        
+
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
-        
+
         <script>
-            
+
             function download(content, name, mimetype) {
                     var link = document.createElement("a");
                     document.body.appendChild(link);
@@ -160,10 +161,26 @@
                     link.href = URL.createObjectURL(content);
                     link.click();
                     document.body.removeChild(link);
-            }            
-            
-            document.getElementById("editor").value = window.initialHTML
-            
+            }
+
+            document.getElementById("editor").value = localStorage.getItem(window.location.href + "htmlcode") || window.initialHTML
+
+var previoustext;
+
+function save() {
+    if (editor.getValue() !== previoustext) {
+        previoustext = editor.getValue()
+        localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
+    }
+}
+
+setInterval(save, 1000)
+
+function resetCode() {
+    editor.setValue(window.initialHTML)
+}
+document.getElementById("reset").addEventListener("click", resetCode)
+
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
                 name:  "htmlmixed",
                 autoCloseTags: true,
@@ -172,27 +189,27 @@
                 lineNumbers:true,
                 tabSize:2
             });
-            
+
             function runcode() {
                 var htmlcode = editor.getValue()
                 var iframe = document.getElementById("result")
                 iframe.contentWindow.document.open();
                 iframe.contentWindow.document.write(htmlcode);
-                iframe.contentWindow.document.close();                
+                iframe.contentWindow.document.close();
             }
-            
-            
+
+
             document.getElementById("run").addEventListener("click", runcode)
             document.getElementById("download").addEventListener("click", function(){
                 download(editor.getValue(), "website.html", "text/html")
             })
-            
-            
-            
+
+
+
         </script>
-        
+
         <style>
-            
+
             #editorwrapper {
                 position:fixed;
                 bottom:0;
@@ -205,7 +222,7 @@
                 border-right:1px solid black;
                 border-top:1px solid black;
             }
-            
+
             #result {
                 position:fixed;
                 bottom:0;
@@ -219,45 +236,55 @@
                 float:right;
                 padding:0;
             }
-            
+
             /*Make the bottom editor display over the solution*/
             #editorwrapper {
                 background-color:white;
                 opacity: 1;
                 z-index: 4;
             }
-            
+
             .CodeMirror {
                 width:100%;
                 height:93%;
             }
-            
+
             #run {
-                width:60%;
+                width:45%;
                 height:7%;
                 font-size:16px;
                 background-color:#99e0ff;
                 border:0;
-                display:block;
+                display:inline-block;
                 float:left;
             }
-            
+
+
             #download {
-                width:40%;
+                width:30%;
                 height:7%;
                 font-size:16px;
                 background-color:#99ffe0;
                 border:0;
-                display:block;                
+                display:inline-block;
             }
-            
+
+            #reset {
+                width:25%;
+                height:7%;
+                font-size:16px;
+                background-color:salmon;
+                border:0;
+                display:inline-block;
+                float:right;
+            }
+
             html, body {
                 width:100%;
                 height:100%;
             }
-            
-            
+
+
         </style>
     </body>
 </html>
-
