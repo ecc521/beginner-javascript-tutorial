@@ -11,6 +11,12 @@ const waitOnFirstLoad = 0 //Milliseconds to wait before fetching items on preloa
 const preloadList = [
     "",
     "editor.html",
+	"codemirror-5.42.0/lib/codemirror.js",
+	"codemirror-5.42.0/lib/codemirror.css",
+	"codemirror-5.42.0/mode/htmlmixed/htmlmixed.js",
+	"codemirror-5.42.0/mode/xml/xml.js",
+	"codemirror-5.42.0/mode/javascript/javascript.js",
+	"codemirror-5.42.0/mode/css/css.js",
     "lesson1.html",
     "lesson1a.html",
     "lesson1b.html",
