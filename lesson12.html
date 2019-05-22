@@ -5,8 +5,6 @@
     </head>
     <body>
 		<script src="allPages.js"></script>
-
-
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
@@ -19,7 +17,7 @@
 
 
 
-        <h1>Interacting with HTML - Creating an Element</h1>
+        <h1>Editing Code</h1>
 
         <style>
             h1 {
@@ -39,35 +37,82 @@
 
 
 
-        <p>One of the main usages of JavaScript is to create HTML elements. </p>
-
-        <p>Let's start by creating a paragraph element and adding it to the page.</p>
 
 
+        <p>Time to make another button!</p>
+        <p>When this button is clicked, it should say "Hi! You clicked me!" to the user</p>
+		<p>Remember: You will need to create a function that will run when the button is clicked.</p>
 
-      <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson4.html'">Go Back</button>
 
-          <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson5.html'">Continue</button>
+         <script>
+			window.answershown = false
+
+            function showanswer() {
+
+				if (window.answershown === true) {
+					document.querySelector("#example > .CodeMirror").remove()
+					window.answershown = false
+					document.getElementById("solutionbutton").innerHTML = "Show Solution"
+				}
+				else {
+					window.answershown = true
+					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
+
+
+
+                document.getElementById("exampleeditor").value = window.solutionHTML
+
+
+                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                    name:  "htmlmixed",
+                    autoCloseTags: true,
+                    styleActiveLine: true,
+                    lineWrapping: false,
+                    lineNumbers:true,
+                    tabSize:2,
+                    readOnly:true,
+                    cursorBlinkRate:-1 //Hides cursor
+                });
+
+
+
+            }
+}
+
+
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      document.body.appendChild(button)\n\n      \n      function sayHi() {\n      \talert(\"Hi! You clicked me!\")\n      }\n      button.onclick = sayHi\n      \n      /*\n      \tIf you didn't want to reuse the sayHi function\n        elsewhere, you could rewrite the above 4 lines \n        of code like this:\n        \n        button.onclick = function() {\n        \talert(\"Hi! You clicked me!\")\n        }\n      */\n    </script>\n  </body>\n</html>-->";
+
+                window.solutionHTML = window.solutionHTML.slice(4)
+                window.solutionHTML = window.solutionHTML.slice(0, -3)
+
+
+
+
+        </script>
+
+
+        <div style="text-align:center;">
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson11.html'">Go Back</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson13.html'">Continue</button>
 
         </div>
 
 
-        <div id="example">
+		<div id="example">
             <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
 
-
-
-
-
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
         <script>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"This is the text (HTML) inside the paragraph element\"\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      document.body.appendChild(button)\n\n      \n\t\t\t//Set button.onclick to your function.\n      \n      \n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
@@ -76,7 +121,10 @@
         </script>
 
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
 
 
 
@@ -189,6 +237,13 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 padding:0;
             }
 
+            /*Make the bottom editor display over the solution*/
+            #editorwrapper {
+                background-color:white;
+                opacity: 1;
+                z-index: 4;
+            }
+
             .CodeMirror {
                 width:100%;
                 height:93%;
@@ -223,15 +278,6 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 display:inline-block;
                 float:right;
             }
-
-            /*Make the bottom editor display over the solution*/
-            #editorwrapper {
-                background-color:white;
-                opacity: 1;
-                z-index: 4;
-            }
-
-
 
             html, body {
                 width:100%;

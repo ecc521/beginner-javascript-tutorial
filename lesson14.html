@@ -4,6 +4,7 @@
         <title>Beginner JavaScript</title>
     </head>
     <body>
+
 		<script src="allPages.js"></script>
 
 
@@ -16,10 +17,6 @@
         <script src="codemirror-5.42.0/mode/css/css.js"></script>
 
 
-
-
-
-        <h1>Interacting with HTML - Creating an Element</h1>
 
         <style>
             h1 {
@@ -38,22 +35,72 @@
         </style>
 
 
-
-        <p>One of the main usages of JavaScript is to create HTML elements. </p>
-
-        <p>Let's start by creating a paragraph element and adding it to the page.</p>
+        <h1>Interacting with HTML and CSS</h1>
 
 
 
-      <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson4.html'">Go Back</button>
+        <p>Often, you will not want to create an element using Javascript, and merely add functionality to an element.</p>
+        <p>This program uses document.getElementById to access an HTML element.</p>
 
-          <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson5.html'">Continue</button>
+        <p>Try changing the buttons id to button2. Change any CSS and Javascript needed to make the program work as before.</p>
+
+
+        <script>
+			window.answershown = false
+
+            function showanswer() {
+
+				if (window.answershown === true) {
+					document.querySelector("#example > .CodeMirror").remove()
+					window.answershown = false
+					document.getElementById("solutionbutton").innerHTML = "Show Solution"
+				}
+				else {
+					window.answershown = true
+					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
+
+
+
+                document.getElementById("exampleeditor").value = window.solutionHTML
+
+
+                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                    name:  "htmlmixed",
+                    autoCloseTags: true,
+                    styleActiveLine: true,
+                    lineWrapping: false,
+                    lineNumbers:true,
+                    tabSize:2,
+                    readOnly:true,
+                    cursorBlinkRate:-1 //Hides cursor
+                });
+
+
+
+            }
+}
+
+
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <button id=\"button2\">Click me to change color</button>\n    <style>\n      #button2 {\n      \tbackground-color:lightblue;\n        border: 3px solid black;\n      }\n    </style>\n    <script>\n\t\t\tvar button = document.getElementById(\"button2\") //Get the button with an id of button2\n      button.onclick = function() {\n        button.style.backgroundColor = \"lightgreen\" //Overrule the CSS styling\n      \talert(\"Changed color\")\n      }\n    </script>\n  </body>\n</html>-->";
+
+                window.solutionHTML = window.solutionHTML.slice(4)
+                window.solutionHTML = window.solutionHTML.slice(0, -3)
+
+
+
+
+        </script>
+
+        <div style="text-align:center;">
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson13.html'">Go Back</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson15.html'">Continue</button>
 
         </div>
 
-
-        <div id="example">
+		<div id="example">
             <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
 
@@ -62,15 +109,16 @@
 
 
 
-
-
         <script>
+
+
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"This is the text (HTML) inside the paragraph element\"\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <button id=\"button1\">Click me to change color</button>\n    <style>\n      #button1 {\n      \tbackground-color:lightblue;\n        border: 3px solid black;\n      }\n    </style>\n    <script>\n\t\t\tvar button = document.getElementById(\"button1\") //Get the button with an id of button1\n      button.onclick = function() {\n        button.style.backgroundColor = \"lightgreen\" //Overrule the CSS styling\n      \talert(\"Changed color\")\n      }\n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
+
 
 
         </script>
@@ -93,7 +141,6 @@
         <!-- window.initialHTML is the HTML that they should begin with-->
 
 
-
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
@@ -106,32 +153,54 @@
         <script>
 
             function download(content, name, mimetype) {
+
+                if (!window.Blob) {
+                    //IE <10
+                    var ifd = document.getElementById('dummy').contentDocument;
+                    ifd.open('text/plain', 'replace');
+                    ifd.write(content);
+                    ifd.close();
+                    ifd.execCommand('SaveAs', true, name);
+                }
+                else {
+                content = new Blob([content], {type:mimetype})
+
+                    //IE >=10
+                if (navigator.msSaveBlob) {
+                    navigator.msSaveBlob(content, name)
+                }
+                else {
+                    //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-                    content = new Blob([content], {type:mimetype})
+
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
+
                     document.body.removeChild(link);
+
+                }
+                }
             }
 
             document.getElementById("editor").value = localStorage.getItem(window.location.href + "htmlcode") || window.initialHTML
 
-var previoustext;
+            var previoustext;
 
-function save() {
-    if (editor.getValue() !== previoustext) {
-        previoustext = editor.getValue()
-        localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
-    }
-}
+            function save() {
+                if (editor.getValue() !== previoustext) {
+                    previoustext = editor.getValue()
+                    localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
+                }
+            }
 
-setInterval(save, 1000)
+            setInterval(save, 1000)
 
-function resetCode() {
-    editor.setValue(window.initialHTML)
-}
-document.getElementById("reset").addEventListener("click", resetCode)
+            function resetCode() {
+                editor.setValue(window.initialHTML)
+            }
+            document.getElementById("reset").addEventListener("click", resetCode)
 
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
                 name:  "htmlmixed",
@@ -141,6 +210,7 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 lineNumbers:true,
                 tabSize:2
             });
+
 
             function runcode() {
                 var htmlcode = editor.getValue()
@@ -189,6 +259,13 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 padding:0;
             }
 
+            /*Make the bottom editor display over the solution*/
+            #editorwrapper {
+                background-color:white;
+                opacity: 1;
+                z-index: 4;
+            }
+
             .CodeMirror {
                 width:100%;
                 height:93%;
@@ -223,15 +300,6 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 display:inline-block;
                 float:right;
             }
-
-            /*Make the bottom editor display over the solution*/
-            #editorwrapper {
-                background-color:white;
-                opacity: 1;
-                z-index: 4;
-            }
-
-
 
             html, body {
                 width:100%;

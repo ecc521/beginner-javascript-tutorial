@@ -6,61 +6,55 @@
     <body>
         
 		<script src="allPages.js"></script>
-		
+
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
         <script src="codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
-        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>       
-        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>       
-        <script src="codemirror-5.42.0/mode/css/css.js"></script>        
-        
-        
-             
-        
-    
-        
-        
-        
+        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>
+        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>
+        <script src="codemirror-5.42.0/mode/css/css.js"></script>
+
+
+
+
+
         <script>
 
 
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
             window.initialHTML = localStorage.getItem("htmlcode")
-            
+
             if (window.initialHTML === null) {
                 window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\t<body>\n    <p>Type HTML in the editor on the left. When you click run, the HTML page will be displayed here</p>\n    <p>This editor saves your changes every second - so it you close the tab and come back, your code will still be here (unless you clear browsing data)</p>\n    <style>\n      /*CSS goes here*/\n      body {\n        background-color:yellow;\n      }\n    </style>\n    <script>\n    \t//JavaScript goes here\n    </script>\n\t</body>\n</html>-->";
 
                 window.initialHTML = window.initialHTML.slice(4)
                 window.initialHTML = window.initialHTML.slice(0, -3)
             }
-        
-        
+
+
         </script>
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
         <!-- All the stuff below is CodeMirror-->
-        <!-- window.initialHTML is the HTML that they should begin with-->    
-        
-    
-        
+        <!-- window.initialHTML is the HTML that they should begin with-->
+
+
+
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
             <button id="download">Download!</button>
         </div>
-        
+
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
-        
+
         <script>
-            
+
             function download(content, name, mimetype) {
 
                 if (!window.Blob) {
@@ -68,12 +62,12 @@
                     var ifd = document.getElementById('dummy').contentDocument;
                     ifd.open('text/plain', 'replace');
                     ifd.write(content);
-                    ifd.close();                    
+                    ifd.close();
                     ifd.execCommand('SaveAs', true, name);
                 }
                 else {
                 content = new Blob([content], {type:mimetype})
-                
+
                     //IE >=10
                 if (navigator.msSaveBlob) {
                     navigator.msSaveBlob(content, name)
@@ -82,19 +76,19 @@
                     //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-                
+
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
 
                     document.body.removeChild(link);
-                    
+
                 }
                 }
-            }         
-            
+            }
+
             document.getElementById("editor").value = window.initialHTML
-            
+
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
                 name:  "htmlmixed",
                 autoCloseTags: true,
@@ -104,37 +98,37 @@
                 tabSize:2
             });
 
-            
+
             function runcode() {
                 var htmlcode = editor.getValue()
                 var iframe = document.getElementById("result")
                 iframe.contentWindow.document.open();
                 iframe.contentWindow.document.write(htmlcode);
-                iframe.contentWindow.document.close();                
+                iframe.contentWindow.document.close();
             }
-            
+
             runcode()
-            
+
             document.getElementById("run").addEventListener("click", runcode)
             document.getElementById("download").addEventListener("click", function(){
                 download(editor.getValue(), "website.html", "text/html")
             })
-            
+
             var previoustext = editor.getValue()
-            
+
             function save() {
                 if (editor.getValue() !== previoustext) {
                     localStorage.setItem("htmlcode", editor.getValue())
-                }    
+                }
             }
             
             setInterval(save, 1000)
-            
-            
+
+
         </script>
-        
+
         <style>
-            
+
             #editorwrapper {
                 position:fixed;
                 bottom:0;
@@ -147,7 +141,7 @@
                 border-right:1px solid black;
                 border-top:1px solid black;
             }
-            
+
             #result {
                 position:fixed;
                 bottom:0;
@@ -161,12 +155,12 @@
                 float:right;
                 padding:0;
             }
-            
+
             .CodeMirror {
                 width:100%;
                 height:96%;
             }
-            
+
             #run {
                 width:60%;
                 height:4%;
@@ -176,22 +170,22 @@
                 display:block;
                 float:left;
             }
-            
+
             #download {
                 width:40%;
                 height:4%;
                 font-size:16px;
                 background-color:#99ffe0;
                 border:0;
-                display:block;                
+                display:block;
             }
-            
+
             html, body {
                 width:100%;
                 height:100%;
             }
-            
-            
+
+
         </style>
     </body>
 </html>

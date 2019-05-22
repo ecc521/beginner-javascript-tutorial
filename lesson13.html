@@ -5,8 +5,6 @@
     </head>
     <body>
 		<script src="allPages.js"></script>
-
-
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
@@ -17,9 +15,6 @@
 
 
 
-
-
-        <h1>Interacting with HTML - Creating an Element</h1>
 
         <style>
             h1 {
@@ -39,35 +34,74 @@
 
 
 
-        <p>One of the main usages of JavaScript is to create HTML elements. </p>
 
-        <p>Let's start by creating a paragraph element and adding it to the page.</p>
+        <h1>Interactive Websites: Calculator</h1>
 
-
-
-      <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson4.html'">Go Back</button>
-
-          <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson5.html'">Continue</button>
-
-        </div>
+		<p>Ever wonder how people create those interactive forms? It's through JavaScript.</p>
+        <p>Here is a really basic calculator that needs some improvement.</p>
+        <p>Try modifying the code so that the result of the mathematical expression is put into a paragraph element.</p>
 
 
-        <div id="example">
+
+         <script>
+			window.answershown = false
+
+            function showanswer() {
+
+				if (window.answershown === true) {
+					document.querySelector("#example > .CodeMirror").remove()
+					window.answershown = false
+					document.getElementById("solutionbutton").innerHTML = "Show Solution"
+				}
+				else {
+					window.answershown = true
+					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
+
+
+
+                document.getElementById("exampleeditor").value = window.solutionHTML
+
+                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                    name:  "htmlmixed",
+                    autoCloseTags: true,
+                    styleActiveLine: true,
+                    lineWrapping: false,
+                    lineNumbers:true,
+                    tabSize:2,
+                    readOnly:true,
+                    cursorBlinkRate:-1 //Hides cursor
+                });
+            }
+}
+
+
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tvar input = document.createElement(\"input\")\n      input.placeholder = \"Type Mathematical Expression Here\"\n      input.style.width = \"100%\"\n      document.body.appendChild(input)\n      \n      //Create the paragraph element\n      var paragraph = document.createElement(\"p\")\n      document.body.appendChild(paragraph)\n\n      input.onkeyup = function() {\n      \tvar result = eval(input.value)\n        paragraph.innerHTML = \"The answer is: \" + result //Make the paragraph display the result\n      }\n    </script>\n  </body>\n</html>-->";
+
+                window.solutionHTML = window.solutionHTML.slice(4)
+                window.solutionHTML = window.solutionHTML.slice(0, -3)
+        </script>
+
+
+        <div style="text-align:center;">
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson12.html'">Go Back</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson14.html'">Continue</button>
+</div>
+
+		<div id="example">
             <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
 
-
-
-
-
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
         <script>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"This is the text (HTML) inside the paragraph element\"\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tvar input = document.createElement(\"input\") //Create an HTML input element\n      input.placeholder = \"Type Mathematical Expression Here\"\n      input.style.width = \"100%\" //Make sure the input box is large enough\n      document.body.appendChild(input)\n      \n      //When the user presses a key, evaluate the expression.\n      input.onkeyup = function() {\n      \tvar result = eval(input.value) //Calculate the value of the expression\n        alert(\"The answer is: \" + result)\n      }\n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
@@ -76,7 +110,10 @@
         </script>
 
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
 
 
 
@@ -93,7 +130,6 @@
         <!-- window.initialHTML is the HTML that they should begin with-->
 
 
-
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
@@ -102,6 +138,7 @@
         </div>
 
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
+
 
         <script>
 
@@ -163,30 +200,39 @@ document.getElementById("reset").addEventListener("click", resetCode)
         <style>
 
             #editorwrapper {
-                position:fixed;
-                bottom:0;
                 left:0;
-                height:45%;
+                height:50%;
                 width:60%;
                 display:inline-block;
                 float:left;
-                padding:0;
                 border-right:1px solid black;
                 border-top:1px solid black;
-            }
+			position:fixed;
+			bottom:0;
+                	padding:0;
+		}
 
             #result {
-                position:fixed;
-                bottom:0;
                 right:0;
-                height:45%;
+                height:50%;
                 width:40%;
                 border:0;
                 border-top:1px solid black;
                 border-left:1px solid black;
                 display:inline-block;
                 float:right;
-                padding:0;
+			position:fixed;
+			bottom:0;
+                	padding:0;
+				background-color:white;
+				z-index:4;
+		}
+
+            /*Make the bottom editor display over the solution*/
+            #editorwrapper {
+                background-color:white;
+                opacity: 1;
+                z-index: 4;
             }
 
             .CodeMirror {
@@ -223,15 +269,6 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 display:inline-block;
                 float:right;
             }
-
-            /*Make the bottom editor display over the solution*/
-            #editorwrapper {
-                background-color:white;
-                opacity: 1;
-                z-index: 4;
-            }
-
-
 
             html, body {
                 width:100%;

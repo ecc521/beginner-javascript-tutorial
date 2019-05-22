@@ -1,4 +1,13 @@
-//IE 8 attachEvent
+//May not actually be on all pages, though it should be.
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js');
+    });
+}
+
+
+//IE 8 attachEvent polyfill
 
 !window.addEventListener && (function (WindowPrototype, DocumentPrototype, ElementPrototype, addEventListener, removeEventListener, dispatchEvent, registry) {
 	WindowPrototype[addEventListener] = DocumentPrototype[addEventListener] = ElementPrototype[addEventListener] = function (type, listener) {
@@ -28,11 +37,5 @@
 		return this.fireEvent("on" + eventObject.type, eventObject);
 	};
 })(Window.prototype, HTMLDocument.prototype, Element.prototype, "addEventListener", "removeEventListener", "dispatchEvent", []);
-
-
-
-
-
-
 
 
