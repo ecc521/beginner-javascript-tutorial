@@ -125,9 +125,6 @@ function fetchHandler(event) {
 					served = 1
                     cache.put(url, response.clone()).then(() => {
 						if (otherServed) {
-							if (url.includes("waterservices.usgs.gov")) {
-								usgsDataUpdated = Date.now()
-							}
 							messageAllClients("Updated cache for " + url)
 						}
 						else {

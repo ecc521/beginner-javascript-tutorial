@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Beginner JavaScript</title>
+    </head>
+    <body>
+		<script src="allPages.js"></script>
+
+        <!-- HTML Mixed CodeMirror-->
+        <script src="codemirror-5.42.0/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
+        <script src="codemirror-5.42.0/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="codemirror-5.42.0/mode/xml/xml.js"></script>
+        <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>
+        <script src="codemirror-5.42.0/mode/css/css.js"></script>
+
+
+
+
+        <style>
+            h1 {
+                text-align:center;
+            }
+
+            html, body {
+                margin:0;
+                padding:0;
+            }
+
+            p {
+                margin:8px;
+            }
+
+        </style>
+
+		
+		
+		<h1>Arrays</h1>
+
+        <p>Arrays are very common to encounter in Javascript, such as when using document.querySelectorAll</p>
+		<p>For loops are usually used to iterate (travel through) arrays.</p>
+		<p>Use a for loop to iterate through the second array and add a paragraph to the page containing each array element</p>
+
+		
+		
+         <script>
+			window.answershown = false
+
+            function showanswer() {
+
+				if (window.answershown === true) {
+					document.querySelector("#example > .CodeMirror").remove()
+					window.answershown = false
+					document.getElementById("solutionbutton").innerHTML = "Show Solution"
+				}
+				else {
+					window.answershown = true
+					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
+
+
+
+                document.getElementById("exampleeditor").value = window.solutionHTML
+
+                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                    name:  "htmlmixed",
+                    autoCloseTags: true,
+                    styleActiveLine: true,
+                    lineWrapping: false,
+                    lineNumbers:true,
+                    tabSize:2,
+                    readOnly:true,
+                    cursorBlinkRate:-1 //Hides cursor
+                });
+            }
+}
+			
+			
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n    </style>\n    <script>\n      var array = [3,5,7,9] //Create an array\n      array.push(11) //Add 11 to the end of the array\n      array.unshift(1) //Add 1 to the front of the array. WARNING: Slow on large arrays\n      \n      //array.pop() //Uncomment this line to remove the last element\n      //array.shift() //Uncomment to remove the first element. WARNING: Slow on large arrays\n      \n      var paragraph = document.createElement(\"p\")\n      var sum = 0\n      \n      for (let i=0;i<array.length;i++) {\n      \tsum += array[i] //Add the value at the current array index to sum\n      }\n      \n      paragraph.innerHTML = sum\n      document.body.appendChild(paragraph)\n      \n      \n      \n      for (let i=0;i<array.length;i++) {\n      \tvar elem = document.createElement(\"p\")\n        elem.innerHTML = array[i]\n        document.body.appendChild(elem)\n      }\n      \n    </script>\n  </body>\n</html>-->";
+    
+
+                window.solutionHTML = window.solutionHTML.slice(4)
+                window.solutionHTML = window.solutionHTML.slice(0, -3)
+        </script>
+
+
+        <div style="text-align:center;">
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson9.html'">Go Back</button>
+
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson11.html'">Continue</button>
+</div>
+
+		<div id="example">
+            <textarea id="exampleeditor" hidden="true"></textarea>
+        </div>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+        <script>
+            //HTML that is in editor at start
+            //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n    </style>\n    <script>\n      var array = [3,5,7,9] //Create an array\n      array.push(11) //Add 11 to the end of the array\n      array.unshift(1) //Add 1 to the front of the array. WARNING: Slow on large arrays\n      \n      //array.pop() //Uncomment this line to remove the last element\n      //array.shift() //Uncomment to remove the first element. WARNING: Slow on large arrays\n      \n      var paragraph = document.createElement(\"p\")\n      var sum = 0\n      \n      for (let i=0;i<array.length;i++) {\n      \tsum += array[i] //Add the value at the current array index to sum\n      }\n      \n      paragraph.innerHTML = sum\n      document.body.appendChild(paragraph)\n      \n      \n      \n      //Now you try. Add a paragraph element to the page for each array index containing\n      //the value at that index. (A paragraph containing \"1\", another containing \"3\", ext.)\n      \n      \n    </script>\n  </body>\n</html>-->";
+    
+            window.initialHTML = window.initialHTML.slice(4)
+            window.initialHTML = window.initialHTML.slice(0, -3)
+
+
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- All the stuff below is CodeMirror-->
+        <!-- window.initialHTML is the HTML that they should begin with-->
+
+
+        <div id="editorwrapper">
+            <textarea id="editor"></textarea>
+            <button id="run">Run!</button>
+            <button id="download">Download!</button>
+            <button id="reset">Reset</button>
+        </div>
+
+        <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
+
+
+        <script>
+
+            function download(content, name, mimetype) {
+                    var link = document.createElement("a");
+                    document.body.appendChild(link);
+                    content = new Blob([content], {type:mimetype})
+                    link.download = name
+                    link.href = URL.createObjectURL(content);
+                    link.click();
+                    document.body.removeChild(link);
+            }
+
+            document.getElementById("editor").value = localStorage.getItem(window.location.href + "htmlcode") || window.initialHTML
+
+var previoustext;
+
+function save() {
+    if (editor.getValue() !== previoustext) {
+        previoustext = editor.getValue()
+        localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
+    }
+}
+
+setInterval(save, 1000)
+
+function resetCode() {
+    editor.setValue(window.initialHTML)
+}
+document.getElementById("reset").addEventListener("click", resetCode)
+
+            var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+                name:  "htmlmixed",
+                autoCloseTags: true,
+                styleActiveLine: true,
+                lineWrapping: false,
+                lineNumbers:true,
+                tabSize:2
+            });
+
+            function runcode() {
+                var htmlcode = editor.getValue()
+                var iframe = document.getElementById("result")
+                iframe.contentWindow.document.open();
+                iframe.contentWindow.document.write(htmlcode);
+                iframe.contentWindow.document.close();
+            }
+
+
+            document.getElementById("run").addEventListener("click", runcode)
+            document.getElementById("download").addEventListener("click", function(){
+                download(editor.getValue(), "website.html", "text/html")
+            })
+
+
+
+        </script>
+
+        <style>
+
+            #editorwrapper {
+                left:0;
+                height:65%;
+                width:60%;
+                display:inline-block;
+                float:left;
+                border-right:1px solid black;
+                border-top:1px solid black;
+			position:fixed;
+			bottom:0;
+                	padding:0;
+		}
+
+            #result {
+                right:0;
+                height:65%;
+                width:40%;
+                border:0;
+                border-top:1px solid black;
+                border-left:1px solid black;
+                display:inline-block;
+                float:right;
+			position:fixed;
+			bottom:0;
+                	padding:0;
+				background-color:white;
+				z-index:4;
+		}
+
+            /*Make the bottom editor display over the solution*/
+            #editorwrapper {
+                background-color:white;
+                opacity: 1;
+                z-index: 4;
+            }
+
+            .CodeMirror {
+                width:100%;
+                height:93%;
+            }
+
+            #run {
+                width:45%;
+                height:7%;
+                font-size:16px;
+                background-color:#99e0ff;
+                border:0;
+                display:inline-block;
+                float:left;
+            }
+
+
+            #download {
+                width:30%;
+                height:7%;
+                font-size:16px;
+                background-color:#99ffe0;
+                border:0;
+                display:inline-block;
+            }
+
+            #reset {
+                width:25%;
+                height:7%;
+                font-size:16px;
+                background-color:salmon;
+                border:0;
+                display:inline-block;
+                float:right;
+            }
+
+            html, body {
+                width:100%;
+                height:100%;
+            }
+
+
+        </style>
+    </body>
+</html>
