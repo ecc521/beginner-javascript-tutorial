@@ -35,7 +35,8 @@ const preloadList = [
     "lesson12.html",
     "lesson13.html",
     "lesson14.html",
-    "lesson15.html"
+    "lesson15.html",
+    "lesson16.html"
 ]
 
 function rebaseURL(url) {
