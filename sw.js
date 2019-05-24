@@ -1,8 +1,12 @@
+self.importScripts("allPages.js") //The only thing we need from this is the lesson count.
+
 function messageAllClients(message) {
 return self.clients.matchAll().then(clients => {
   clients.forEach(client => client.postMessage(message));
 })
 }
+
+
 
 const cacheName = "beginner-javascript-tutorial"
 const waitOnFirstLoad = 0 //Milliseconds to wait before fetching items on preload list. Helps prevent duplicate requests on first load.
@@ -10,34 +14,21 @@ const waitOnFirstLoad = 0 //Milliseconds to wait before fetching items on preloa
 //Array of items to try and preload on install (the serviceWorker will install without them preloaded). Can be exact or relative to serviceWorker scope
 const preloadList = [
     "",
+    "index.html",
     "editor.html",
+    "allPages.js",
+    "continuing.html",
 	"codemirror-5.42.0/lib/codemirror.js",
 	"codemirror-5.42.0/lib/codemirror.css",
 	"codemirror-5.42.0/mode/htmlmixed/htmlmixed.js",
 	"codemirror-5.42.0/mode/xml/xml.js",
 	"codemirror-5.42.0/mode/javascript/javascript.js",
-	"codemirror-5.42.0/mode/css/css.js",
-    "lesson1.html",
-    "lesson1a.html",
-    "lesson1b.html",
-    "lesson1c.html",
-    "lesson2.html",
-    "lesson3.html",
-    "lesson4.html",
-    "lesson4a.html",
-    "lesson5.html",
-    "lesson6.html",
-    "lesson7.html",
-    "lesson8.html",
-    "lesson9.html",
-    "lesson10.html",
-    "lesson11.html",
-    "lesson12.html",
-    "lesson13.html",
-    "lesson14.html",
-    "lesson15.html",
-    "lesson16.html"
+	"codemirror-5.42.0/mode/css/css.js"
 ]
+
+for (let i=1;i<=self.lessonCount;i++) {
+    preloadList.push("lesson" + i + ".html")
+}
 
 function rebaseURL(url) {
     //Fills in relative URLs using the serviceWorker scope
@@ -95,9 +86,9 @@ function fetchHandler(event) {
 
         let fromcache = await caches.match(url)
 
-		
+
 		let fromnetwork = fetch(event.request)
-		
+
         if (!fromcache) {
             //No cache. All we can do is return network response
             let response = await fromnetwork
@@ -106,7 +97,7 @@ function fetchHandler(event) {
         }
         else {
 
-            //We have cached data			
+            //We have cached data
             return new Promise(function(resolve, reject){
 
 				let served = 0
@@ -134,8 +125,8 @@ function fetchHandler(event) {
 						resolve(response)
 					})
                 })
-				
-				
+
+
                     //If the network doesn't respond quickly enough, use cached data
                     setTimeout(function(){
 						if (!served) {

@@ -4,7 +4,7 @@
         <title>Beginner JavaScript</title>
     </head>
     <body>
-
+        
 		<script src="allPages.js"></script>
 
 
@@ -18,7 +18,9 @@
 
 
 
-        <h1>Functions</h1>
+
+
+        <h1>Interactive Websites</h1>
 
         <style>
             h1 {
@@ -38,48 +40,30 @@
 
 
 
-        <p>Functions can also return values. To make a function return a value, simply use the return statement.</p>
-        <p>The next lesson will continue on Interacting With HTML.</p>
-
-
-
+        <p>Oh no! Clicking the button doesn't do anything!</p>
+        <p>Let's make it say something</p>
 
 
         <div style="text-align:center;">
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location = self.previousLesson">Go Back</button>
 
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson10.html'">Go Back</button>
-
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson12.html'">Continue</button>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location = self.nextLesson">Continue</button>
 
         </div>
-
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
 
         <script>
 
 
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            //Then add HTML comments to start and end of string
-            window.initialHTML = "function add(number1, number2) {\n\treturn number1 + number2\n}\n\nvar sum = add(14, 28)\nalert(sum)";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      //A function is a block of code that will\n      //run when the function is called\n      function sayHi() {\n      \talert(\"Hi! I'm a button!\")\n      }\n      \n      //Call sayHi when the button is clicked\n      button.onclick = sayHi\n      \n      document.body.appendChild(button)\n      \n    </script>\n  </body>\n</html>-->";
+
+            window.initialHTML = window.initialHTML.slice(4)
+            window.initialHTML = window.initialHTML.slice(0, -3)
+
 
 
         </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -94,31 +78,86 @@
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
             <button id="download">Download!</button>
+            <button id="reset">Reset</button>
         </div>
 
+        <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
 
         <script>
 
+            function download(content, name, mimetype) {
 
-            document.getElementById("editor").value = window.initialHTML
+                if (!window.Blob) {
+                    //IE <10
+                    var ifd = document.getElementById('dummy').contentDocument;
+                    ifd.open('text/plain', 'replace');
+                    ifd.write(content);
+                    ifd.close();
+                    ifd.execCommand('SaveAs', true, name);
+                }
+                else {
+                content = new Blob([content], {type:mimetype})
+
+                    //IE >=10
+                if (navigator.msSaveBlob) {
+                    navigator.msSaveBlob(content, name)
+                }
+                else {
+                    //Non-IE
+                    var link = document.createElement("a");
+                    document.body.appendChild(link);
+
+                    link.download = name
+                    link.href = URL.createObjectURL(content);
+                    link.click();
+
+                    document.body.removeChild(link);
+
+                }
+                }
+            }
+
+            document.getElementById("editor").value = localStorage.getItem(window.location.href + "htmlcode") || window.initialHTML
+
+var previoustext;
+
+function save() {
+    if (editor.getValue() !== previoustext) {
+        previoustext = editor.getValue()
+        localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
+    }
+}
+
+setInterval(save, 1000)
+
+function resetCode() {
+    editor.setValue(window.initialHTML)
+}
+document.getElementById("reset").addEventListener("click", resetCode)
 
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-                mode:  "javascript",
+                name:  "htmlmixed",
                 autoCloseTags: true,
                 styleActiveLine: true,
                 lineWrapping: false,
                 lineNumbers:true,
-                tabSize:2,
+                tabSize:2
             });
 
 
             function runcode() {
-                var code = editor.getValue()
-                eval(code)
+                var htmlcode = editor.getValue()
+                var iframe = document.getElementById("result")
+                iframe.contentWindow.document.open();
+                iframe.contentWindow.document.write(htmlcode);
+                iframe.contentWindow.document.close();
             }
 
 
             document.getElementById("run").addEventListener("click", runcode)
+            document.getElementById("download").addEventListener("click", function(){
+                download(editor.getValue(), "website.html", "text/html")
+            })
 
 
 
@@ -130,13 +169,27 @@
                 position:fixed;
                 bottom:0;
                 left:0;
-                height:45%;
-                width:100%;
+                height:60%;
+                width:60%;
                 display:inline-block;
                 float:left;
                 padding:0;
                 border-right:1px solid black;
                 border-top:1px solid black;
+            }
+
+            #result {
+                position:fixed;
+                bottom:0;
+                right:0;
+                height:60%;
+                width:40%;
+                border:0;
+                border-top:1px solid black;
+                border-left:1px solid black;
+                display:inline-block;
+                float:right;
+                padding:0;
             }
 
             .CodeMirror {
@@ -145,14 +198,43 @@
             }
 
             #run {
-                width:100%;
+                width:45%;
                 height:7%;
                 font-size:16px;
                 background-color:#99e0ff;
                 border:0;
-                display:block;
+                display:inline-block;
                 float:left;
             }
+
+
+            #download {
+                width:30%;
+                height:7%;
+                font-size:16px;
+                background-color:#99ffe0;
+                border:0;
+                display:inline-block;
+            }
+
+            #reset {
+                width:25%;
+                height:7%;
+                font-size:16px;
+                background-color:salmon;
+                border:0;
+                display:inline-block;
+                float:right;
+            }
+
+            /*Make the bottom editor display over the solution*/
+            #editorwrapper {
+                background-color:white;
+                opacity: 1;
+                z-index: 4;
+            }
+
+
 
 
             html, body {

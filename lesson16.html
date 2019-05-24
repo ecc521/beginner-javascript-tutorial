@@ -33,16 +33,16 @@
 
         </style>
 
-		
-		
+
+
 		<h1>Arrays</h1>
 
         <p>Arrays are very common to encounter in Javascript, such as when using document.querySelectorAll</p>
 		<p>For loops are usually used to iterate (travel through) arrays.</p>
 		<p>Use a for loop to iterate through the second array and add a paragraph to the page containing each array element</p>
 
-		
-		
+
+
          <script>
 			window.answershown = false
 
@@ -73,10 +73,10 @@
                 });
             }
 }
-			
-			
+
+
                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n    </style>\n    <script>\n      var array = [3,5,7,9] //Create an array\n      array.push(11) //Add 11 to the end of the array\n      array.unshift(1) //Add 1 to the front of the array. WARNING: Slow on large arrays\n      \n      //array.pop() //Uncomment this line to remove the last element\n      //array.shift() //Uncomment to remove the first element. WARNING: Slow on large arrays\n      \n      var paragraph = document.createElement(\"p\")\n      var sum = 0\n      \n      for (let i=0;i<array.length;i++) {\n      \tsum += array[i] //Add the value at the current array index to sum\n      }\n      \n      paragraph.innerHTML = sum\n      document.body.appendChild(paragraph)\n      \n      \n      \n      for (let i=0;i<array.length;i++) {\n      \tvar elem = document.createElement(\"p\")\n        elem.innerHTML = array[i]\n        document.body.appendChild(elem)\n      }\n      \n    </script>\n  </body>\n</html>-->";
-    
+
 
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
@@ -86,9 +86,9 @@
         <div style="text-align:center;">
             <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
 
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson15.html'">Go Back</button>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location = self.previousLesson">Go Back</button>
 
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson17.html'">Continue</button>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location = self.nextLesson">Continue</button>
 </div>
 
 		<div id="example">
@@ -103,7 +103,7 @@
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
             window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n    </style>\n    <script>\n      var array = [3,5,7,9] //Create an array\n      array.push(11) //Add 11 to the end of the array\n      array.unshift(1) //Add 1 to the front of the array. WARNING: Slow on large arrays\n      \n      //array.pop() //Uncomment this line to remove the last element\n      //array.shift() //Uncomment to remove the first element. WARNING: Slow on large arrays\n      \n      var paragraph = document.createElement(\"p\")\n      var sum = 0\n      \n      for (let i=0;i<array.length;i++) {\n      \tsum += array[i] //Add the value at the current array index to sum\n      }\n      \n      paragraph.innerHTML = sum\n      document.body.appendChild(paragraph)\n      \n      \n      \n      //Now you try. Add a paragraph element to the page for each array index containing\n      //the value at that index. (A paragraph containing \"1\", another containing \"3\", ext.)\n      \n      \n    </script>\n  </body>\n</html>-->";
-    
+
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
 

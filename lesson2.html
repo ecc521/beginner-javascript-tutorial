@@ -3,9 +3,9 @@
     <head>
         <title>Beginner JavaScript</title>
     </head>
-    <body>        
-		<script src="allPages.js"></script>
+    <body>
 
+		<script src="allPages.js"></script>
 
 
         <!-- HTML Mixed CodeMirror-->
@@ -18,9 +18,7 @@
 
 
 
-
-
-        <h1>Adding Logic</h1>
+        <h1>Javascript in a webpage</h1>
 
         <style>
             h1 {
@@ -40,79 +38,58 @@
 
 
 
+<pre id="exampletext" hidden="true">
+//Get a value from the user
+value = prompt("Please type in a number")
+alert("You picked the number " + value)</pre>
+
+        <p>Javascript may seem like "just another language" - but there is something special about JavaScript - it can run in the browser.</p>
+
+        <p>JavaScript can be inserted in HTML files using script tags - much like paragraph tags. An example is shown in the editor in the left hand window below.
+            When you click "Run", the program will execute right on this page!</p>
+
+        <p>You can also Click the "Download" button to download the HTML file, then open it in your browser (usually you can just click on it, though a right click and "Open With" may be needed)</p>
+
+        <p>Try this now by clicking the Download button and then open the HTML in your browser.</p>
+        <p>Congratulations on Your First Website!  We'll be adding more to it in the next lessons. </p>
+
+        <div id="example">
+            <textarea id="exampleeditor"></textarea>
+        </div>
 
 
 
-        <p>Now lets really edit the JavaScript inside the HTML by adding additional statements!</p>
+        <div style="text-align:center;">
 
-        <p>Add another "else if" for medium numbers.  A medium number should be a number  at least 20 but less than 200.</p>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location = self.previousLesson">Go Back</button>
 
-        <p>Remember to add the corresponding alert statement  </p>
-        <p>Try out your code with the number 30 - it should alert "You picked a number medium number.  Be sure to test smaller and larger numbers to make sure you didn't break anything </p>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location = self.nextLesson">Continue</button>
 
-
-
-
+        </div>
 
 
         <script>
-			window.answershown = false
 
-            function showanswer() {
 
-				if (window.answershown === true) {
-					document.querySelector("#example > .CodeMirror").remove()
-					window.answershown = false
-					document.getElementById("solutionbutton").innerHTML = "Show Solution"
-				}
-				else {
-					window.answershown = true
-					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
+            document.getElementById("exampleeditor").value = document.getElementById("exampletext").innerText
 
 
 
-                document.getElementById("exampleeditor").value = window.solutionHTML
-
-
-                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
-                    name:  "htmlmixed",
-                    autoCloseTags: true,
-                    styleActiveLine: true,
-                    lineWrapping: false,
-                    lineNumbers:true,
-                    tabSize:2,
-                    readOnly:true,
-                    cursorBlinkRate:-1 //Hides cursor
-                });
-
-
-
-            }
-}
-
-
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\")\n      }\n      else if (value < 20) {\n        alert(\"You picked a small number\")\n      }\n      else if (value < 200) {\n        alert(\"You picked a medium number\")\n      }\n      else {\n        alert(\"You picked a large number\")\n      }\n    </script>\n  </body>\n</html>-->";
-
-                window.solutionHTML = window.solutionHTML.slice(4)
-                window.solutionHTML = window.solutionHTML.slice(0, -3)
-
+            var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
+                mode:  "javascript",
+                autoCloseTags: true,
+                styleActiveLine: true,
+                lineWrapping: false,
+                lineNumbers:true,
+                readOnly:true,
+                tabSize:2,
+                cursorBlinkRate:-1 //Hides cursor
+            });
 
 
 
         </script>
 
-        <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
-
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location='lesson1c.html'">Go Back</button>
-
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location='lesson3.html'">Continue</button>
-
-        </div>
-
-		<div id="example">
-            <textarea id="exampleeditor" hidden="true"></textarea>
-        </div>
 
 
 
@@ -124,7 +101,8 @@
 
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      value = prompt(\"Please type in a number\")\n      if (value < 0) {\n        alert(\"You picked a negative number!\")\n      }\n      else if (value < 100) {\n        alert(\"You picked a small number\")\n      }\n      else {\n        alert(\"You picked a large number\")\n      }\n    </script>\n  </body>\n</html>-->";
+            //Then add HTML comments to start and end of string
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <p>This is a HTML website with embedded JavaScript!</p>\n    <style>\n      body {\n      \tbackground-color: antiquewhite;\n      }\n    </style>\n    <script>\n\n\n      //Get a value from the user\n      value = prompt(\"Please type in a number\")\n      alert(\"You picked the number \" + value)\n\n\n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
@@ -134,7 +112,10 @@
         </script>
 
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
 
 
 
@@ -151,6 +132,7 @@
         <!-- window.initialHTML is the HTML that they should begin with-->
 
 
+
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
@@ -159,6 +141,9 @@
         </div>
 
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
+
+<!-- iframe purely for IE <10 downloads -->
+<iframe id="dummy" style="display:none; visibility:hidden"></iframe>
 
         <script>
 
@@ -267,13 +252,6 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 display:inline-block;
                 float:right;
                 padding:0;
-            }
-
-            /*Make the bottom editor display over the solution*/
-            #editorwrapper {
-                background-color:white;
-                opacity: 1;
-                z-index: 4;
             }
 
             .CodeMirror {
