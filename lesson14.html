@@ -4,9 +4,7 @@
         <title>Beginner JavaScript</title>
     </head>
     <body>
-
 		<script src="allPages.js"></script>
-
 
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
@@ -15,6 +13,7 @@
         <script src="codemirror-5.42.0/mode/xml/xml.js"></script>
         <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>
         <script src="codemirror-5.42.0/mode/css/css.js"></script>
+
 
 
 
@@ -35,17 +34,16 @@
         </style>
 
 
-        <h1>Interacting with HTML and CSS</h1>
 
 
+        <h1>Functions</h1>
 
-        <p>Often, you will not want to create an element using Javascript, and merely add functionality to an element.</p>
-        <p>This program uses document.getElementById to access an HTML element.</p>
+		<p>Now try writing a function. Your function will take two numbers, add them together, and alert the user of the answer.</p>
+	    
+        <p>When called with the numbers 14 and 28, your function should alert 42</p>
 
-        <p>Try changing the buttons id to button2. Change any CSS and Javascript needed to make the program work as before.</p>
 
-
-        <script>
+         <script>
 			window.answershown = false
 
             function showanswer() {
@@ -63,7 +61,6 @@
 
                 document.getElementById("exampleeditor").value = window.solutionHTML
 
-
                 var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
                     name:  "htmlmixed",
                     autoCloseTags: true,
@@ -74,22 +71,23 @@
                     readOnly:true,
                     cursorBlinkRate:-1 //Hides cursor
                 });
-
-
-
             }
 }
+<<<<<<< HEAD
+			
+			
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tfunction addAndAlert(number1, number2) {\n      \tvar sum = number1 + number2\n        alert(sum)\n      }\n    </script>\n  </body>\n</html>-->";
+    
+=======
 
 
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <button id=\"button2\">Click me to change color</button>\n    <style>\n      #button2 {\n      \tbackground-color:lightblue;\n        border: 3px solid black;\n      }\n    </style>\n    <script>\n\t\t\tvar button = document.getElementById(\"button2\") //Get the button with an id of button2\n      button.onclick = function() {\n        button.style.backgroundColor = \"lightgreen\" //Overrule the CSS styling\n      \talert(\"Changed color\")\n      }\n    </script>\n  </body>\n</html>-->";
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tfunction addAndAlert(number1, number2) {\n      \tvar sum = number1 + number2\n        alert(\"The sum of \" + number1 + \" and \" + number2 + \" is \" + sum)\n      }\n      addAndAlert(14,28)\n    </script>\n  </body>\n</html>-->";
 
+>>>>>>> 3e6a647c680be3d466b0dc962001cdafdfe243d2
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
-
-
-
-
         </script>
+
 
         <div style="text-align:center;">
             <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
@@ -97,34 +95,37 @@
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location = self.previousLesson">Go Back</button>
 
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location = self.nextLesson">Continue</button>
-
-        </div>
+</div>
 
 		<div id="example">
             <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
 
-
-
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
         <script>
-
-
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <button id=\"button1\">Click me to change color</button>\n    <style>\n      #button1 {\n      \tbackground-color:lightblue;\n        border: 3px solid black;\n      }\n    </style>\n    <script>\n\t\t\tvar button = document.getElementById(\"button1\") //Get the button with an id of button1\n      button.onclick = function() {\n        button.style.backgroundColor = \"lightgreen\" //Overrule the CSS styling\n      \talert(\"Changed color\")\n      }\n    </script>\n  </body>\n</html>-->";
+<<<<<<< HEAD
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tfunction addAndAlert(number1, number2) {\n      \t\n      }\n    </script>\n  </body>\n</html>-->";
+    
+=======
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tfunction addAndAlert(number1, number2) {\n      \t//Your code here\n      }\n      addAndAlert(14,28)\n    </script>\n  </body>\n</html>-->";
 
+>>>>>>> 3e6a647c680be3d466b0dc962001cdafdfe243d2
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
-
 
 
         </script>
 
 
-        <br><br><br><br><br><br><br><br>
+
+
+
+
 
 
 
@@ -150,57 +151,36 @@
 
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
 
+
         <script>
 
             function download(content, name, mimetype) {
-
-                if (!window.Blob) {
-                    //IE <10
-                    var ifd = document.getElementById('dummy').contentDocument;
-                    ifd.open('text/plain', 'replace');
-                    ifd.write(content);
-                    ifd.close();
-                    ifd.execCommand('SaveAs', true, name);
-                }
-                else {
-                content = new Blob([content], {type:mimetype})
-
-                    //IE >=10
-                if (navigator.msSaveBlob) {
-                    navigator.msSaveBlob(content, name)
-                }
-                else {
-                    //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-
+                    content = new Blob([content], {type:mimetype})
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
-
                     document.body.removeChild(link);
-
-                }
-                }
             }
 
             document.getElementById("editor").value = localStorage.getItem(window.location.href + "htmlcode") || window.initialHTML
 
-            var previoustext;
+var previoustext;
 
-            function save() {
-                if (editor.getValue() !== previoustext) {
-                    previoustext = editor.getValue()
-                    localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
-                }
-            }
+function save() {
+    if (editor.getValue() !== previoustext) {
+        previoustext = editor.getValue()
+        localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
+    }
+}
 
-            setInterval(save, 1000)
+setInterval(save, 1000)
 
-            function resetCode() {
-                editor.setValue(window.initialHTML)
-            }
-            document.getElementById("reset").addEventListener("click", resetCode)
+function resetCode() {
+    editor.setValue(window.initialHTML)
+}
+document.getElementById("reset").addEventListener("click", resetCode)
 
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
                 name:  "htmlmixed",
@@ -210,7 +190,6 @@
                 lineNumbers:true,
                 tabSize:2
             });
-
 
             function runcode() {
                 var htmlcode = editor.getValue()
@@ -233,31 +212,33 @@
         <style>
 
             #editorwrapper {
-                position:fixed;
-                bottom:0;
                 left:0;
-                height:45%;
+                height:50%;
                 width:60%;
                 display:inline-block;
                 float:left;
-                padding:0;
                 border-right:1px solid black;
                 border-top:1px solid black;
-            }
+			position:fixed;
+			bottom:0;
+                	padding:0;
+		}
 
             #result {
-                position:fixed;
-                bottom:0;
                 right:0;
-                height:45%;
+                height:50%;
                 width:40%;
                 border:0;
                 border-top:1px solid black;
                 border-left:1px solid black;
                 display:inline-block;
                 float:right;
-                padding:0;
-            }
+			position:fixed;
+			bottom:0;
+                	padding:0;
+				background-color:white;
+				z-index:4;
+		}
 
             /*Make the bottom editor display over the solution*/
             #editorwrapper {
