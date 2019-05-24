@@ -4,7 +4,10 @@
         <title>Beginner JavaScript</title>
     </head>
     <body>
+
 		<script src="allPages.js"></script>
+
+
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
@@ -15,9 +18,7 @@
 
 
 
-
-
-        <h1>Interacting with HTML and CSS</h1>
+        <h1>Functions</h1>
 
         <style>
             h1 {
@@ -37,38 +38,42 @@
 
 
 
-        <p>You can also use CSS selectors to select elements through document.querySelector and document.querySelectorAll</p>
+        <p>Functions can also return values. To make a function return a value, simply use the return statement.</p>
+        <p>The next lesson will continue on Interacting With HTML.</p>
 
 
-      <div style="text-align:center;">
+
+
+
+        <div style="text-align:center;">
+
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location = self.previousLesson">Go Back</button>
 
-          <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location = self.nextLesson">Continue</button>
+            <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location = self.nextLesson">Continue</button>
 
         </div>
 
-
-        <div id="example">
-            <textarea id="exampleeditor" hidden="true"></textarea>
-        </div>
-
-
-
-
-
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
         <script>
+
+
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <p id=\"paragraph1\">This is the first paragraph</p>\n    <p id=\"paragraph2\">This is the second paragraph</p>\n    <p id=\"paragraph3\">This is the third paragraph</p>\n    <p id=\"paragraph4\">This is the fourth paragraph</p>\n    <p id=\"paragraph5\">This is the fifth paragraph</p>\n\n    <style>\n      #paragraph1 {\n      \tfont-weight:bold;\n      }\n      paragraph {\n      \tcolor:blue;\t\n      }\n    </style>\n    <script>\n\t\t\t//That first paragraph needs a bit more style... Let's make it italic!\n\t\t\tdocument.querySelector(\"#paragraph1\").style.fontStyle = \"italic\"\n      \n      \n      \n      //All of those paragraphs are the wrong color. Make them blue...\n      var paragraphs = document.querySelectorAll(\"p\") //Get an array of all the paragraph elements\n      \n      //Now we need to go through and modify each element in the array. We can do this using a for loop\n\t\t\tfor (var i=0;i<paragraphs.length;i=i+1) {\n      \tvar paragraph = paragraphs[i] //Get the paragraph at position i in the array\n        paragraph.style.color = \"blue\" //Make the paragraph blue\n      }\n            \n      //Javascript for loops are similar to those in many other programming languages.\n      //It works like this:\n      \n      //var i=0 - Initialize counter variable. In this case we set it to 0 so that we start at the\n      //first element in the array\n      \n      //i<paragraphs.length - As long as this condition is true, the loop will continue. In this\n      //case, we use i<paragraphs.length so that we go through each element in the array\n      \n      //i=i+1 - This code runs every time the loop finishes. In this case, increase the value of i by 1\n      //so that the next time the loop runs, we will be modifying the next element of the array.\n    </script>\n  </body>\n</html>-->";
-
-            window.initialHTML = window.initialHTML.slice(4)
-            window.initialHTML = window.initialHTML.slice(0, -3)
+            //Then add HTML comments to start and end of string
+            window.initialHTML = "function add(number1, number2) {\n\treturn number1 + number2\n}\n\nvar sum = add(14, 28)\nalert(sum)";
 
 
         </script>
+
+
+
+
+
+
+
 
 
 
@@ -89,66 +94,33 @@
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
             <button id="download">Download!</button>
-            <button id="reset">Reset</button>
         </div>
 
-        <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
 
         <script>
 
-            function download(content, name, mimetype) {
-                    var link = document.createElement("a");
-                    document.body.appendChild(link);
-                    content = new Blob([content], {type:mimetype})
-                    link.download = name
-                    link.href = URL.createObjectURL(content);
-                    link.click();
-                    document.body.removeChild(link);
-            }
 
-            document.getElementById("editor").value = localStorage.getItem(window.location.href + "htmlcode") || window.initialHTML
-
-var previoustext;
-
-function save() {
-    if (editor.getValue() !== previoustext) {
-        previoustext = editor.getValue()
-        localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
-    }
-}
-
-setInterval(save, 1000)
-
-function resetCode() {
-    editor.setValue(window.initialHTML)
-}
-document.getElementById("reset").addEventListener("click", resetCode)
-
+            document.getElementById("editor").value = window.initialHTML
 
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-                name:  "htmlmixed",
+                mode:  "javascript",
                 autoCloseTags: true,
                 styleActiveLine: true,
                 lineWrapping: false,
                 lineNumbers:true,
-                tabSize:2
+                tabSize:2,
             });
 
-            setTimeout(function() {editor.refresh()},1) //Not sure why, but this editor is having problems...
 
             function runcode() {
-                var htmlcode = editor.getValue()
-                var iframe = document.getElementById("result")
-                iframe.contentWindow.document.open();
-                iframe.contentWindow.document.write(htmlcode);
-                iframe.contentWindow.document.close();
+                var code = editor.getValue()
+                eval(code)
             }
 
 
             document.getElementById("run").addEventListener("click", runcode)
-            document.getElementById("download").addEventListener("click", function(){
-                download(editor.getValue(), "website.html", "text/html")
-            })
+
+
 
         </script>
 
@@ -158,27 +130,13 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 position:fixed;
                 bottom:0;
                 left:0;
-                height:75%;
-                width:60%;
+                height:45%;
+                width:100%;
                 display:inline-block;
                 float:left;
                 padding:0;
                 border-right:1px solid black;
                 border-top:1px solid black;
-            }
-
-            #result {
-                position:fixed;
-                bottom:0;
-                right:0;
-                height:75%;
-                width:40%;
-                border:0;
-                border-top:1px solid black;
-                border-left:1px solid black;
-                display:inline-block;
-                float:right;
-                padding:0;
             }
 
             .CodeMirror {
@@ -187,41 +145,15 @@ document.getElementById("reset").addEventListener("click", resetCode)
             }
 
             #run {
-                width:45%;
+                width:100%;
                 height:7%;
                 font-size:16px;
                 background-color:#99e0ff;
                 border:0;
-                display:inline-block;
+                display:block;
                 float:left;
             }
 
-
-            #download {
-                width:30%;
-                height:7%;
-                font-size:16px;
-                background-color:#99ffe0;
-                border:0;
-                display:inline-block;
-            }
-
-            #reset {
-                width:25%;
-                height:7%;
-                font-size:16px;
-                background-color:salmon;
-                border:0;
-                display:inline-block;
-                float:right;
-            }
-
-            /*Make the bottom editor display over the solution*/
-            #editorwrapper {
-                background-color:white;
-                opacity: 1;
-                z-index: 4;
-            }
 
             html, body {
                 width:100%;
