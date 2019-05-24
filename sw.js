@@ -1,4 +1,4 @@
-self.importScripts("allPages.js") //The only thing we need from this is the lesson count.
+self.importScripts("allPages.js") //Defines self.order
 
 function messageAllClients(message) {
 return self.clients.matchAll().then(clients => {
@@ -13,11 +13,8 @@ const waitOnFirstLoad = 0 //Milliseconds to wait before fetching items on preloa
 
 //Array of items to try and preload on install (the serviceWorker will install without them preloaded). Can be exact or relative to serviceWorker scope
 const preloadList = [
-    "",
-    "index.html",
     "editor.html",
     "allPages.js",
-    "continuing.html",
 	"codemirror-5.42.0/lib/codemirror.js",
 	"codemirror-5.42.0/lib/codemirror.css",
 	"codemirror-5.42.0/mode/htmlmixed/htmlmixed.js",
@@ -26,9 +23,7 @@ const preloadList = [
 	"codemirror-5.42.0/mode/css/css.js"
 ]
 
-for (let i=1;i<=self.lessonCount;i++) {
-    preloadList.push("lesson" + i + ".html")
-}
+preloadList.concat(self.order)
 
 function rebaseURL(url) {
     //Fills in relative URLs using the serviceWorker scope
