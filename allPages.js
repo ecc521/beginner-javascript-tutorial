@@ -10,14 +10,14 @@ if (self.window !== undefined) {
         self.nextLesson = window.location.origin + "/continuing.html"
     }
     else {
-        self.nextLesson = window.location.origin + "/lesson" + (currentLesson + 1) + ".html"
+        self.nextLesson = window.location.href.replace("lesson" + currentLesson + ".html", "lesson" + (currentLesson+1) + ".html")
     }
 
     if (currentLesson === 1) {
         self.previousLesson = window.location.origin + "/index.html"
     }
     else {
-        self.previousLesson = window.location.origin+ "/lesson" + (currentLesson - 1) + ".html"
+        self.previousLesson = window.location.href.replace("lesson" + currentLesson + ".html", "lesson" + (currentLesson-1) + ".html")
     }
 
 
