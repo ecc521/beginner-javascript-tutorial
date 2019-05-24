@@ -43,27 +43,7 @@
 
 	    <h2>Table of Contents</h2>
 
-	    <p><a href="lesson1.html" target="_blank">Interacting with the user</a></p>
-	    <p><a href="lesson2.html" target="_blank">Javascript in a webpage</a></p>
-	    <p><a href="lesson3.html" target="_blank">Editing Code</a></p>
-	    <p><a href="lesson4.html" target="_blank">Adding Logic to make Decisions</a></p>
-	    <p><a href="lesson5.html" target="_blank">Adding Logic</a></p>
-	    <p><a href="lesson6.html" target="_blank">Writing Code</a></p>
-	    <p><a href="lesson7.html" target="_blank">The Usage of JavaScript - Interacting with HTML</a></p>
-	    <p><a href="lesson8.html" target="_blank">Interacting with HTML - Creating an Element</a></p>
-	    <p><a href="lesson9.html" target="_blank">Interacting with HTML - Creating an Element</a></p>
-	    <p><a href="lesson10.html" target="_blank">Interacting with HTML - Create an Element</a></p>
-	    <p><a href="lesson11.html" target="_blank">Interactive Websites</a></p>
-	    <p><a href="lesson12.html" target="_blank">Functions</a></p>
-	    <p><a href="lesson13.html" target="_blank">Functions</a></p>
-	    <p><a href="lesson14.html" target="_blank">Functions</a></p>
-	    <p><a href="lesson15.html" target="_blank">Functions</a></p>
-	    <p><a href="lesson16.html" target="_blank">Editing Code</a></p>
-	    <p><a href="lesson17.html" target="_blank">Interactive Websites: Calculator</a></p>
-	    <p><a href="lesson18.html" target="_blank">Interacting with HTML and CSS</a></p>
-	    <p><a href="lesson19.html" target="_blank">Interacting with HTML and CSS</a></p>
-	    <p><a href="lesson20.html" target="_blank">Arrays</a></p>
-
+	    
 	    <style>
             h1, p, h4, h2 {
                 text-align:center;
@@ -79,5 +59,22 @@
             }
 
 	    <script src="allPages.js"></script>
+		    <script>
+		    
+		    
+		    for (var i=1;i<self.order.length;i++) {
+		    	var link = document.createElement("a")
+			    link.target = "_blank"
+			    link.href = window.location.href + self.order[i][0]
+			    link.innerHTML = self.order[i][1]
+			    
+			    var container = document.createElement("p")
+			    container.appendChild(link)
+			    
+			    document.body.appendChild(container)
+		    }
+		    
+		    
+		    </script>
 	</body>
 </html>
