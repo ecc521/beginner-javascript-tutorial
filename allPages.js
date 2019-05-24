@@ -40,8 +40,8 @@ if (self.window !== undefined) {
     self.nextLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex + 1][0])
     self.previousLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex - 1][0])
     
-    //Allow setting title on page
-    if (self.order[currentIndex][1] !== undefined) {
+    //Only set header if a name is provided and a header is not present on the page
+    if (self.order[currentIndex][1] !== undefined && !document.querySelector("h1")) {
         var h1 = document.createElement("h1")
         h1.innerHTML = self.order[currentIndex][1]
         document.body.insertBefore(h1, document.body.firstChild)
