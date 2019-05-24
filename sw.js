@@ -68,7 +68,7 @@ self.addEventListener("activate", activateHandler)
 
 //Milliseconds to wait for network response before using cache
 //When set to 0, cached data will be returned immediately, and cache will be updated in background.
-const defaultWaitPeriod = 2500
+const defaultWaitPeriod = 1200
 
 
 function fetchHandler(event) {
@@ -79,8 +79,7 @@ function fetchHandler(event) {
 
         let url = event.request.url
 
-        let fromcache = await caches.match(url)
-
+        let fromcache = await caches.match(url)		
 
 		let fromnetwork = fetch(event.request)
 
