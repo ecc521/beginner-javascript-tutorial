@@ -37,13 +37,13 @@ if (self.window !== undefined) {
         }
     }
     
-    self.nextLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex + 1])
-    self.previousLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex - 1])
+    self.nextLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex + 1][0])
+    self.previousLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex - 1][0])
     
     //Allow setting title on page
     if (currentIndex[1] !== undefined) {
         var h1 = document.createElement("h1")
-        h1.innerHTML = currentIndex[1]
+        h1.innerHTML = self.order[currentIndex][1]
         document.body.insertBefore(h1, document.body.firstChild)
     }
 
