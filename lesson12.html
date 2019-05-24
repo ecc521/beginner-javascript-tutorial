@@ -5,6 +5,8 @@
     </head>
     <body>
 		<script src="allPages.js"></script>
+
+
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
@@ -15,9 +17,6 @@
 
 
 
-
-
-        <h1>Editing Code</h1>
 
         <style>
             h1 {
@@ -38,10 +37,12 @@
 
 
 
+        <h1>Functions</h1>
 
-        <p>Time to make another button!</p>
-        <p>When this button is clicked, it should say "Hi! You clicked me!" to the user</p>
-		<p>Remember: You will need to create a function that will run when the button is clicked.</p>
+		<p>Wait! What was that code that ran when the button was clicked?</p>
+
+		<p>That code is called a function. Functions are blocks of code able to be called by other code. They can be useful when the same code must be run in multiple different locations.</p>
+		<p>First, lets consider some code without functions. Try changing the code so that the font size is larger.</p>
 
 
          <script>
@@ -62,7 +63,6 @@
 
                 document.getElementById("exampleeditor").value = window.solutionHTML
 
-
                 var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
                     name:  "htmlmixed",
                     autoCloseTags: true,
@@ -73,21 +73,14 @@
                     readOnly:true,
                     cursorBlinkRate:-1 //Hides cursor
                 });
-
-
-
             }
 }
 
 
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      document.body.appendChild(button)\n\n      \n      function sayHi() {\n      \talert(\"Hi! You clicked me!\")\n      }\n      button.onclick = sayHi\n      \n      /*\n      \tIf you didn't want to reuse the sayHi function\n        elsewhere, you could rewrite the above 4 lines \n        of code like this:\n        \n        button.onclick = function() {\n        \talert(\"Hi! You clicked me!\")\n        }\n      */\n    </script>\n  </body>\n</html>-->";
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n      var paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Hello!\"\n      paragraph.style.color = \"green\"\n      paragraph.style.fontSize = \"1.5em\" //Uncomment this line to make the text larger.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"This line was not written by a function!\"\n      paragraph.style.color = \"blue\"\n      paragraph.style.fontSize = \"1.5em\" //And this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"In fact none of these lines were!\"\n      paragraph.style.color = \"red\"\n      paragraph.style.fontSize = \"1.5em\" //AND this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Functions have potential to save many lines of code!\"\n      paragraph.style.color = \"orange\"\n      paragraph.style.fontSize = \"1.5em\" //Still another line. All done now.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.\"\n      paragraph.style.color = \"salmon\"\n      paragraph.style.fontSize = \"1.5em\" //AHHH!!!! I almost didn't see this line!\n      document.body.appendChild(paragraph)\n    </script>\n  </body>\n</html>-->";
 
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
-
-
-
-
         </script>
 
 
@@ -97,22 +90,20 @@
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location = self.previousLesson">Go Back</button>
 
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location = self.nextLesson">Continue</button>
-
-        </div>
-
+</div>
 
 		<div id="example">
             <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
         <script>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      button = document.createElement(\"button\")\n      button.innerHTML = \"Click Me!\"\n      \n      document.body.appendChild(button)\n\n      \n\t\t\t//Set button.onclick to your function.\n      \n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n      var paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Hello!\"\n      paragraph.style.color = \"green\"\n      //paragraph.style.fontSize = \"1.5em\" //Uncomment this line to make the text larger.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"This line was not written by a function!\"\n      paragraph.style.color = \"blue\"\n      //paragraph.style.fontSize = \"1.5em\" //And this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"In fact none of these lines were!\"\n      paragraph.style.color = \"red\"\n      //paragraph.style.fontSize = \"1.5em\" //AND this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Functions have potential to save many lines of code!\"\n      paragraph.style.color = \"orange\"\n      //paragraph.style.fontSize = \"1.5em\" //Still another line. All done now.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.\"\n      paragraph.style.color = \"salmon\"\n      //paragraph.style.fontSize = \"1.5em\" //AHHH!!!! I almost didn't see this line!\n      document.body.appendChild(paragraph)\n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
@@ -141,7 +132,6 @@
         <!-- window.initialHTML is the HTML that they should begin with-->
 
 
-
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
@@ -150,6 +140,7 @@
         </div>
 
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
+
 
         <script>
 
@@ -211,21 +202,19 @@ document.getElementById("reset").addEventListener("click", resetCode)
         <style>
 
             #editorwrapper {
-                position:fixed;
-                bottom:0;
                 left:0;
                 height:45%;
                 width:60%;
                 display:inline-block;
                 float:left;
-                padding:0;
                 border-right:1px solid black;
                 border-top:1px solid black;
-            }
+			position:fixed;
+			bottom:0;
+                	padding:0;
+		}
 
             #result {
-                position:fixed;
-                bottom:0;
                 right:0;
                 height:45%;
                 width:40%;
@@ -234,8 +223,12 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 border-left:1px solid black;
                 display:inline-block;
                 float:right;
-                padding:0;
-            }
+			position:fixed;
+			bottom:0;
+                	padding:0;
+				background-color:white;
+				z-index:4;
+		}
 
             /*Make the bottom editor display over the solution*/
             #editorwrapper {
