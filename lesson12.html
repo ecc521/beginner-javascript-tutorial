@@ -164,7 +164,8 @@ function save() {
         document.getElementById("reset").style.opacity = "0.4"
         document.getElementById("reset").style.cursor = "not-allowed"
     }
-    else if (currentValue === window.initialHTML) {
+    else {
+
         document.getElementById("reset").style.opacity = "1"
         document.getElementById("reset").style.cursor = "default"
     }
