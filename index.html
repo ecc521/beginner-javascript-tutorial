@@ -17,13 +17,17 @@
 
         <br>
 
-        <p>Getting input from the user</p>
-        <p>Using variables</p>
-        <p>Using Javascript in an HMTL page</p>
-        <p>Using Javascript logic to make decisions</p>
-        <p>Dynamically creating HTML using Javascript</p>
-        <p>Using Javascript functions</p>
-        <p>Dynamically modifying HTML using Javascript</p>
+        <div id="lessonCoverageContainer">
+            <div id="lessonCoverageItems">
+                <p>Getting input from the user</p>
+                <p>Using variables</p>
+                <p>Using Javascript in an HMTL page</p>
+                <p>Using Javascript logic to make decisions</p>
+                <p>Dynamically creating HTML using Javascript</p>
+                <p>Using Javascript functions</p>
+                <p>Dynamically modifying HTML using Javascript</p>
+            </div>
+        </div>
 
         <br>
 
@@ -41,9 +45,12 @@
 		<p>Want to try your own thing? Try my <a href="editor.html" target="_blank">Online HTML Editor</a></p>
 
 
-	    <h2>Table of Contents</h2>
+        <div id="tableOfContentsContainer">
+            <div id="tableOfContentsItems">
+                <h2>Table of Contents</h2>
+            </div>
+        </div>
 
-	    
 	    <style>
             h1, p, h4, h2 {
                 text-align:center;
@@ -57,25 +64,39 @@
             p {
                 margin:8px;
             }
+
+            #tableOfContentsContainer, #lessonCoverageContainer {
+                width:100%
+            }
+
+            #tableOfContentsItems, #lessonCoverageItems {
+                margin:0 auto;
+                display: table;
+            }
+
+            #tableOfContentsItems > p, #lessonCoverageItems > p {
+                text-align: left;
+            }
+
 	    </style>
-	    
+
 	    <script src="allPages.js"></script>
 		    <script>
-		    
-		    
+
+		    var tableOfContents = document.getElementById("tableOfContentsItems")
 		    for (var i=1;i<self.order.length;i++) {
 		    	var link = document.createElement("a")
 			    link.target = "_blank"
 			    link.href = window.location.href + self.order[i][0]
 			    link.innerHTML = self.order[i][1]
-			    
+
 			    var container = document.createElement("p")
 			    container.appendChild(link)
-			    
-			    document.body.appendChild(container)
+
+			    tableOfContents.appendChild(container)
 		    }
-		    
-		    
+
+
 		    </script>
 	</body>
 </html>
