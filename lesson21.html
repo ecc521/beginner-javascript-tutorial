@@ -98,7 +98,7 @@
         <script>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <p class=\"important\">This is the first paragraph</p>\n    <p>This is the second paragraph</p>\n    <p>This is the third paragraph</p>\n    <p class=\"important\">This is the fourth paragraph</p>\n    <p class=\"important\">This is the fifth paragraph</p>\n\n    <style>\n      #paragraph1 {\n      \tfont-weight:bold;\n      }\n    </style>\n    <script>\n      \n      //All of those paragraphs are the wrong color. Make them blue...\n      var paragraphs = document.querySelectorAll(\"p\") //Get an array of all the paragraph elements\n      \n      //Now we need to go through and modify each element in the array. We can do this using a for loop\n\t\t\tfor (var i=0;i<paragraphs.length;i=i+1) {\n      \tvar paragraph = paragraphs[i] //Get the paragraph at position i in the array\n        paragraph.style.color = \"blue\" //Make the paragraph blue\n      }\n      \n      \n      //Now you try! Fill in the code to make all the elements \n      //of the CSS class important bold!\n      paragraphs = document.querySelectorAll(\".important\")\n      for (/*Fill in the for loop. You may want to look at the code above*/) {\n        //Make sure to define the variable named paragraph!\n      \tparagraph.style.fontWeight = \"bold\"\n      }\n      \n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <p class=\"important\">This is the first paragraph</p>\n    <p>This is the second paragraph</p>\n    <p>This is the third paragraph</p>\n    <p class=\"important\">This is the fourth paragraph</p>\n    <p class=\"important\">This is the fifth paragraph</p>\n\n    <style>\n      #paragraph1 {\n      \tfont-weight:bold;\n      }\n    </style>\n    <script>\n      \n      //All of those paragraphs are the wrong color. Make them blue...\n      var paragraphs = document.querySelectorAll(\"p\") //Get an array of all the paragraph elements\n      \n      //Now we need to go through and modify each element in the array. We can do this using a for loop\n\t\t\tfor (var i=0;i<paragraphs.length;i=i+1) {\n      \tvar paragraph = paragraphs[i] //Get the paragraph at position i in the array\n        paragraph.style.color = \"blue\" //Make the paragraph blue\n      }\n      \n      \n      //Now you try! Fill in the code to make all the elements \n      //of the CSS class important bold!\n      paragraphs = document.querySelectorAll(\".important\")\n      //Fill in the for loop. You may want to look at the code above\n      //for () {\n        //Make sure to define the variable named paragraph!\n      \t//paragraph.style.fontWeight = \"bold\"\n      //}\n      \n      \n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
@@ -193,7 +193,7 @@ document.getElementById("reset").addEventListener("click", resetCode)
             setTimeout(function() {
                 editor.refresh() //Make sure the editor displays all the content, not just some of it.
             },1)
-            
+
         </script>
 
         <style>
