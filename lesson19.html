@@ -192,6 +192,9 @@ document.getElementById("reset").addEventListener("click", resetCode)
             })
 
 
+            setTimeout(function() {
+                editor.refresh() //Make sure the editor displays all the content, not just some of it.
+            },1)
 
         </script>
 

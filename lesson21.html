@@ -190,8 +190,10 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 download(editor.getValue(), "website.html", "text/html")
             })
 
-
-
+            setTimeout(function() {
+                editor.refresh() //Make sure the editor displays all the content, not just some of it.
+            },1)
+            
         </script>
 
         <style>
