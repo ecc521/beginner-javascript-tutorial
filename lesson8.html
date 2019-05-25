@@ -4,7 +4,9 @@
         <title>Beginner JavaScript</title>
     </head>
     <body>
+
 		<script src="allPages.js"></script>
+
 
 
         <!-- HTML Mixed CodeMirror-->
@@ -14,8 +16,6 @@
         <script src="codemirror-5.42.0/mode/xml/xml.js"></script>
         <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>
         <script src="codemirror-5.42.0/mode/css/css.js"></script>
-
-
 
 
         <style>
@@ -35,87 +35,44 @@
         </style>
 
 
-		<p>Wait! What was that code that ran when the button was clicked?</p>
 
-		<p>That code is called a function. Functions are blocks of code able to be called by other code. They can be useful when the same code must be run in multiple different locations.</p>
-		<p>First, lets consider some code without functions. Try changing the code so that the font size is larger.</p>
+        <p>One of the main usages of JavaScript is to create HTML elements. </p>
 
+        <p>Let's start by creating a paragraph element and adding it to the page.</p>
 
-         <script>
-			window.answershown = false
-
-            function showanswer() {
-
-				if (window.answershown === true) {
-					document.querySelector("#example > .CodeMirror").remove()
-					window.answershown = false
-					document.getElementById("solutionbutton").innerHTML = "Show Solution"
-				}
-				else {
-					window.answershown = true
-					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
-
-
-
-                document.getElementById("exampleeditor").value = window.solutionHTML
-
-                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
-                    name:  "htmlmixed",
-                    autoCloseTags: true,
-                    styleActiveLine: true,
-                    lineWrapping: false,
-                    lineNumbers:true,
-                    tabSize:2,
-                    readOnly:true,
-                    cursorBlinkRate:-1 //Hides cursor
-                });
-            }
-}
-
-
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n      var paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Hello!\"\n      paragraph.style.color = \"green\"\n      paragraph.style.fontSize = \"1.5em\" //Uncomment this line to make the text larger.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"This line was not written by a function!\"\n      paragraph.style.color = \"blue\"\n      paragraph.style.fontSize = \"1.5em\" //And this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"In fact none of these lines were!\"\n      paragraph.style.color = \"red\"\n      paragraph.style.fontSize = \"1.5em\" //AND this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Functions have potential to save many lines of code!\"\n      paragraph.style.color = \"orange\"\n      paragraph.style.fontSize = \"1.5em\" //Still another line. All done now.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.\"\n      paragraph.style.color = \"salmon\"\n      paragraph.style.fontSize = \"1.5em\" //AHHH!!!! I almost didn't see this line!\n      document.body.appendChild(paragraph)\n    </script>\n  </body>\n</html>-->";
-
-                window.solutionHTML = window.solutionHTML.slice(4)
-                window.solutionHTML = window.solutionHTML.slice(0, -3)
-        </script>
 
 
         <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
-
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location = self.previousLesson">Go Back</button>
 
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location = self.nextLesson">Continue</button>
-</div>
 
-		<div id="example">
+        </div>
+
+        <div id="example">
             <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
 
-        <br><br><br><br><br><br><br><br>
+
+
+
+
 
 
 
         <script>
+
+
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n      var paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Hello!\"\n      paragraph.style.color = \"green\"\n      //paragraph.style.fontSize = \"1.5em\" //Uncomment this line to make the text larger.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"This line was not written by a function!\"\n      paragraph.style.color = \"blue\"\n      //paragraph.style.fontSize = \"1.5em\" //And this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"In fact none of these lines were!\"\n      paragraph.style.color = \"red\"\n      //paragraph.style.fontSize = \"1.5em\" //AND this line\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"Functions have potential to save many lines of code!\"\n      paragraph.style.color = \"orange\"\n      //paragraph.style.fontSize = \"1.5em\" //Still another line. All done now.\n      document.body.appendChild(paragraph)\n      paragraph = document.createElement(\"p\")\n      paragraph.innerHTML = \"What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.\"\n      paragraph.style.color = \"salmon\"\n      //paragraph.style.fontSize = \"1.5em\" //AHHH!!!! I almost didn't see this line!\n      document.body.appendChild(paragraph)\n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"This is the text (HTML) inside the paragraph element\"\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n      \n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
 
 
+
         </script>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -128,6 +85,7 @@
         <!-- window.initialHTML is the HTML that they should begin with-->
 
 
+
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
@@ -137,17 +95,38 @@
 
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
 
-
         <script>
 
             function download(content, name, mimetype) {
+
+                if (!window.Blob) {
+                    //IE <10
+                    var ifd = document.getElementById('dummy').contentDocument;
+                    ifd.open('text/plain', 'replace');
+                    ifd.write(content);
+                    ifd.close();
+                    ifd.execCommand('SaveAs', true, name);
+                }
+                else {
+                content = new Blob([content], {type:mimetype})
+
+                    //IE >=10
+                if (navigator.msSaveBlob) {
+                    navigator.msSaveBlob(content, name)
+                }
+                else {
+                    //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-                    content = new Blob([content], {type:mimetype})
+
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
+
                     document.body.removeChild(link);
+
+                }
+                }
             }
 
             document.getElementById("editor").value = localStorage.getItem(window.location.href + "htmlcode") || window.initialHTML
@@ -187,6 +166,7 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 tabSize:2
             });
 
+
             function runcode() {
                 var htmlcode = editor.getValue()
                 var iframe = document.getElementById("result")
@@ -208,19 +188,21 @@ document.getElementById("reset").addEventListener("click", resetCode)
         <style>
 
             #editorwrapper {
+                position:fixed;
+                bottom:0;
                 left:0;
                 height:45%;
                 width:60%;
                 display:inline-block;
                 float:left;
+                padding:0;
                 border-right:1px solid black;
                 border-top:1px solid black;
-			position:fixed;
-			bottom:0;
-                	padding:0;
-		}
+            }
 
             #result {
+                position:fixed;
+                bottom:0;
                 right:0;
                 height:45%;
                 width:40%;
@@ -229,18 +211,7 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 border-left:1px solid black;
                 display:inline-block;
                 float:right;
-			position:fixed;
-			bottom:0;
-                	padding:0;
-				background-color:white;
-				z-index:4;
-		}
-
-            /*Make the bottom editor display over the solution*/
-            #editorwrapper {
-                background-color:white;
-                opacity: 1;
-                z-index: 4;
+                padding:0;
             }
 
             .CodeMirror {
@@ -277,6 +248,14 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 display:inline-block;
                 float:right;
             }
+
+            /*Make the bottom editor display over the solution*/
+            #editorwrapper {
+                background-color:white;
+                opacity: 1;
+                z-index: 4;
+            }
+
 
             html, body {
                 width:100%;

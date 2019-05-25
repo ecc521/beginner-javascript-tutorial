@@ -4,7 +4,10 @@
         <title>Beginner JavaScript</title>
     </head>
     <body>
+
 		<script src="allPages.js"></script>
+
+
 
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
@@ -13,8 +16,6 @@
         <script src="codemirror-5.42.0/mode/xml/xml.js"></script>
         <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>
         <script src="codemirror-5.42.0/mode/css/css.js"></script>
-
-
 
 
         <style>
@@ -35,85 +36,42 @@
 
 
 
-		<p>Now try writing a function. Your function will take two numbers, add them together, and alert the user of the answer.</p>
-
-        <p>When called with the numbers 14 and 28, your function should alert 42</p>
+        <p>Paragraph elements aren't that entertaining - lets create a button!</p>
 
 
-         <script>
-			window.answershown = false
-
-            function showanswer() {
-
-				if (window.answershown === true) {
-					document.querySelector("#example > .CodeMirror").remove()
-					window.answershown = false
-					document.getElementById("solutionbutton").innerHTML = "Show Solution"
-				}
-				else {
-					window.answershown = true
-					document.getElementById("solutionbutton").innerHTML = "Hide Solution"
-
-
-
-                document.getElementById("exampleeditor").value = window.solutionHTML
-
-                var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
-                    name:  "htmlmixed",
-                    autoCloseTags: true,
-                    styleActiveLine: true,
-                    lineWrapping: false,
-                    lineNumbers:true,
-                    tabSize:2,
-                    readOnly:true,
-                    cursorBlinkRate:-1 //Hides cursor
-                });
-            }
-}
-
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tfunction addAndAlert(number1, number2) {\n      \tvar sum = number1 + number2\n        alert(\"The sum of \" + number1 + \" and \" + number2 + \" is \" + sum)\n      }\n      addAndAlert(14,28)\n    </script>\n  </body>\n</html>-->";
-
-                window.solutionHTML = window.solutionHTML.slice(4)
-                window.solutionHTML = window.solutionHTML.slice(0, -3)
-        </script>
 
 
         <div style="text-align:center;">
-            <button style="display:inline-block;margin:auto;padding:6px;background-color:aqua"onclick="showanswer()" id="solutionbutton">Show Solution</button>
-
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightsalmon;"onclick="window.location = self.previousLesson">Go Back</button>
 
             <button style="display:inline-block;margin:auto;padding:6px;background-color:lightgreen;"onclick="window.location = self.nextLesson">Continue</button>
-</div>
 
-		<div id="example">
+        </div>
+
+        <div id="example">
             <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
 
-        <br><br><br><br><br><br><br><br>
+
+
+
+
 
 
 
         <script>
+
+
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tfunction addAndAlert(number1, number2) {\n      \t//Your code here\n      }\n      addAndAlert(14,28)\n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"This is the text (HTML) inside the paragraph element\"\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n      \n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
 
 
+
         </script>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -126,6 +84,7 @@
         <!-- window.initialHTML is the HTML that they should begin with-->
 
 
+
         <div id="editorwrapper">
             <textarea id="editor"></textarea>
             <button id="run">Run!</button>
@@ -135,17 +94,38 @@
 
         <iframe id="result" src="javascript:document.write('Click run  - the HTML page will display here')"></iframe>
 
-
         <script>
 
             function download(content, name, mimetype) {
+
+                if (!window.Blob) {
+                    //IE <10
+                    var ifd = document.getElementById('dummy').contentDocument;
+                    ifd.open('text/plain', 'replace');
+                    ifd.write(content);
+                    ifd.close();
+                    ifd.execCommand('SaveAs', true, name);
+                }
+                else {
+                content = new Blob([content], {type:mimetype})
+
+                    //IE >=10
+                if (navigator.msSaveBlob) {
+                    navigator.msSaveBlob(content, name)
+                }
+                else {
+                    //Non-IE
                     var link = document.createElement("a");
                     document.body.appendChild(link);
-                    content = new Blob([content], {type:mimetype})
+
                     link.download = name
                     link.href = URL.createObjectURL(content);
                     link.click();
+
                     document.body.removeChild(link);
+
+                }
+                }
             }
 
             document.getElementById("editor").value = localStorage.getItem(window.location.href + "htmlcode") || window.initialHTML
@@ -185,6 +165,7 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 tabSize:2
             });
 
+
             function runcode() {
                 var htmlcode = editor.getValue()
                 var iframe = document.getElementById("result")
@@ -206,39 +187,30 @@ document.getElementById("reset").addEventListener("click", resetCode)
         <style>
 
             #editorwrapper {
+                position:fixed;
+                bottom:0;
                 left:0;
-                height:50%;
+                height:45%;
                 width:60%;
                 display:inline-block;
                 float:left;
+                padding:0;
                 border-right:1px solid black;
                 border-top:1px solid black;
-			position:fixed;
-			bottom:0;
-                	padding:0;
-		}
+            }
 
             #result {
+                position:fixed;
+                bottom:0;
                 right:0;
-                height:50%;
+                height:45%;
                 width:40%;
                 border:0;
                 border-top:1px solid black;
                 border-left:1px solid black;
                 display:inline-block;
                 float:right;
-			position:fixed;
-			bottom:0;
-                	padding:0;
-				background-color:white;
-				z-index:4;
-		}
-
-            /*Make the bottom editor display over the solution*/
-            #editorwrapper {
-                background-color:white;
-                opacity: 1;
-                z-index: 4;
+                padding:0;
             }
 
             .CodeMirror {
@@ -275,6 +247,14 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 display:inline-block;
                 float:right;
             }
+
+            /*Make the bottom editor display over the solution*/
+            #editorwrapper {
+                background-color:white;
+                opacity: 1;
+                z-index: 4;
+            }
+
 
             html, body {
                 width:100%;

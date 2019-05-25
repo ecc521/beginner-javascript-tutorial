@@ -5,7 +5,6 @@
     </head>
     <body>
 		<script src="allPages.js"></script>
-
         <!-- HTML Mixed CodeMirror-->
         <script src="codemirror-5.42.0/lib/codemirror.js"></script>
         <link rel="stylesheet" href="codemirror-5.42.0/lib/codemirror.css">
@@ -13,7 +12,6 @@
         <script src="codemirror-5.42.0/mode/xml/xml.js"></script>
         <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>
         <script src="codemirror-5.42.0/mode/css/css.js"></script>
-
 
 
         <style>
@@ -32,11 +30,12 @@
 
         </style>
 
-	    <p>Functions can make your code much shorter, much more readable, and much easier to change.</p>
-	    <p>Just look at the code in the editor - it does the same thing as the code in the lesson before, but is a whole lot easier to understand.</p>
-	    <p>Now try making the font size larger - it's just one line now! (Unlike before, where it could be very easy to introduce a bug by forgetting to modify one section of code)</p>
 
 
+
+
+                <p>Try modifying this code so that that it asks the user for a number, then creates an HTML paragraph element telling them what number they picked</p>
+                <p>Hint: To concatenate a variable with a string, use the addition operator (ex. "The number was " + variableName)</p>
 
 
          <script>
@@ -57,6 +56,7 @@
 
                 document.getElementById("exampleeditor").value = window.solutionHTML
 
+
                 var example = CodeMirror.fromTextArea(document.getElementById("exampleeditor"), {
                     name:  "htmlmixed",
                     autoCloseTags: true,
@@ -67,14 +67,21 @@
                     readOnly:true,
                     cursorBlinkRate:-1 //Hides cursor
                 });
+
+
+
             }
 }
 
 
-            window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n      function writeToScreen(text, color) {\n        var paragraph = document.createElement(\"p\")\n        paragraph.innerHTML = text\n        paragraph.style.color = color\n        paragraph.style.fontSize = \"1.5em\" //Uncomment this line to make the text larger.\n        document.body.appendChild(paragraph)\n      }\n      writeToScreen(\"Hello!\", \"green\")\n      writeToScreen(\"This line was written by a function!\", \"blue\")\n      writeToScreen(\"In fact all of these lines were!\", \"red\")\n      writeToScreen(\"Functions can save a lot of lines of code!\", \"orange\")\n      writeToScreen(\"What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.\", \"salmon\")\n    </script>\n  </body>\n</html>-->";
+                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      value = prompt(\"Please pick a number\")\n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"You picked the number \" + value\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n    </script>\n  </body>\n</html>-->";
 
                 window.solutionHTML = window.solutionHTML.slice(4)
                 window.solutionHTML = window.solutionHTML.slice(0, -3)
+
+
+
+
         </script>
 
 
@@ -92,14 +99,14 @@
             <textarea id="exampleeditor" hidden="true"></textarea>
         </div>
 
-        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
         <script>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n      function writeToScreen(text, color) {\n        var paragraph = document.createElement(\"p\")\n        paragraph.innerHTML = text\n        paragraph.style.color = color\n        //paragraph.style.fontSize = \"1.5em\" //Uncomment this line to make the text larger.\n        document.body.appendChild(paragraph)\n      }\n      writeToScreen(\"Hello!\", \"green\")\n      writeToScreen(\"This line was written by a function!\", \"blue\")\n      writeToScreen(\"In fact all of these lines were!\", \"red\")\n      writeToScreen(\"Functions can save a lot of lines of code!\", \"orange\")\n      writeToScreen(\"What if I wanted to make all the text large? With a function in is 1 change.... Without them, a scavenger hunt for all the places where there is code to change.\", \"salmon\")\n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n      html, body {\n      \tbackground-color:antiquewhite;\n      }\n    </style>\n    <script>\n      \n      paragraph = document.createElement(\"p\") //Create a paragraph element\n      paragraph.innerHTML = \"This is the text (HTML) inside the paragraph element\"\n      document.body.appendChild(paragraph) //Add the paragraph to the page\n      \n      \n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
@@ -173,8 +180,6 @@ function save() {
 
 setInterval(save, 100)
 
-setInterval(save, 1000)
-
 function resetCode() {
     editor.setValue(window.initialHTML)
 }
@@ -213,7 +218,7 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 position:fixed;
                 bottom:0;
                 left:0;
-                height:50%;
+                height:45%;
                 width:60%;
                 display:inline-block;
                 float:left;
@@ -226,7 +231,7 @@ document.getElementById("reset").addEventListener("click", resetCode)
                 position:fixed;
                 bottom:0;
                 right:0;
-                height:50%;
+                height:45%;
                 width:40%;
                 border:0;
                 border-top:1px solid black;
