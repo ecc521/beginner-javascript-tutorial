@@ -80,7 +80,7 @@ function fetchHandler(event) {
         let url = event.request.url
 
         let fromcache = await caches.match(url)
-		
+
 		//These files should never change. If they do, the codemirror version will change. This should improve performance and
 		//reduce usage of bandwidth.
 		if (url.includes("codemirror-5.42.0") && fromcache) {

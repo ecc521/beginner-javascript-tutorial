@@ -1,32 +1,33 @@
 self.order = [
     ["", "Beginner JavaScript"], //Same as index.html
-    ["lesson1.html", "Interacting with the User"],
-    ["lesson2.html", "JavaScript in a webpage"],
-    ["lesson3.html", "Editing Code"],
-    ["lesson4.html", "Adding Logic to make Decisions"],
-    ["lesson5.html", "Adding Logic"],
-    ["lesson6.html", "Writing Code"],
-    ["lesson7.html", "The Usage of JavaScript - Interacting with HTML"],
-    ["lesson8.html", "Interacting with HTML - Creating an Element"],
-    ["lesson9.html", "Interacting with HTML - Creating an Element"],
-    ["lesson10.html", "Interacting with HTML - Creating an Element"],
-    ["lesson11.html", "Interactive Websites"],
-    ["lesson12.html", "Functions"],
-    ["lesson13.html", "Functions"],
-    ["lesson14.html", "Functions"],
-    ["lesson15.html", "Functions"],
-    ["lesson16.html", "Editing Code"],
-    ["lesson17.html", "Interactive Websites: Calculator"],
-    ["lesson18.html", "Interacting with HTML and CSS"],
-    ["lesson19.html", "Interacting with HTML and CSS"],
-    ["lesson20.html", "Arrays"],
+    ["lesson1.html", "Lesson 1: Interacting with the User"],
+    ["lesson2.html", "Lesson 2: JavaScript in a webpage"],
+    ["lesson3.html", "Lesson 3: Editing Code"],
+    ["lesson4.html", "Lesson 4: Adding Logic to make Decisions"],
+    ["lesson5.html", "Lesson 5: Adding Logic"],
+    ["lesson6.html", "Lesson 6: Writing Code"],
+    ["lesson7.html", "Lesson 7: The Usage of JavaScript - Interacting with HTML"],
+    ["lesson8.html", "Lesson 8: Interacting with HTML - Creating an Element"],
+    ["lesson9.html", "Lesson 9: Interacting with HTML - Creating an Element"],
+    ["lesson10.html", "Lesson 10: Interacting with HTML - Creating an Element"],
+    ["lesson11.html", "Lesson 11: Interactive Websites"],
+    ["lesson12.html", "Lesson 12: Functions"],
+    ["lesson13.html", "Lesson 13: Functions"],
+    ["lesson14.html", "Lesson 14: Functions"],
+    ["lesson15.html", "Lesson 15: Functions"],
+    ["lesson16.html", "Lesson 16: Editing Code"],
+    ["lesson17.html", "Lesson 17: Interactive Websites: Calculator"],
+    ["lesson18.html", "Lesson 18: Interacting with HTML and CSS"],
+    ["lesson19.html", "Lesson 19: Arrays"],
+    ["lesson20.html", "Lesson 20: document.querySelector"],
+    ["lesson21.html", "Lesson 21: document.querySelectorAll"],
     ["continuing.html", "Continuing With JavaScript"],
 ]
 
 
 //Don't run this code inside the serviceworker
 if (self.window !== undefined) {
-    
+
     self.currentLesson = window.location.pathname.slice(window.location.pathname.lastIndexOf("/") + 1)
 
     var currentIndex;
@@ -36,10 +37,10 @@ if (self.window !== undefined) {
             break
         }
     }
-    
+
     self.nextLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex + 1][0])
     self.previousLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex - 1][0])
-    
+
     //Only set header if a name is provided
     if (self.order[currentIndex][1] !== undefined) {
         var h1 = document.createElement("h1")

@@ -34,9 +34,8 @@
         </style>
 
 
-        <p>Arrays are very common to encounter in Javascript, such as when using document.querySelectorAll</p>
-		<p>For loops are usually used to iterate (travel through) arrays.</p>
-		<p>Use a for loop to iterate through the second array and add a paragraph to the page containing each array element</p>
+        <p>You can also use CSS selectors to select elements through document.querySelector and document.querySelectorAll</p>
+        <p>Let's use document.querySelector to find and modify some HTML elements!</p>
 
 
 
@@ -72,7 +71,7 @@
 }
 
 
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n    </style>\n    <script>\n      var array = [3,5,7,9] //Create an array\n      array.push(11) //Add 11 to the end of the array\n      array.unshift(1) //Add 1 to the front of the array. WARNING: Slow on large arrays\n      \n      //array.pop() //Uncomment this line to remove the last element\n      //array.shift() //Uncomment to remove the first element. WARNING: Slow on large arrays\n      \n      var paragraph = document.createElement(\"p\")\n      var sum = 0\n      \n      for (let i=0;i<array.length;i++) {\n      \tsum += array[i] //Add the value at the current array index to sum\n      }\n      \n      paragraph.innerHTML = sum\n      document.body.appendChild(paragraph)\n      \n      \n      \n      for (let i=0;i<array.length;i++) {\n      \tvar elem = document.createElement(\"p\")\n        elem.innerHTML = array[i]\n        document.body.appendChild(elem)\n      }\n      \n    </script>\n  </body>\n</html>-->";
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    \n    <p id=\"paragraph1\">This is the first paragraph</p>\n    <p class=\"paragraph\">This is the second paragraph</p>\n    <p>This is the third paragraph</p>\n    <p>This is the fourth paragraph</p>\n\n    <style>\n      #paragraph1 {\n      \tfont-weight:bold;\n      }\n    </style>\n    <script>\n\t\t\t//That first paragraph isn't fancy enough... Let's make it italic!\n\t\t\tvar paragraph1 = document.querySelector(\"#paragraph1\")\n      paragraph1.style.fontStyle = \"italic\"\n      \n      //Let's give that second paragraph a little more pop! Try making it blue!\n      //With classes, the selector is always .className\n      var paragraph2 = document.querySelector(\".paragraph\")\n      paragraph2.style.color = \"blue\"\n      \n    </script>\n  </body>\n</html>-->";
 
 
                 window.solutionHTML = window.solutionHTML.slice(4)
@@ -99,7 +98,7 @@
         <script>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n    </style>\n    <script>\n      var array = [3,5,7,9] //Create an array\n      array.push(11) //Add 11 to the end of the array\n      array.unshift(1) //Add 1 to the front of the array. WARNING: Slow on large arrays\n      \n      //array.pop() //Uncomment this line to remove the last element\n      //array.shift() //Uncomment to remove the first element. WARNING: Slow on large arrays\n      \n      var paragraph = document.createElement(\"p\")\n      var sum = 0\n      \n      for (let i=0;i<array.length;i++) {\n      \tsum += array[i] //Add the value at the current array index to sum\n      }\n      \n      paragraph.innerHTML = sum\n      document.body.appendChild(paragraph)\n      \n      \n      //Now you try. Add a paragraph element to the page for each array index containing\n      //the value at that index. (A paragraph containing \"1\", another containing \"3\", ext.)\n      \n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    \n    <p id=\"paragraph1\">This is the first paragraph</p>\n    <p class=\"paragraph\">This is the second paragraph</p>\n    <p>This is the third paragraph</p>\n    <p>This is the fourth paragraph</p>\n\n    <style>\n      #paragraph1 {\n      \tfont-weight:bold;\n      }\n    </style>\n    <script>\n\t\t\t//That first paragraph isn't fancy enough... Let's make it italic!\n\t\t\tvar paragraph1 = document.querySelector(\"#paragraph1\")\n      paragraph1.style.fontStyle = \"italic\"\n      \n      //Let's give that second paragraph a little more pop! Try making it blue!\n      var paragraph2 = document.querySelector(\"\") //Fill in the CSS selector\n      paragraph2.style.color = \"blue\"\n      \n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)

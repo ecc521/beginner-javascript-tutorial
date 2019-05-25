@@ -34,9 +34,8 @@
         </style>
 
 
-        <p>Arrays are very common to encounter in Javascript, such as when using document.querySelectorAll</p>
-		<p>For loops are usually used to iterate (travel through) arrays.</p>
-		<p>Read the code, and follow the directions in the comments.</p>
+        <p>You can also use CSS selectors to select elements through document.querySelector and document.querySelectorAll</p>
+        <p>Let's use document.querySelector to find and modify some HTML elements!</p>
 
 
 
@@ -72,7 +71,7 @@
 }
 
 
-               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n    </style>\n    <script>\n      var array = [3,5,7,9] //Create an array\n      \n      var paragraph = document.createElement(\"p\")\n      var sum = 0\n      \n      for (let i=0;i<array.length;i++) {\n      \tsum += array[i] //Add the value at the current array index to sum\n      }\n      \n      paragraph.innerHTML = sum\n      document.body.appendChild(paragraph)\n      \n      \n      \n      for (let i=0;i<array.length;i++) {\n      \tvar elem = document.createElement(\"p\")\n        elem.innerHTML = array[i]\n        document.body.appendChild(elem)\n      }\n      \n    </script>\n  </body>\n</html>-->";
+               window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <p class=\"important\">This is the first paragraph</p>\n    <p>This is the second paragraph</p>\n    <p>This is the third paragraph</p>\n    <p class=\"important\">This is the fourth paragraph</p>\n    <p class=\"important\">This is the fifth paragraph</p>\n\n    <style>\n      #paragraph1 {\n      \tfont-weight:bold;\n      }\n    </style>\n    <script>\n      \n      //All of those paragraphs are the wrong color. Make them blue...\n      var paragraphs = document.querySelectorAll(\"p\") //Get an array of all the paragraph elements\n      \n      //Now we need to go through and modify each element in the array. We can do this using a for loop\n\t\t\tfor (var i=0;i<paragraphs.length;i=i+1) {\n      \tvar paragraph = paragraphs[i] //Get the paragraph at position i in the array\n        paragraph.style.color = \"blue\" //Make the paragraph blue\n      }\n      \n      \n      //Now you try! Fill in the code to make all the elements \n      //of the CSS class important bold!\n      paragraphs = document.querySelectorAll(\".important\")\n      for (var i=0;i<paragraphs.length;i++) {\n        var paragraph = paragraphs[i]\n      \tparagraph.style.fontWeight = \"bold\"\n      }\n      \n      \n    </script>\n  </body>\n</html>-->";
 
 
                 window.solutionHTML = window.solutionHTML.slice(4)
@@ -99,7 +98,7 @@
         <script>
             //HTML that is in editor at start
             //.split("\n").join("\\n").split("\t").join("\\t").split("\"").join("\\\"")
-            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <style>\n    </style>\n    <script>\n      var array = [3,5,7,9] //Create an array\n      \n      var paragraph = document.createElement(\"p\")\n      var sum = 0\n      \n      for (var i=0;i<array.length;i++) {\n      \tsum += array[i] //Add the value at the current array index to sum\n      }\n      \n      paragraph.innerHTML = sum\n      document.body.appendChild(paragraph)\n      \n      \n      //Now you try. For each index in the array, create an HTML paragraph\n      //element containing the value at that index, and add the paragraph\n      //element to the page. (A paragraph element containing the\n      //value of array[0], another containing array[1], etc.)\n      \n      \n      \n      \n      //Javascript for loops are similar to those in many other programming languages.\n      //They work like this:\n      \n      //var i=0 - Initialize counter variable. In this case we set it to 0 so that we start at the\n      //first element in the array\n      \n      //i<paragraphs.length - As long as this condition is true, the loop will continue. In this\n      //case, we use i<paragraphs.length so that we go through each element in the array\n      \n      //i=i+1 - This code runs every time the loop finishes. In this case, increase the value of i by 1\n      //so that the next time the loop runs, we will be modifying the next element of the array.\n      \n      \n    </script>\n  </body>\n</html>-->";
+            window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <p class=\"important\">This is the first paragraph</p>\n    <p>This is the second paragraph</p>\n    <p>This is the third paragraph</p>\n    <p class=\"important\">This is the fourth paragraph</p>\n    <p class=\"important\">This is the fifth paragraph</p>\n\n    <style>\n      #paragraph1 {\n      \tfont-weight:bold;\n      }\n    </style>\n    <script>\n      \n      //All of those paragraphs are the wrong color. Make them blue...\n      var paragraphs = document.querySelectorAll(\"p\") //Get an array of all the paragraph elements\n      \n      //Now we need to go through and modify each element in the array. We can do this using a for loop\n\t\t\tfor (var i=0;i<paragraphs.length;i=i+1) {\n      \tvar paragraph = paragraphs[i] //Get the paragraph at position i in the array\n        paragraph.style.color = \"blue\" //Make the paragraph blue\n      }\n      \n      \n      //Now you try! Fill in the code to make all the elements \n      //of the CSS class important bold!\n      paragraphs = document.querySelectorAll(\".important\")\n      for (/*Fill in the for loop. You may want to look at the code above*/) {\n        //Make sure to define the variable named paragraph!\n      \tparagraph.style.fontWeight = \"bold\"\n      }\n      \n      \n    </script>\n  </body>\n</html>-->";
 
             window.initialHTML = window.initialHTML.slice(4)
             window.initialHTML = window.initialHTML.slice(0, -3)
