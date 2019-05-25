@@ -21,7 +21,7 @@ self.order = [
     ["lesson19.html", "Lesson 19: Arrays"],
     ["lesson20.html", "Lesson 20: document.querySelector"],
     ["lesson21.html", "Lesson 21: document.querySelectorAll"],
-    ["continuing.html", "Continuing With JavaScript"],
+    ["continuing.html", "Continuing on with JavaScript"]
 ]
 
 
@@ -38,8 +38,17 @@ if (self.window !== undefined) {
         }
     }
 
-    self.nextLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex + 1][0])
-    self.previousLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex - 1][0])
+    //Since I was too lazy to add in bounds checking, just wrap in try-catch statements.
+    //TODO: Replace try-catch with bounds checking (or do something to stop the errors from going to the console!)
+    try {
+        self.nextLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex + 1][0])
+    }
+    catch(e) {console.error(e)}
+
+    try {
+        self.previousLesson = window.location.href.replace(self.currentLesson, self.order[currentIndex - 1][0])
+    }
+    catch(e) {console.error(e)}
 
     //Only set header if a name is provided
     if (self.order[currentIndex][1] !== undefined) {
