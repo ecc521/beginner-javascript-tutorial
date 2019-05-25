@@ -33,9 +33,9 @@
 
         </style>
 
-	 
+
 		<p>Now try writing a function. Your function will take two numbers, add them together, and alert the user of the answer.</p>
-	    
+
         <p>When called with the numbers 14 and 28, your function should alert 42</p>
 
 
@@ -69,7 +69,7 @@
                 });
             }
 }
-			
+
 
                window.solutionHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <script>\n\t\t\tfunction addAndAlert(number1, number2) {\n      \tvar sum = number1 + number2\n        alert(\"The sum of \" + number1 + \" and \" + number2 + \" is \" + sum)\n      }\n      addAndAlert(14,28)\n    </script>\n  </body>\n</html>-->";
 
@@ -153,13 +153,22 @@ window.initialHTML = "<!--<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>
 var previoustext;
 
 function save() {
+    var currentValue = editor.getValue()
     if (editor.getValue() !== previoustext) {
-        previoustext = editor.getValue()
-        localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
+        previoustext = currentValue
+        localStorage.setItem(window.location.href + "htmlcode", currentValue)
+    }
+    if (currentValue === window.initialHTML) {
+        document.getElementById("reset").style.opacity = "0.4"
+        document.getElementById("reset").style.cursor = "not-allowed"
+    }
+    else if (currentValue === window.initialHTML) {
+        document.getElementById("reset").style.opacity = "1"
+        document.getElementById("reset").style.cursor = "default"
     }
 }
 
-setInterval(save, 1000)
+setInterval(save, 100)
 
 function resetCode() {
     editor.setValue(window.initialHTML)

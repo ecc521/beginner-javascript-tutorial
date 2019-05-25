@@ -133,13 +133,22 @@
 var previoustext;
 
 function save() {
+    var currentValue = editor.getValue()
     if (editor.getValue() !== previoustext) {
-        previoustext = editor.getValue()
-        localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
+        previoustext = currentValue
+        localStorage.setItem(window.location.href + "htmlcode", currentValue)
+    }
+    if (currentValue === window.initialHTML) {
+        document.getElementById("reset").style.opacity = "0.4"
+        document.getElementById("reset").style.cursor = "not-allowed"
+    }
+    else if (currentValue === window.initialHTML) {
+        document.getElementById("reset").style.opacity = "1"
+        document.getElementById("reset").style.cursor = "default"
     }
 }
 
-setInterval(save, 1000)
+setInterval(save, 100)
 
 function resetCode() {
     editor.setValue(window.initialHTML)

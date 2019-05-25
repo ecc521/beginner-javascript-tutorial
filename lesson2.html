@@ -16,7 +16,7 @@
         <script src="codemirror-5.42.0/mode/javascript/javascript.js"></script>
         <script src="codemirror-5.42.0/mode/css/css.js"></script>
 
-	    
+
         <style>
             h1 {
                 text-align:center;
@@ -181,11 +181,22 @@ alert("You picked the number " + value)</pre>
 var previoustext;
 
 function save() {
+    var currentValue = editor.getValue()
     if (editor.getValue() !== previoustext) {
-        previoustext = editor.getValue()
-        localStorage.setItem(window.location.href + "htmlcode", editor.getValue())
+        previoustext = currentValue
+        localStorage.setItem(window.location.href + "htmlcode", currentValue)
+    }
+    if (currentValue === window.initialHTML) {
+        document.getElementById("reset").style.opacity = "0.4"
+        document.getElementById("reset").style.cursor = "not-allowed"
+    }
+    else if (currentValue === window.initialHTML) {
+        document.getElementById("reset").style.opacity = "1"
+        document.getElementById("reset").style.cursor = "default"
     }
 }
+
+setInterval(save, 100)
 
 setInterval(save, 1000)
 
