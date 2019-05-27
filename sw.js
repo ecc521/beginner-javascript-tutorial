@@ -68,21 +68,17 @@ async function checkForChanges() {
     let url = "https://api.github.com/repos/ecc521/beginner-javascript-tutorial/commits/master"
 
     let oldResponse = await caches.match(url)
-    console.log(oldResponse)
     let oldHash;
     if (oldResponse) {
         oldHash = (await oldResponse.json()).sha
-        console.log(oldHash)
     }
 
     let latestCommit = await fetch(url)
     await cache.put(url, latestCommit.clone())
     let hash = (await latestCommit.json()).sha
 
-    console.log(hash)
-    console.log(oldHash)
-
     if (hash !== oldHash) {
+        console.log("Tutorial has changed since data was cached. Updating data in cache.")
         preload()
     }
 }
