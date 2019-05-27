@@ -9,7 +9,6 @@ return self.clients.matchAll().then(clients => {
 
 
 const cacheName = "beginner-javascript-tutorial"
-const waitOnFirstLoad = 0 //Milliseconds to wait before fetching items on preload list. Helps prevent duplicate requests on first load.
 
 //Array of items to try and preload on install (the serviceWorker will install without them preloaded). Can be exact or relative to serviceWorker scope
 const preloadList = [
@@ -23,20 +22,17 @@ const preloadList = [
 	"codemirror-5.42.0/mode/css/css.js"
 ]
 
-preloadList.concat(self.order)
 
 function rebaseURL(url) {
     //Fills in relative URLs using the serviceWorker scope
     return (new URL(url, registration.scope)).href
 }
 
+//Add pages in self.order to preloadList
+self.order.forEach(arr => {preloadList.push(arr[0])})
+
 
 async function preload() {
-    //Allow requests by the page to get into browser cache, so that we don't sent 2 requests for the same thing.
-    await new Promise((resolve, reject) => {
-        setTimeout(resolve, waitOnFirstLoad)
-    })
-
     const cache = await caches.open(cacheName)
     let requests = []
     for (let index in preloadList) {
@@ -55,14 +51,7 @@ async function preload() {
     }
 }
 
-
-function activateHandler(event) {
-    event.waitUntil(preload())
-}
-
-self.addEventListener("activate", activateHandler)
-
-
+//Make sure something has changed since the data was last cached.
 async function checkForChanges() {
     const cache = await caches.open(cacheName)
     let url = "https://api.github.com/repos/ecc521/beginner-javascript-tutorial/commits/master"
@@ -79,11 +68,13 @@ async function checkForChanges() {
 
     if (hash !== oldHash) {
         console.log("Tutorial has changed since data was cached. Updating data in cache.")
-        preload()
+        await preload()
     }
 }
 
-checkForChanges() //Not sure exactly when this runs. Should run occasionally though.
+checkForChanges() //Updates cache to the latest version.
+
+
 
 
 //Milliseconds to wait for network response before using cache
