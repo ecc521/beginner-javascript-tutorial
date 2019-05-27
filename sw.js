@@ -30,40 +30,64 @@ function rebaseURL(url) {
     return (new URL(url, registration.scope)).href
 }
 
-function activateHandler(event) {
-    event.waitUntil((async function() {
 
-        //Allow requests by the page to get into browser cache, so that we don't sent 2 requests for the same thing.
-        await new Promise((resolve, reject) => {
-            setTimeout(resolve, waitOnFirstLoad)
-        })
+async function preload() {
+    //Allow requests by the page to get into browser cache, so that we don't sent 2 requests for the same thing.
+    await new Promise((resolve, reject) => {
+        setTimeout(resolve, waitOnFirstLoad)
+    })
 
-        const cache = await caches.open(cacheName)
-        let requests = []
-        for (let index in preloadList) {
-            let url = rebaseURL(preloadList[index])
-            requests.push(fetch(url))
+    const cache = await caches.open(cacheName)
+    let requests = []
+    for (let index in preloadList) {
+        let url = rebaseURL(preloadList[index])
+        requests.push(fetch(url))
+    }
+    for (let index in requests) {
+        let request = requests[index]
+        try {
+            let response = await request
+            await cache.put(response.url, response)
         }
-        for (let index in requests) {
-            let request = requests[index]
-            try {
-                let response = await request
-                await cache.put(response.url, response)
-            }
-            catch(e) {
-                console.error(e)
-            }
+        catch(e) {
+            console.error(e)
         }
-    })())
+    }
 }
 
 
+function activateHandler(event) {
+    event.waitUntil(preload())
+}
 
 self.addEventListener("activate", activateHandler)
 
 
+async function checkForChanges() {
+    const cache = await caches.open(cacheName)
+    let url = "https://api.github.com/repos/ecc521/beginner-javascript-tutorial/commits/master"
 
+    let oldResponse = await caches.match(url)
+    console.log(oldResponse)
+    let oldHash;
+    if (oldResponse) {
+        oldHash = (await oldResponse.json()).sha
+        console.log(oldHash)
+    }
 
+    let latestCommit = await fetch(url)
+    await cache.put(url, latestCommit.clone())
+    let hash = (await latestCommit.json()).sha
+
+    console.log(hash)
+    console.log(oldHash)
+
+    if (hash !== oldHash) {
+        preload()
+    }
+}
+
+checkForChanges() //Not sure exactly when this runs. Should run occasionally though.
 
 
 //Milliseconds to wait for network response before using cache
